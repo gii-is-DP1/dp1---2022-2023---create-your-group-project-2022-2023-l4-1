@@ -32,6 +32,23 @@
 
     </properties>
 
+     <developers>
+        <developer>
+        <id>ignaciowarleta</id>
+        <name>Ignacio</name>
+        <email>trabuko32@gmail.com</email>
+        <url>http://www.tmht.com/leo</url>
+        <roles>
+            <role>Maestro del Marketing</role>
+        </roles>
+        <properties>
+            <picUrl>
+            
+            </picUrl>
+        </properties>
+        </developer>
+    </developers>
+
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
@@ -255,6 +272,8 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
+
+
 
 
 
