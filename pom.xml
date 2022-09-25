@@ -45,6 +45,19 @@
                 <picUrl>https://www.realmadrid.com/img/vertical_380px/marcelo_380x501_20210826062808.jpg</picUrl>
             </properties>
         </developer>
+
+        <developer>
+            <id>Ignacio</id>
+            <name>Ignacio</name>
+            <email>ignwarmur@alum.us.es</email>
+            <url>http://www.tmht.com/ignacio</url>
+            <roles>
+                <role>Maestro del Marketing</role>
+            </roles>
+            <properties>
+                <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
+            </properties>
+        </developer>
     </developers>
 
 
