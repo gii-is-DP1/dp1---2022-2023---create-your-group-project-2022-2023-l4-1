@@ -46,6 +46,19 @@
         </developer>
 
         <developer>
+            <id>Daniel</id>
+            <name>Daniel</name>
+            <email>danguepre@alum.us.es</email>
+            <url>http://www.tmht.com/danguepre</url>
+            <roles>
+                <role>programmer</role>
+            </roles>
+            <properties>
+                <picUrl>https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9f07acafa996fa84/6317ac5608556f30b2645ff1/Eder_Gabriel.jpg</picUrl>
+            </properties>
+        </developer>
+    
+        <developer>
             <id>Ignacio</id>
             <name>Ignacio</name>
             <email>ignwarmur@alum.us.es</email>
