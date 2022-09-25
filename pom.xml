@@ -59,10 +59,6 @@
         </developer>
     </developers>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
