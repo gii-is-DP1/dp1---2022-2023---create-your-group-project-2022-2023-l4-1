@@ -31,7 +31,6 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
-
     <developers>
         <developer>
             <id>David</id>
@@ -47,19 +46,6 @@
         </developer>
 
         <developer>
-            <id>Ignacio</id>
-            <name>Ignacio</name>
-            <email>ignwarmur@alum.us.es</email>
-            <url>http://www.tmht.com/ignacio</url>
-            <roles>
-                <role>Maestro del Marketing</role>
-            </roles>
-            <properties>
-                <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
-            </properties>
-        </developer>
-
-        <developer>
             <id>Daniel</id>
             <name>Daniel</name>
             <email>danguepre@alum.us.es</email>
@@ -71,8 +57,20 @@
                 <picUrl>https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9f07acafa996fa84/6317ac5608556f30b2645ff1/Eder_Gabriel.jpg</picUrl>
             </properties>
         </developer>
+    
+        <developer>
+            <id>Ignacio</id>
+            <name>Ignacio</name>
+            <email>ignwarmur@alum.us.es</email>
+            <url>http://www.tmht.com/ignacio</url>
+            <roles>
+                <role>Maestro del Marketing</role>
+            </roles>
+            <properties>
+                <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
+            </properties>
+        </developer>
     </developers>
-
 
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
@@ -297,6 +295,8 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
+
+
 
 
 
