@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.springframework.samples</groupId>
     <artifactId>L4-1</artifactId>
@@ -70,8 +68,26 @@
                 <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
             </properties>
         </developer>
-    </developers>
+    
 
+    
+        <developer>
+            <id>Gabrielvcg</id>
+            <name>Gabriel</name>
+            <email>gabrivacaro@gmail.com</email>
+            <url>http://www.tmht.com/gabri</url>
+            <roles>
+                <role>programador junior</role>
+            </roles>
+            <properties>
+                <picUrl>
+                    https://s.yimg.com/uu/api/res/1.2/TnK6ET18C3_QZ8izjeimSA--~B/aD0yODY7dz01NzA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/es/men_s_health_es_614/b0228e019e267ead8da0fa5223a29c4e
+</picUrl>
+            </properties>
+        </developer>
+       
+        <!-- More developers ...-->
+    </developers>
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
@@ -90,16 +106,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <dependency>  
-            <groupId>org.springframework.security</groupId>  
-            <artifactId>spring-security-taglibs</artifactId>  
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
         </dependency>
         <!-- Databases - Uses H2 by default -->
         <!-- dependency>
                 <groupId>org.hsqldb</groupId>
                 <artifactId>hsqldb</artifactId>
                 <scope>runtime</scope>
-        </dependency-->        
+        </dependency-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -179,7 +195,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>    
+            <version>1.18.20</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -297,7 +313,11 @@
     </licenses>
 
 
+<<<<<<< HEAD
+</project>
+=======
 
 
 
 </project>
+>>>>>>> master
