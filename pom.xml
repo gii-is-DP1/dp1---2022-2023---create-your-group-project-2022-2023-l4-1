@@ -41,13 +41,13 @@
             </roles>
             <properties>
                 <picUrl>
-https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.menshealth.com%2Fes%2Fnutricion-dietetica%2Fa40401202%2Fronnie-coleman-culturista-consejo-ponerse-grande%2F&psig=AOvVaw2xWDZ5TCsnTDwI2Li0XEyW&ust=1664207533399000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCNCn7NKLsPoCFQAAAAAdAAAAABAD
+                    https://s.yimg.com/uu/api/res/1.2/TnK6ET18C3_QZ8izjeimSA--~B/aD0yODY7dz01NzA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/es/men_s_health_es_614/b0228e019e267ead8da0fa5223a29c4e
 </picUrl>
             </properties>
         </developer>
        
         <!-- More developers ...-->
-    
+    </developers>
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
