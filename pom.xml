@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.springframework.samples</groupId>
-    <artifactId>spring-petclinic</artifactId>
+    <artifactId>L4-1</artifactId>
     <version>2.2.0.BUILD-SNAPSHOT</version>
 
     <parent>
@@ -12,7 +12,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
-    <name>petclinic</name>
+    <name>DP1 L4-1</name>
 
     <properties>
 
@@ -31,8 +31,20 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
+    <developers>
+        <developer>
+            <id>David</id>
+            <name>David</name>
+            <email>davcorrom@alum.us.es</email>
+            <url>http://www.tmht.com/david</url>
+            <roles>
+                <role>programmer</role>
+            </roles>
+            <properties>
+                <picUrl>https://www.realmadrid.com/img/vertical_380px/marcelo_380x501_20210826062808.jpg</picUrl>
+            </properties>
+        </developer>
 
-     <developers>
         <developer>
             <id>Ignacio</id>
             <name>Ignacio</name>
@@ -47,6 +59,10 @@
         </developer>
     </developers>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
