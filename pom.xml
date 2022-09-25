@@ -34,18 +34,16 @@
 
      <developers>
         <developer>
-        <id>ignaciowarleta</id>
-        <name>Ignacio</name>
-        <email>trabuko32@gmail.com</email>
-        <url>http://www.tmht.com/leo</url>
-        <roles>
-            <role>Maestro del Marketing</role>
-        </roles>
-        <properties>
-            <picUrl>
-            
-            </picUrl>
-        </properties>
+            <id>Ignacio</id>
+            <name>Ignacio</name>
+            <email>ignwarmur@alum.us.es</email>
+            <url>http://www.tmht.com/ignacio</url>
+            <roles>
+                <role>Maestro del Marketing</role>
+            </roles>
+            <properties>
+                <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
+            </properties>
         </developer>
     </developers>
 
