@@ -13,6 +13,9 @@ INSERT INTO authorities(id,username,authority) VALUES (4,'davcorrom','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
 INSERT INTO users(username,password,enabled) VALUES ('ignwarmur','ignwarmur',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (5,'ignwarmur','owner');
+-- Another owner user, named ignwarmur with password ignwarmur
+INSERT INTO users(username,password,enabled) VALUES ('danguepre','danguepre',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (6,'danguepre','owner');
 
 INSERT INTO vets(id, first_name,last_name) VALUES (1, 'James', 'Carter');
 INSERT INTO vets(id, first_name,last_name) VALUES (2, 'Helen', 'Leary');
@@ -51,6 +54,7 @@ INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Mad
 INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner1');
 INSERT INTO owners VALUES (11, 'David', 'Cortabarra', '1402 Shakira St.', 'Seattle', '6085555497', 'davcorrom');
 INSERT INTO owners VALUES (12, 'Ignacio', 'Warleta', '73472 Lady Gaga St.', 'Zihuatanejo', '6084555497', 'ignwarmur');
+INSERT INTO owners VALUES (13, 'Daniel', 'Guedes', '777 Rosalia St.', 'Monona', '6084555497', 'danguepre');
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 2);
@@ -67,6 +71,8 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (12, 'Lucky', '2010
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (13, 'Sly', '2012-06-08', 1, 10);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'Paco', '2022-04-16', 2, 11);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (15, 'Anaxagoras', '2022-02-21', 2, 12);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (16, 'Tambor', '2011-12-20', 2, 13);
+
 
 
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01', 'rabies shot');
