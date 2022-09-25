@@ -10,6 +10,9 @@ INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
 -- Another owner user, named davcorrom with password davcorrom
 INSERT INTO users(username,password,enabled) VALUES ('davcorrom','davcorrom',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (4,'davcorrom','owner');
+-- Another owner user, named ignwarmur with password ignwarmur
+INSERT INTO users(username,password,enabled) VALUES ('ignwarmur','ignwarmur',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (5,'ignwarmur','owner');
 
 INSERT INTO vets(id, first_name,last_name) VALUES (1, 'James', 'Carter');
 INSERT INTO vets(id, first_name,last_name) VALUES (2, 'Helen', 'Leary');
@@ -47,6 +50,7 @@ INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '
 INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'owner1');
 INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'owner1');
 INSERT INTO owners VALUES (11, 'David', 'Cortabarra', '1402 Shakira St.', 'Seattle', '6085555497', 'davcorrom');
+INSERT INTO owners VALUES (11, 'Ignacio', 'Warleta', '73472 Lady Gaga St.', 'Zihuatanejo', '6084555497', 'ignwarmur');
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 2);
