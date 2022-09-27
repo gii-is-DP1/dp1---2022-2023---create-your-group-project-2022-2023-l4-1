@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.springframework.samples</groupId>
-    <artifactId>L4-1</artifactId>
+    <artifactId>spring-petclinic</artifactId>
     <version>2.2.0.BUILD-SNAPSHOT</version>
 
     <parent>
@@ -10,7 +12,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
-    <name>DP1 L4-1</name>
+    <name>petclinic</name>
 
     <properties>
 
@@ -20,9 +22,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Web dependencies -->
-        <webjars-bootstrap.version>5.2.0</webjars-bootstrap.version>
-        <webjars-jquery-ui.version>1.13.1</webjars-jquery-ui.version>
-        <webjars-jquery.version>3.6.0</webjars-jquery.version>
+        <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
+        <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
+        <webjars-jquery.version>2.2.4</webjars-jquery.version>
         <wro4j.version>1.8.0</wro4j.version>
 
         <jacoco.version>0.8.5</jacoco.version>
@@ -31,63 +33,20 @@
     </properties>
     <developers>
         <developer>
-            <id>David</id>
-            <name>David</name>
-            <email>davcorrom@alum.us.es</email>
-            <url>http://www.tmht.com/david</url>
+            <id>Pablo</id>
+            <name>Pablo</name>
+            <email>pabmarval@alum.us.es</email>
+            <url>http://www.tmht.com/pablo</url>
             <roles>
-                <role>programmer</role>
+                <role>programador</role>
             </roles>
             <properties>
-                <picUrl>https://www.realmadrid.com/img/vertical_380px/marcelo_380x501_20210826062808.jpg</picUrl>
+            <picUrl>
+            https://pbs.twimg.com/media/Ef-g06wWoAEbjt_.jpg
+        </picUrl>
             </properties>
         </developer>
 
-        <developer>
-            <id>Daniel</id>
-            <name>Daniel</name>
-            <email>danguepre@alum.us.es</email>
-            <url>http://www.tmht.com/danguepre</url>
-            <roles>
-                <role>programmer</role>
-            </roles>
-            <properties>
-                <picUrl>https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9f07acafa996fa84/6317ac5608556f30b2645ff1/Eder_Gabriel.jpg</picUrl>
-            </properties>
-        </developer>
-    
-        <developer>
-            <id>Ignacio</id>
-            <name>Ignacio</name>
-            <email>ignwarmur@alum.us.es</email>
-            <url>http://www.tmht.com/ignacio</url>
-            <roles>
-                <role>Maestro del Marketing</role>
-            </roles>
-            <properties>
-                <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
-            </properties>
-        </developer>
-    
-
-    
-        <developer>
-            <id>Gabrielvcg</id>
-            <name>Gabriel</name>
-            <email>gabrivacaro@gmail.com</email>
-            <url>http://www.tmht.com/gabri</url>
-            <roles>
-                <role>programador junior</role>
-            </roles>
-            <properties>
-                <picUrl>
-                    https://s.yimg.com/uu/api/res/1.2/TnK6ET18C3_QZ8izjeimSA--~B/aD0yODY7dz01NzA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/es/men_s_health_es_614/b0228e019e267ead8da0fa5223a29c4e
-</picUrl>
-            </properties>
-        </developer>
-       
-        <!-- More developers ...-->
-    </developers>
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
@@ -106,16 +65,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
+        <dependency>  
+            <groupId>org.springframework.security</groupId>  
+            <artifactId>spring-security-taglibs</artifactId>  
         </dependency>
         <!-- Databases - Uses H2 by default -->
         <!-- dependency>
                 <groupId>org.hsqldb</groupId>
                 <artifactId>hsqldb</artifactId>
                 <scope>runtime</scope>
-        </dependency-->
+        </dependency-->        
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -195,7 +154,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>1.18.20</version>    
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -314,8 +273,4 @@
 
 
 
-
-
-
 </project>
-
