@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.springframework.samples</groupId>
-    <artifactId>spring-petclinic</artifactId>
+    <artifactId>L4-1</artifactId>
     <version>2.2.0.BUILD-SNAPSHOT</version>
 
     <parent>
@@ -12,7 +12,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
-    <name>petclinic</name>
+    <name>DP1 L4-1</name>
 
     <properties>
 
@@ -31,7 +31,21 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
+    
     <developers>
+        <developer>
+            <id>David</id>
+            <name>David</name>
+            <email>davcorrom@alum.us.es</email>
+            <url>http://www.tmht.com/david</url>
+            <roles>
+            <role>programmer</role>
+            </roles>
+            <properties>
+            <picUrl>https://www.realmadrid.com/img/vertical_380px/marcelo_380x501_20210826062808.jpg</picUrl>
+            </properties>
+        </developer>
+
         <developer>
             <id>Pablo</id>
             <name>Pablo</name>
@@ -46,6 +60,53 @@
         </picUrl>
             </properties>
         </developer>
+
+           
+        <developer>
+            <id>Daniel</id>
+            <name>Daniel</name>
+            <email>danguepre@alum.us.es</email>
+            <url>http://www.tmht.com/danguepre</url>
+            <roles>
+                <role>programmer</role>
+            </roles>
+            <properties>
+                <picUrl>https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9f07acafa996fa84/6317ac5608556f30b2645ff1/Eder_Gabriel.jpg</picUrl>
+            </properties>
+        </developer>
+
+        <developer>
+            <id>Ignacio</id>
+            <name>Ignacio</name>
+            <email>ignwarmur@alum.us.es</email>
+            <url>http://www.tmht.com/ignacio</url>
+            <roles>
+                <role>Maestro del Marketing</role>
+            </roles>
+            <properties>
+                <picUrl>https://media.minutouno.com/p/356c3c65a783202a762ce57f4c45b6f6/adjuntos/150/imagenes/040/157/0040157056/vini-jrjpg.jpg</picUrl>
+            </properties>
+        </developer>
+
+
+
+        <developer>
+            <id>Gabrielvcg</id>
+            <name>Gabriel</name>
+            <email>gabrivacaro@gmail.com</email>
+            <url>http://www.tmht.com/gabri</url>
+            <roles>
+                <role>programador junior</role>
+            </roles>
+            <properties>
+                <picUrl>
+                    https://s.yimg.com/uu/api/res/1.2/TnK6ET18C3_QZ8izjeimSA--~B/aD0yODY7dz01NzA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/es/men_s_health_es_614/b0228e019e267ead8da0fa5223a29c4e
+</picUrl>
+            </properties>
+        </developer>
+
+        <!-- More developers ...-->
+    </developers>
 
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
@@ -270,6 +331,7 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
+
 
 
 
