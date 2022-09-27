@@ -22,7 +22,7 @@ public class WelcomeController {
 		persons.add(person);
 		model.put("persons", persons);
 		model.put("title", "My project");
-		model.put("group", "Teachers");
+		model.put("group", "L4-1");
 	    return "welcome";
 	  }
 }
