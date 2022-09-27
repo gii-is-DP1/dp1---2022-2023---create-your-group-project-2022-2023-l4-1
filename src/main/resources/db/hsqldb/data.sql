@@ -19,6 +19,9 @@ INSERT INTO authorities(id,username,authority) VALUES (6,'danguepre','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
 INSERT INTO users(username,password,enabled) VALUES ('gabvacgoy','gabvacgoy',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (7,'gabvacgoy','owner');
+-- Another owner user, named pabmarval with password pabmarval
+INSERT INTO users(username,password,enabled) VALUES ('pabmarval','pabmarval',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','owner');
 
 INSERT INTO vets(id, first_name,last_name) VALUES (1, 'James', 'Carter');
 INSERT INTO vets(id, first_name,last_name) VALUES (2, 'Helen', 'Leary');
@@ -60,6 +63,7 @@ INSERT INTO owners VALUES (11, 'David', 'Cortabarra', '1402 Shakira St.', 'Seatt
 INSERT INTO owners VALUES (12, 'Ignacio', 'Warleta', '73472 Lady Gaga St.', 'Zihuatanejo', '6084555497', 'ignwarmur');
 INSERT INTO owners VALUES (13, 'Daniel', 'Guedes', '777 Rosalia St.', 'Monona', '6084555497', 'danguepre');
 INSERT INTO owners VALUES (14, 'Gabriel', 'Vacaro', '50 Cent St.', 'Salamanca', '6084555836', 'gabvacgoy');
+INSERT INTO owners VALUES (15, 'Pablo', 'Martinez', '33 ZapsMarcos Ave.', 'Bollullos', '6084555963', 'pabmarval');
 
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (2, 'Basil', '2012-08-06', 6, 2);
@@ -78,6 +82,7 @@ INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (14, 'Paco', '2022-
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (15, 'Anaxagoras', '2022-02-21', 2, 12);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (16, 'Tambor', '2011-12-20', 2, 13);
 INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (17, 'Tambor', '2011-12-22', 2, 14);
+INSERT INTO pets(id,name,birth_date,type_id,owner_id) VALUES (18, 'Adolfo', '2010-10-27', 5, 15);
 
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'rabies shot');
