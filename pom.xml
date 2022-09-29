@@ -108,6 +108,20 @@
         <!-- More developers ...-->
     </developers>
 
+    <developers>
+        <developer>
+            <id>Manpalpin02</id>
+            <name>Manuel</name>
+            <email>manuel18602@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://www.us.es/sites/default/files/logoPNG_3.png</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
