@@ -33,16 +33,17 @@
     </properties>
     
     <developers>
+    
         <developer>
             <id>David</id>
             <name>David</name>
             <email>davcorrom@alum.us.es</email>
             <url>http://www.tmht.com/david</url>
             <roles>
-            <role>programmer</role>
+                <role>programmer</role>
             </roles>
             <properties>
-            <picUrl>https://www.realmadrid.com/img/vertical_380px/marcelo_380x501_20210826062808.jpg</picUrl>
+                <picUrl>https://www.realmadrid.com/img/vertical_380px/marcelo_380x501_20210826062808.jpg</picUrl>
             </properties>
         </developer>
 
@@ -55,12 +56,9 @@
                 <role>programador</role>
             </roles>
             <properties>
-            <picUrl>
-            https://pbs.twimg.com/media/Ef-g06wWoAEbjt_.jpg
-        </picUrl>
+                <picUrl>https://pbs.twimg.com/media/Ef-g06wWoAEbjt_.jpg</picUrl>
             </properties>
         </developer>
-
            
         <developer>
             <id>Daniel</id>
@@ -88,8 +86,6 @@
             </properties>
         </developer>
 
-
-
         <developer>
             <id>Gabrielvcg</id>
             <name>Gabriel</name>
@@ -100,12 +96,22 @@
             </roles>
             <properties>
                 <picUrl>
-                    https://s.yimg.com/uu/api/res/1.2/TnK6ET18C3_QZ8izjeimSA--~B/aD0yODY7dz01NzA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/es/men_s_health_es_614/b0228e019e267ead8da0fa5223a29c4e
-</picUrl>
+                    https://s.yimg.com/uu/api/res/1.2/TnK6ET18C3_QZ8izjeimSA--~B/aD0yODY7dz01NzA7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/es/men_s_health_es_614/b0228e019e267ead8da0fa5223a29c4e</picUrl>
             </properties>
         </developer>
 
-        <!-- More developers ...-->
+        <developer>
+            <id>Manpalpin02</id>
+            <name>Manuel</name>
+            <email>manuel18602@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://www.us.es/sites/default/files/logoPNG_3.png</picUrl>
+            </properties>
+        </developer>
+
     </developers>
 
     <dependencies>
