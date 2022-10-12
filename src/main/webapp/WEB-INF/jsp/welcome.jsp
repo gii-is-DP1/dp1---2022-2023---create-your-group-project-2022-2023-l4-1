@@ -6,9 +6,10 @@
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
 
 <petclinic:layout pageName="home">
-    <h2><fmt:message key="welcome"/></h2>
-    <div class="row">
-    <h2> Project ${title}</h2>
+    <center><h2><fmt:message key="welcome"/></h2></center>
+    <div class="row">  
+    <center><h2> Project ${title}</h2></center>
+    
     <p><h2> Group ${group}</h2></p>
     <p><ul>
     <c:forEach items="${persons}" var="person">
@@ -19,8 +20,8 @@
     <div class="row">
         <div class="col-md-12">
             <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
-            <spring:url value="/resources/images/palmaresSevilla.jpg" htmlEscape="true" var="palmaresImage"/>
-            <img class="img-responsive" src="${palmaresImage}"/>
+            <spring:url value="/resources/images/dwarf-castellano.jpg" htmlEscape="true" var="dwarfImage"/>
+            <center><img class="img-responsive" src="${dwarfImage}"/></center>
         </div>
     </div>
 </petclinic:layout>
