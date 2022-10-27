@@ -21,6 +21,20 @@ public class User{
 	
 	String password;
 	
+	String nickname;
+
+	Boolean esAdmin;
+
+	Boolean esEspectador;
+
+	Boolean esJugadorInicial;
+
+	Integer recursos;
+
+	Integer fichas;
+
+	Integer objetos;
+
 	boolean enabled;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
