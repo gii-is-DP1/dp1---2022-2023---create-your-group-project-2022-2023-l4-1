@@ -96,6 +96,9 @@ class OwnerServiceTests {
                 user.setUsername("Sam");
                 user.setPassword("supersecretpassword");
                 user.setEnabled(true);
+				user.setNombre("Samuel");
+				user.setBiografia("hola");
+				user.setFotoPerfil("foto");
                 owner.setUser(user);                
                 
 		this.ownerService.saveOwner(owner);
