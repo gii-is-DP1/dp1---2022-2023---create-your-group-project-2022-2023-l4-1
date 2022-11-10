@@ -3,10 +3,13 @@ package org.springframework.samples.petclinic.user;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +18,31 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "users")
-public class User{
+public class User {
+	
+	@NotNull
+	@Size(min = 1, max = 25)
+	@Column(name = "username")
 	@Id
-	String username;
+	private String username;
 	
-	String password;
+	@NotNull
+	@Column(name = "password")
+	private String password;
 	
-	boolean enabled;
-	
+	@NotNull
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "foto_perfil")
+	private String fotoPerfil;
+
+	@Size(min = 0, max = 280)
+	@Column(name = "biografia")
+	private String biografia;
+
+	private boolean enabled;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Authorities> authorities;
 }

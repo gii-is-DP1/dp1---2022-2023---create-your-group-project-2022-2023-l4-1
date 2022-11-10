@@ -1,26 +1,27 @@
+
 -- One admin user, named admin1 with passwor 4dm1n and authority admin
-INSERT INTO users(username,password,enabled) VALUES ('admin1','4dm1n',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('admin1','4dm1n',TRUE,'admin','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
 -- One owner user, named owner1 with passwor 0wn3r
-INSERT INTO users(username,password,enabled) VALUES ('owner1','0wn3r',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('owner1','0wn3r',TRUE,'owner','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
 -- One vet user, named vet1 with passwor v3t
-INSERT INTO users(username,password,enabled) VALUES ('vet1','v3t',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('vet1','v3t',TRUE,'vet','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
 -- Another owner user, named davcorrom with password davcorrom
-INSERT INTO users(username,password,enabled) VALUES ('davcorrom','davcorrom',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('davcorrom','davcorrom',TRUE,'David','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (4,'davcorrom','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
-INSERT INTO users(username,password,enabled) VALUES ('ignwarmur','ignwarmur',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('ignwarmur','ignwarmur',TRUE,'Ignacio','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (5,'ignwarmur','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
-INSERT INTO users(username,password,enabled) VALUES ('danguepre','danguepre',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('danguepre','danguepre',TRUE,'Daniel','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (6,'danguepre','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
-INSERT INTO users(username,password,enabled) VALUES ('gabvacgoy','gabvacgoy',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('gabvacgoy','gabvacgoy',TRUE,'Gabriel','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (7,'gabvacgoy','owner');
 -- Another owner user, named pabmarval with password pabmarval
-INSERT INTO users(username,password,enabled) VALUES ('pabmarval','pabmarval',TRUE);
+INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','owner');
 
 INSERT INTO users(username,password,enabled) VALUES ('Manpalpin02','Manpalpin02',TRUE);
@@ -93,4 +94,3 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
-
