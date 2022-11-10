@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.carta;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,12 +20,15 @@ import lombok.Setter;
 public class CartaDeLaMontana extends Carta {
 
     @NotNull
-    private NombreCartaMontana nombreCarta;
+    @Enumerated(value = EnumType.STRING)
+    private NombreCartaMontana nombre;
 
     @NotNull
-    private TipoCarta tipoCarta;
+    @Enumerated(value = EnumType.STRING)
+    private TipoCarta tipo;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private RangoCarta rango;
     
 }

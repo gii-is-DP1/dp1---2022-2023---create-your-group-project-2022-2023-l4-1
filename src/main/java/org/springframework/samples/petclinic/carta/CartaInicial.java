@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.carta;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import org.springframework.samples.petclinic.carta.enums.AccionPosterior;
@@ -16,6 +18,7 @@ import lombok.Setter;
 public class CartaInicial extends Carta {
 
     @NonNull
+    @Enumerated(value = EnumType.STRING)
     private AccionPosterior nombre;
     
 }
