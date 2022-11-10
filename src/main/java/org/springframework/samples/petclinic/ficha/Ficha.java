@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.ficha;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,9 +20,11 @@ import lombok.Setter;
 public class Ficha extends BaseEntity {
     
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private TipoFicha tipo;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private Color color;
 
     @NotNull
