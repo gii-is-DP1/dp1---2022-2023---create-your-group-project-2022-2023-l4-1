@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.carta;
 
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -13,12 +13,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@MappedSuperclass
 @Table(name = "cartas")
 public class Carta extends BaseEntity {
 
     @NotNull
     private String descripcion;
+
+    @NotNull
+    private String imagen;
 
     @NotNull
     @Min(1)
