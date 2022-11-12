@@ -32,8 +32,6 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	/* 
-	
 	@NotNull
 	@Column(name = "nombre")
 	private String nombre;
@@ -44,8 +42,6 @@ public class User {
 	@Size(min = 0, max = 280)
 	@Column(name = "biografia")
 	private String biografia;
-
-	*/
 
 	@NotNull
 	@NotEmpty(message = "No puede estar vacio")
