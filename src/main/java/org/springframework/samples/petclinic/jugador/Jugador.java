@@ -21,18 +21,6 @@ import lombok.Setter;
 @Table(name = "jugador")
 public class Jugador extends Person {
 
-    @NotNull
-    private boolean esAdministrador;
-
-    @NotNull
-    private boolean esEspectador;
-
-    @NotNull
-    private boolean esJugadorInicial;
-
-    @NotNull
-    private boolean esGanador;
-
     @Column(name = "avatar_url")
 	@NotEmpty
 	String avatarUrl;
