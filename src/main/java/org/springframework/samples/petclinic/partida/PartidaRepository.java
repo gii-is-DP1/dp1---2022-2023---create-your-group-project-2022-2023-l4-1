@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository;
 public interface PartidaRepository extends CrudRepository<Partida, Integer> {
 
     List<Partida> findAll();
-    
 }
