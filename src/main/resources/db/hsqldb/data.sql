@@ -171,6 +171,12 @@ INSERT INTO achievement(id,name,description,threshold,badge_image)
                 VALUES (1,'Viciado','Si juegas <THRESHOLD> partidas o más, consideramos que ya estás enganchado.',10.0,'https://bit.ly/certifiedGamer'),
                         (2,'Triunfador','Si ganas <THRESHOLD> o  más partidas es que eres todo un triunfador.',20.0,'https://bit.ly/proGamer');
 
+
+
+INSERT INTO jugador(usuario_username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('pabmarval', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(usuario_username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('ignwarmur', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(usuario_username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('davcorrom', 'False', 'False', 'True', 'True');
+
 -- partidas ejemplo
 
 INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1);
