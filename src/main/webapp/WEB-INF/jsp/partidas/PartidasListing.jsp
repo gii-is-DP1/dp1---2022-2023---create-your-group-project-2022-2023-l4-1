@@ -7,42 +7,25 @@
 <petclinic:layout pageName="partidas">
     <h2>Partidas</h2>
 
-    <table id="partidas" class="table table-striped">
+    <table id="partidaTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Duracion</th>
+            <th>Nombre</th>
             <th>Ganador</th>
-            <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${partidas}" var="partida">
             <tr>
                 <td>
-                    <c:out value="${partida.name}"/>
+                    <c:out value="${partida.nombreSala}"/>
                 </td>
-                <td>                    
-                      <c:out value="${partida.description} "/>                                        
+                <td>
+                    <c:out value="${partida.ganador}"/>
                 </td>
-                <td>       
-                    <c:out value="${achievement.ganador} "/>
-                </td>
-
-                <td> 
-                    <a href="/partida/partida/${partida.id}/edit"> 
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>                            
-                    </a>       
-                </td>
-                <td> 
-                    <a href="/partida/partida/${partida.id}/delete"> 
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </a>      
-                </td>
-
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
 </petclinic:layout>
