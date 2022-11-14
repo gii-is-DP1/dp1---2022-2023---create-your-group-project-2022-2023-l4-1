@@ -21,8 +21,8 @@
                     <c:out value="${partida.nombreSala}"/>
                 </td>
                 <td>
-                    <c:out value="${partida.ganador}"/>
-                </td>
+                    <c:out value="${partida.ganador.usuario.username}"/>
+                 </td>
             </tr>
         </c:forEach>
         </tbody>

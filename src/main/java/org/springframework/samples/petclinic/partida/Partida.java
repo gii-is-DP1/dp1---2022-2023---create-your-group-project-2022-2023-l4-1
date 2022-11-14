@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,6 +41,8 @@ public class Partida extends BaseEntity{
     @Min(1)
     private Integer numRonda;
 
+
+
     @NotNull
     @Range(min=0,max=60)
     private Integer tiempoRestRonda;
@@ -52,7 +55,7 @@ public class Partida extends BaseEntity{
     @Range(min=0,max=2)
     private Integer siguienteJugador;
 
-    @NotNull
-    @Range(min=0,max=2)
-    private Integer ganador; 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ganador", referencedColumnName = "id")
+    private Jugador ganador;
 }
