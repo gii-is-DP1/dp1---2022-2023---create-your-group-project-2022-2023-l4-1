@@ -12,6 +12,7 @@
         <tr>
             <th>Nombre</th>
             <th>Ganador</th>
+            <th>Jugadores</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,9 @@
                 </td>
                 <td>
                     <c:out value="${partida.ganador.usuario.username}"/>
+                </td>
+                 <td>
+                    <c:out value="${partida.usernameList}"/>
                  </td>
             </tr>
         </c:forEach>

@@ -22,7 +22,7 @@ INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES
 INSERT INTO authorities(id,username,authority) VALUES (7,'gabvacgoy','owner');
 -- Another owner user, named pabmarval with password pabmarval
 INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','owner');
+INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','admin');
 
 INSERT INTO vets(id, first_name,last_name) VALUES (1, 'James', 'Carter');
 INSERT INTO vets(id, first_name,last_name) VALUES (2, 'Helen', 'Leary');
@@ -179,5 +179,5 @@ INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicia
 
 -- partidas ejemplo
 
---INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1);
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, ganador) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1);
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1);
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1);
