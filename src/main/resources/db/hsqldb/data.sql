@@ -173,11 +173,11 @@ INSERT INTO achievement(id,name,description,threshold,badge_image)
 
 
 
-INSERT INTO jugador(usuario_username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('pabmarval', 'False', 'False', 'True', 'True');
-INSERT INTO jugador(usuario_username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('ignwarmur', 'False', 'False', 'True', 'True');
-INSERT INTO jugador(usuario_username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('davcorrom', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('pabmarval', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('ignwarmur', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('davcorrom', 'False', 'False', 'True', 'True');
 
 -- partidas ejemplo
 
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1);
+--INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1);
 INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, ganador) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1);
