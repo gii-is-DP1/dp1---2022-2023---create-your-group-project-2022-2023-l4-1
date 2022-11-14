@@ -40,8 +40,18 @@ public class Partida extends BaseEntity{
     @NotNull
     @Min(1)
     private Integer numRonda;
-
-
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "jugador0", referencedColumnName = "id")
+    private Jugador jugador0;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "jugador1", referencedColumnName = "id")
+    private Jugador jugador1;
+   
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "jugador2", referencedColumnName = "id")
+    private Jugador jugador2;
 
     @NotNull
     @Range(min=0,max=60)
@@ -58,4 +68,19 @@ public class Partida extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ganador", referencedColumnName = "id")
     private Jugador ganador;
+
+    public List<String> getUsernameList() {
+		List<String> pList = new ArrayList<String>();
+		
+		if(this.jugador0 != null)
+			pList.add(this.jugador0.getUsuario().getUsername());
+
+        if(this.jugador0 != null)
+		pList.add(this.jugador1.getUsuario().getUsername());
+		
+        if(this.jugador0 != null)
+	    pList.add(this.jugador2.getUsuario().getUsername());
+		
+		return pList;
+	}
 }
