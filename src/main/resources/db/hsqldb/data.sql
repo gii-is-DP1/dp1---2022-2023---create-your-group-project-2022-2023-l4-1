@@ -31,6 +31,25 @@ INSERT INTO users(username,password,enabled,email) VALUES ('ignwarmur','admin1',
 INSERT INTO authorities(id,username,authority) VALUES (1,'ignwarmur','admin');
 INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Ignacio', 'Warleta' ,'ignwarmur','https://cdn-icons-png.flaticon.com/512/747/747969.png');
 
+INSERT INTO users(username,password,enabled,email) VALUES ('gabvacgoy','admin1',TRUE,'test2@test.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'gabvacgoy','admin');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Gabriel', 'Vacaro' ,'gabvacgoy','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+
+INSERT INTO users(username,password,enabled,email) VALUES ('davcorrom','admin1',TRUE,'test2@test.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'davcorrom','admin');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'David', 'Cortabarra' ,'davcorrom','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+
+INSERT INTO users(username,password,enabled,email) VALUES ('danguepre','admin1',TRUE,'test2@test.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'danguepre','admin');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Daniel', 'Guedes' ,'danguepre','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+
+INSERT INTO users(username,password,enabled,email) VALUES ('pabmarval','admin1',TRUE,'test2@test.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'pabmarval','admin');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Pablo', 'Martínez' ,'pabmarval','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+
+INSERT INTO users(username,password,enabled,email) VALUES ('manpalpin','admin1',TRUE,'test2@test.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'manpalpin','admin');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Manuel', 'Palacios' ,'manpalpin','https://cdn-icons-png.flaticon.com/512/747/747969.png');
 
 /*
 
