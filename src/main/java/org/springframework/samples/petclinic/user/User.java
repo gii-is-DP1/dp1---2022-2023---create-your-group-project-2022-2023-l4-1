@@ -32,11 +32,13 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	/* 
-	
 	@NotNull
 	@Column(name = "nombre")
 	private String nombre;
+
+	@NotNull
+	@Column(name = "apellido")
+	private String apellido;
 
 	@Column(name = "foto_perfil")
 	private String fotoPerfil;
@@ -45,7 +47,6 @@ public class User {
 	@Column(name = "biografia")
 	private String biografia;
 
-	*/
 
 	private boolean enabled;
 

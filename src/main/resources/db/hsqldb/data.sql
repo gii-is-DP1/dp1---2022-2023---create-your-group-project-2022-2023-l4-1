@@ -1,35 +1,31 @@
 
-/*
--- One admin user, named admin1 with passwor 4dm1n and authority admin
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('admin1','4dm1n',TRUE,'admin','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
--- One owner user, named owner1 with passwor 0wn3r
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('owner1','0wn3r',TRUE,'owner','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (2,'owner1','owner');
--- One vet user, named vet1 with passwor v3t
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('vet1','v3t',TRUE,'vet','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (3,'vet1','veterinarian');
+
 -- Another owner user, named davcorrom with password davcorrom
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('davcorrom','davcorrom',TRUE,'David','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (4,'davcorrom','owner');
+INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('davcorrom','davcorrom',TRUE,'David','Cortabarra','nada','hola', 'ejemplo1@gmail.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'davcorrom','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('ignwarmur','ignwarmur',TRUE,'Ignacio','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (5,'ignwarmur','owner');
+
+INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('ignwarmur','ignwarmur',TRUE,'Ignacio','Warleta', 'nada','hola','ejemplo2@gmail.com');
+INSERT INTO authorities(id,username,authority) VALUES (2,'ignwarmur','admin');
 -- Another owner user, named ignwarmur with password ignwarmur
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('danguepre','danguepre',TRUE,'Daniel','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (6,'danguepre','owner');
+INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('danguepre','danguepre',TRUE,'Daniel','Guedes','nada','hola','ejemplo3@gmail.com');
+INSERT INTO authorities(id,username,authority) VALUES (3,'danguepre','owner');
 -- Another owner user, named ignwarmur with password ignwarmur
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('gabvacgoy','gabvacgoy',TRUE,'Gabriel','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (7,'gabvacgoy','owner');
+INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('gabvacgoy','gabvacgoy',TRUE,'Gabriel','Vacaro','nada','hola','ejemplo4@gmail.com');
+INSERT INTO authorities(id,username,authority) VALUES (4,'gabvacgoy','owner');
 -- Another owner user, named pabmarval with password pabmarval
-INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','admin');
+INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','Martínez','nada','hola','ejemplo5@gmail.com');
+INSERT INTO authorities(id,username,authority) VALUES (5,'pabmarval','admin');
 
+/*
+INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'pabmarval');
+INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'pabmarval');
 */
-
+/*
 INSERT INTO users(username,password,enabled,email) VALUES ('ignwarmur','admin1',TRUE,'test2@test.com');
 INSERT INTO authorities(id,username,authority) VALUES (1,'ignwarmur','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Ignacio', 'Warleta' ,'ignwarmur','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+*/
+--INSERT INTO jugador(es_administrador, es_ganador, username,avatar_url) VALUES (False, True,'ignwarmur','https://cdn-icons-png.flaticon.com/512/747/747969.png');
 
 
 /*
@@ -185,9 +181,9 @@ INSERT INTO achievement(id,name,description,threshold,badge_image)
 
 
 
-INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('pabmarval', 'False', 'False', 'True', 'True');
-INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('ignwarmur', 'False', 'False', 'True', 'True');
-INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('davcorrom', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('pabmarval', 'False', 'True','https://cdn-icons-png.flaticon.com/512/747/747969.png' );
+INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('ignwarmur', 'False', 'False','https://cdn-icons-png.flaticon.com/512/747/747969.png' );
+INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('davcorrom', 'False', 'False', 'https://cdn-icons-png.flaticon.com/512/747/747969.png');
 
 -- partidas ejemplo
 

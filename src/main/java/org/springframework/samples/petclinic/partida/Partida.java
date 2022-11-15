@@ -73,13 +73,13 @@ public class Partida extends BaseEntity{
 		List<String> pList = new ArrayList<String>();
 		
 		if(this.jugador0 != null)
-			pList.add(this.jugador0.getUsuario().getUsername());
+			pList.add(this.jugador0.getUser().getUsername());
 
         if(this.jugador0 != null)
-		pList.add(this.jugador1.getUsuario().getUsername());
+		pList.add(this.jugador1.getUser().getUsername());
 		
         if(this.jugador0 != null)
-	    pList.add(this.jugador2.getUsuario().getUsername());
+	    pList.add(this.jugador2.getUser().getUsername());
 		
 		return pList;
 	}

@@ -19,7 +19,7 @@ public interface JugadorRepository extends CrudRepository<Jugador, Integer>{
 	 * @return a <code>Collection</code> of matching <code>Owner</code>s (or an empty
 	 * <code>Collection</code> if none found)
 	 */	
-	@Query("SELECT DISTINCT jugador FROM Jugador jugador WHERE jugador.lastName LIKE :lastName%")
+	@Query("SELECT DISTINCT jugador FROM Jugador jugador WHERE jugador.user.apellido LIKE :lastName%")
 	public Collection<Jugador> findByLastName(@Param("lastName") String lastName);
 
 
