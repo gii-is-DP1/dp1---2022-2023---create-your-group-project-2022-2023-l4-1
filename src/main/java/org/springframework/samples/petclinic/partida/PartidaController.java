@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.web.LoggedUserController;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,6 +49,25 @@ public class PartidaController {
         }
         res.addObject("partidas", partidas);
         return res;
+    }
+
+    /* 
+    @GetMapping("/{partidaId}/delete")
+	public String deletePlayer(@PathVariable("partidaId") Integer partidaId,ModelMap modelMap) throws Exception {
+		String view = "redirect:/partida/partidas/";
+		Partida partida = service.findPartidaById(partidaId);
+		service.delete(partida);
+		modelMap.addAttribute("message", "Partida deleted!");
+		return view;
+	}
+*/
+
+    @Transactional()
+    @GetMapping("/{id}/delete")
+    public ModelAndView deletePartida(@PathVariable int id){
+        service.deletePartidaById(id);        
+        return showPartidas();
+
     }
 
 
