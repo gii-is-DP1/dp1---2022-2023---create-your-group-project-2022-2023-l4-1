@@ -30,6 +30,7 @@ public class PartidaController {
         this.service = service;
     }
 
+
     @GetMapping("/partidas")
     public ModelAndView showPartidas(){
         ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
@@ -43,13 +44,17 @@ public class PartidaController {
         ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
         String currentUsername = currentUser.returnLoggedUserName();
         List<Partida> partidas = new ArrayList<Partida>();
+
         for(int i=0 ; i < service.getPartidas().size();i++){
             Partida partida = service.getPartidas().get(i);
+
             if(partida.getUsernameList().contains(currentUsername)){
                 partidas.add(partida);
             }
         }
-        res.addObject("partidas", service.getPartidas());
+
+        res.addObject("partidas", partidas);
+
         return res;
     }
 
