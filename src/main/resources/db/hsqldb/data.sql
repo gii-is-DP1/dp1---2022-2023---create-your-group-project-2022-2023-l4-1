@@ -23,33 +23,14 @@ INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES
 INSERT INTO authorities(id,username,authority) VALUES (7,'gabvacgoy','owner');
 -- Another owner user, named pabmarval with password pabmarval
 INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','nada','hola');
-INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','owner');
+INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','admin');
 
 */
 
 INSERT INTO users(username,password,enabled,email) VALUES ('ignwarmur','admin1',TRUE,'test2@test.com');
 INSERT INTO authorities(id,username,authority) VALUES (1,'ignwarmur','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Ignacio', 'Warleta' ,'ignwarmur','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (1, 'Ignacio', 'Warleta' ,'ignwarmur','https://cdn-icons-png.flaticon.com/512/747/747969.png');
 
-INSERT INTO users(username,password,enabled,email) VALUES ('gabvacgoy','admin1',TRUE,'test2@test.com');
-INSERT INTO authorities(id,username,authority) VALUES (1,'gabvacgoy','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Gabriel', 'Vacaro' ,'gabvacgoy','https://cdn-icons-png.flaticon.com/512/747/747969.png');
-
-INSERT INTO users(username,password,enabled,email) VALUES ('davcorrom','admin1',TRUE,'test2@test.com');
-INSERT INTO authorities(id,username,authority) VALUES (1,'davcorrom','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'David', 'Cortabarra' ,'davcorrom','https://cdn-icons-png.flaticon.com/512/747/747969.png');
-
-INSERT INTO users(username,password,enabled,email) VALUES ('danguepre','admin1',TRUE,'test2@test.com');
-INSERT INTO authorities(id,username,authority) VALUES (1,'danguepre','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Daniel', 'Guedes' ,'danguepre','https://cdn-icons-png.flaticon.com/512/747/747969.png');
-
-INSERT INTO users(username,password,enabled,email) VALUES ('pabmarval','admin1',TRUE,'test2@test.com');
-INSERT INTO authorities(id,username,authority) VALUES (1,'pabmarval','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Pablo', 'Martínez' ,'pabmarval','https://cdn-icons-png.flaticon.com/512/747/747969.png');
-
-INSERT INTO users(username,password,enabled,email) VALUES ('manpalpin','admin1',TRUE,'test2@test.com');
-INSERT INTO authorities(id,username,authority) VALUES (1,'manpalpin','admin');
-INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Manuel', 'Palacios' ,'manpalpin','https://cdn-icons-png.flaticon.com/512/747/747969.png');
 
 /*
 
@@ -193,3 +174,22 @@ INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen) VALUES (7, 'Apprentice', 'Place one meeple on a location occupied by other player.', 'Gold_Seam', 'Take 1 gold from the supply.', 7, 'imagen');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen) VALUES (8, 'Collapse_the_Shafts', 'Remove the top card from each location and place it on the bottom of that stack.', 'Iron_Seam', 'Take 3 iron from the supply.', 8, 'imagen');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen) VALUES (9, 'Run_Amok', 'Collect all of the cards from each location, in turn, shuffle them and return them to that location.', 'Gold_Seam', 'Take 1 gold from the supply.', 9, 'imagen');
+
+
+
+-- ejemplo logros
+
+INSERT INTO achievement(id,name,description,threshold,badge_image) 
+                VALUES (1,'Viciado','Si juegas <THRESHOLD> partidas o más, consideramos que ya estás enganchado.',10.0,'https://bit.ly/certifiedGamer'),
+                        (2,'Triunfador','Si ganas <THRESHOLD> o  más partidas es que eres todo un triunfador.',20.0,'https://bit.ly/proGamer');
+
+
+
+INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('pabmarval', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('ignwarmur', 'False', 'False', 'True', 'True');
+INSERT INTO jugador(username, es_administrador, es_espectador, es_jugador_inicial, es_ganador) VALUES ('davcorrom', 'False', 'False', 'True', 'True');
+
+-- partidas ejemplo
+
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1);
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1);

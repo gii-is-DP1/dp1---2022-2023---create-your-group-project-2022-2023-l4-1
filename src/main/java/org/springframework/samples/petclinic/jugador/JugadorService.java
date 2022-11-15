@@ -26,12 +26,12 @@ public class JugadorService {
 	}	
 
 	@Transactional(readOnly = true)
-	public Jugador findOwnerById(int id) throws DataAccessException {
+	public Jugador findJugadorById(int id) throws DataAccessException {
 		return jugadorRepository.findById(id);
 	}
 
 	@Transactional(readOnly = true)
-	public Collection<Jugador> findOwnerByLastName(String lastName) throws DataAccessException {
+	public Collection<Jugador> findJugadorByLastName(String lastName) throws DataAccessException {
 		return jugadorRepository.findByLastName(lastName);
 	}
 

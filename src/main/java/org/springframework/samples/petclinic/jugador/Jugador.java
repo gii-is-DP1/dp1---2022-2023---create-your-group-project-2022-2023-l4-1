@@ -30,3 +30,4 @@ public class Jugador extends Person {
 
     
 }
+

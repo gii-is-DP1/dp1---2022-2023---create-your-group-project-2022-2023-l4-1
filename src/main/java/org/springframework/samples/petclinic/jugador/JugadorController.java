@@ -70,7 +70,7 @@ public class JugadorController {
 		}
 
 		// find jugadores by last name
-		Collection<Jugador> results = this.jugadorService.findOwnerByLastName(jugador.getLastName());
+		Collection<Jugador> results = this.jugadorService.findJugadorByLastName(jugador.getLastName());
 		if (results.isEmpty()) {
 			// no jugadores found
 			result.rejectValue("lastName", "notFound", "not found");
@@ -90,7 +90,7 @@ public class JugadorController {
 
 	@GetMapping(value = "/jugadores/{jugadorId}/edit")
 	public String initUpdateJugadorForm(@PathVariable("jugadorId") int jugadorId, Model model) {
-		Jugador jugador = this.jugadorService.findOwnerById(jugadorId);
+		Jugador jugador = this.jugadorService.findJugadorById(jugadorId);
 		model.addAttribute(jugador);
 		return VIEWS_JUGADORES_CREATE_OR_UPDATE_FORM;
 	}
@@ -110,13 +110,13 @@ public class JugadorController {
 
 	/**
 	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
+	 * @param jugadorId the ID of the owner to display
 	 * @return a ModelMap with the model attributes for the view
 	 */
 	@GetMapping("/jugadores/{jugadorId}")
 	public ModelAndView showJugador(@PathVariable("jugadorId") int jugadorId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		mav.addObject(this.jugadorService.findOwnerById(jugadorId));
+		mav.addObject(this.jugadorService.findJugadorById(jugadorId));
 		return mav;
 	}
 
