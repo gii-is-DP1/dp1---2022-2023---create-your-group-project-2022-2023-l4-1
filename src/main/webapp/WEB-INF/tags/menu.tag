@@ -49,9 +49,16 @@
 				</petclinic:menuItem>	
 
 				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas/"
-					title="partidas">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Partidas</span>
+					title="partidas" dropdown="${true}">
+					<ul class="dropdown-menu">
+							<li>
+								<a href="<c:url value="/partida/partidas/admin" />">Todas las Partidas</a>		
+							</li>
+							<li class="divider"></li>
+							<li>								
+								<a href="<c:url value="/partida/partidas/player" />">Mis partidas</a>
+							</li>
+						</ul>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'usuarios'}" url="/users/"

@@ -27,24 +27,24 @@ public class PartidaController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/admin")
     public ModelAndView showPartidas(){
-        ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
-        // String currentUsername = currentUser.returnLoggedUserName();
-        // Authorities authority = service.getAuthorityByUsername(currentUsername);
-        // String role = authority.getAuthority();
+        ModelAndView result = new ModelAndView(PARTIDAS_LISTING_VIEW);
+        result.addObject("partidas", service.getPartidas());
+        return result;
+    }
 
-        // if(role == "player"){
-        //     List<Partida> partidas = new ArrayList<Partida>();
-        //     for(Partida partida : service.getPartidas()){
-        //         if(partida.getUsernameList().contains(currentUsername)){
-        //             partidas.add(partida);
-        //         }
-        //     }
-        //     res.addObject("partidas", partidas);
-        //     return res;
-        // }
-        res.addObject("partidas", service.getPartidas());
+    @GetMapping("/player")
+    public ModelAndView showMisPartidas(){
+        ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
+        String currentUsername = currentUser.returnLoggedUserName();
+        List<Partida> partidas = new ArrayList<Partida>();
+        for(Partida partida : service.getPartidas()){
+            if(partida.getUsernameList().contains(currentUsername)){
+                partidas.add(partida);
+            }
+        }
+        res.addObject("partidas", partidas);
         return res;
     }
 
