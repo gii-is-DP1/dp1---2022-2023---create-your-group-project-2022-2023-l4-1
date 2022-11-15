@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/partida/partidas")
+@RequestMapping("/partida")
 public class PartidaController {
 
     PartidaService service;
@@ -30,37 +30,29 @@ public class PartidaController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/partidas")
     public ModelAndView showPartidas(){
         ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
-        // String currentUsername = currentUser.returnLoggedUserName();
-        // Authorities authority = service.getAuthorityByUsername(currentUsername);
-        // String role = authority.getAuthority();
-
-        // if(role == "player"){
-        //     List<Partida> partidas = new ArrayList<Partida>();
-        //     for(Partida partida : service.getPartidas()){
-        //         if(partida.getUsernameList().contains(currentUsername)){
-        //             partidas.add(partida);
-        //         }
-        //     }
-        //     res.addObject("partidas", partidas);
-        //     return res;
-        // }
         res.addObject("partidas", service.getPartidas());
         return res;
     }
 
-    /* 
-    @GetMapping("/{partidaId}/delete")
-	public String deletePlayer(@PathVariable("partidaId") Integer partidaId,ModelMap modelMap) throws Exception {
-		String view = "redirect:/partida/partidas/";
-		Partida partida = service.findPartidaById(partidaId);
-		service.delete(partida);
-		modelMap.addAttribute("message", "Partida deleted!");
-		return view;
-	}
-*/
+    @Transactional(readOnly = true)
+    @GetMapping("/misPartidas")
+    public ModelAndView showMisPartidas(){
+        ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
+        String currentUsername = currentUser.returnLoggedUserName();
+        List<Partida> partidas = new ArrayList<Partida>();
+        for(int i=0 ; i < service.getPartidas().size();i++){
+            Partida partida = service.getPartidas().get(i);
+            if(partida.getUsernameList().contains(currentUsername)){
+                partidas.add(partida);
+            }
+        }
+        res.addObject("partidas", service.getPartidas());
+        return res;
+    }
+
 
     @Transactional()
     @GetMapping("/{id}/delete")

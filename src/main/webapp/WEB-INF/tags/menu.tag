@@ -48,7 +48,7 @@
 						</ul>					
 				</petclinic:menuItem>	
 
-				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas/"
+				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas"
 					title="partidas">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Partidas</span>
@@ -60,13 +60,14 @@
 					<span>Usuarios</span>
 				</petclinic:menuItem>	
 
+				<petclinic:menuItem active="${name eq 'Mis partidas'}" url="/partida/misPartidas"
+					title="Mis partidas">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Mis Partidas</span>
+				</petclinic:menuItem>
+
 			</ul>
 			
-			
-
-
-
-
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
