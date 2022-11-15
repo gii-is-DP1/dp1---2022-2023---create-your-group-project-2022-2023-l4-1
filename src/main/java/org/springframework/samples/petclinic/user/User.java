@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,6 +31,8 @@ public class User {
 	@NotNull
 	@Column(name = "password")
 	private String password;
+
+	/* 
 	
 	@NotNull
 	@Column(name = "nombre")
@@ -41,7 +45,19 @@ public class User {
 	@Column(name = "biografia")
 	private String biografia;
 
+	*/
+
 	private boolean enabled;
+
+	@NotNull
+	@NotEmpty(message = "No puede estar vacio")
+	@Email
+	@Column(unique=true)
+	private String email;
+
+
+	
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Authorities> authorities;
