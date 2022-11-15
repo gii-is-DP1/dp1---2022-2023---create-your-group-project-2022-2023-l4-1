@@ -13,7 +13,7 @@
             <th>Username</th>
             <th>Password</th>
             <th>Nombre</th>
-            <th>Apellido</th>
+            <th>Apellidos</th>
             <th>Foto de Perfil</th>
             <th>Biografia</th>
         </tr>
@@ -31,7 +31,7 @@
                     <c:out value="${usuario.nombre}"/>
                  </td>
                  <td>
-                    <c:out value="${usuario.apellido}"/>
+                    <c:out value="${usuario.apellidos}"/>
                 </td>
                 <td>                    
                     <c:if test="${usuario.fotoPerfil == ''}">none</c:if>
