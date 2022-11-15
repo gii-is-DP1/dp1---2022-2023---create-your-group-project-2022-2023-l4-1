@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.user;
 
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,8 +42,13 @@ public class UserService {
 		userRepository.save(user);
 	}
 	
+	@Transactional(readOnly = true)
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
+	}
+	@Transactional(readOnly = true)
+	public Collection<User> findOwnerByName(String nombre) throws DataAccessException {
+		return userRepository.findByName(nombre);
 	}
 
 	public List<User> getUsuarios() {
