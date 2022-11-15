@@ -19,13 +19,13 @@
 
 <petclinic:layout pageName="home">
     <body class="background">
-        <center><h1 style="color: cyan;"><font face="comic sans ms,ariel,verdana"><fmt:message key="welcome"/></font></h1></center>
+        <center><h1 style="color: rgb(0, 255, 51);"><FONT FACE="verdana" SIZE=7><fmt:message key="welcome"/></FONT></h1></center>
         <div class="row">
-        <center><h2 style="color: cyan;"><font face="comic sans ms,ariel,verdana">Project ${title}</font></h2></center>
-        <p><h2 style="color: cyan;"> Group ${group}</h2></p>
+        <center><h2 style="color: rgb(0, 255, 51);"><font face="verdana" SIZE="5">Project ${title}</font></h2></center>
+        <p><h2 style="color: rgb(0, 255, 51);"> Group ${group}</h2></p>
         <p><ul>
         <c:forEach items="${persons}" var="person">
-            <li style="color: cyan;">${person.firstName}&nbsp;${person.lastName}</li>
+            <li style="color: rgb(0, 255, 51);">${person.firstName}&nbsp;${person.lastName}</li>
         </c:forEach>
         </ul></p>
         </div>
