@@ -1,4 +1,5 @@
 
+/*
 -- One admin user, named admin1 with passwor 4dm1n and authority admin
 INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('admin1','4dm1n',TRUE,'admin','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (1,'admin1','admin');
@@ -23,6 +24,15 @@ INSERT INTO authorities(id,username,authority) VALUES (7,'gabvacgoy','owner');
 -- Another owner user, named pabmarval with password pabmarval
 INSERT INTO users(username,password,enabled,nombre,foto_perfil,biografia) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','nada','hola');
 INSERT INTO authorities(id,username,authority) VALUES (8,'pabmarval','owner');
+
+*/
+
+INSERT INTO users(username,password,enabled,email) VALUES ('ignwarmur','admin1',TRUE,'test2@test.com');
+INSERT INTO authorities(id,username,authority) VALUES (1,'ignwarmur','admin');
+INSERT INTO jugador(id,first_name,last_name,username,avatar_url) VALUES (0, 'Ignacio', 'Warleta' ,'ignwarmur','https://cdn-icons-png.flaticon.com/512/747/747969.png');
+
+
+/*
 
 INSERT INTO vets(id, first_name,last_name) VALUES (1, 'James', 'Carter');
 INSERT INTO vets(id, first_name,last_name) VALUES (2, 'Helen', 'Leary');
@@ -89,6 +99,8 @@ INSERT INTO visits(id,pet_id,visit_date,description) VALUES (1, 7, '2013-01-01',
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits(id,pet_id,visit_date,description) VALUES (4, 7, '2013-01-04', 'spayed');
+*/
+
 
 -- Cartas iniciales.
 INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (1, 'Iron_Seam', 'Take 3 iron from the supply.', 1, 'imagen');

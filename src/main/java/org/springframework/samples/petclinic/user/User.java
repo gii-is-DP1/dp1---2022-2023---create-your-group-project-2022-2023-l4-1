@@ -31,6 +31,8 @@ public class User {
 	@NotNull
 	@Column(name = "password")
 	private String password;
+
+	/* 
 	
 	@NotNull
 	@Column(name = "nombre")
@@ -43,6 +45,10 @@ public class User {
 	@Column(name = "biografia")
 	private String biografia;
 
+	*/
+
+	private boolean enabled;
+
 	@NotNull
 	@NotEmpty(message = "No puede estar vacio")
 	@Email
@@ -50,7 +56,7 @@ public class User {
 	private String email;
 
 
-	private boolean enabled;
+	
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
