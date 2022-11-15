@@ -34,12 +34,6 @@
 					<span>Find owners</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
-					title="veterinarians">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Veterinarians</span>
-				</petclinic:menuItem>
-
 				<petclinic:menuItem active="${name eq 'achievements'}" url="/statistics/achievements"
 					title="Achievements" dropdown="${true}">										
 						<ul class="dropdown-menu">
@@ -52,7 +46,13 @@
 
 							</li>
 						</ul>					
-				</petclinic:menuItem>				
+				</petclinic:menuItem>	
+
+				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas/"
+					title="partidas">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Partidas</span>
+				</petclinic:menuItem>			
 
 			</ul>
 			
