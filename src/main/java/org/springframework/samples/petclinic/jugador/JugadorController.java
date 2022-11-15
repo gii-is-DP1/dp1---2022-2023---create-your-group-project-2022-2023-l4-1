@@ -65,15 +65,15 @@ public class JugadorController {
 	public String processFindForm(Jugador jugador, BindingResult result, Map<String, Object> model) {
 
 		// allow parameterless GET request for /jugadores to return all records
-		if (jugador.getLastName() == null) {
-			jugador.setLastName(""); // empty string signifies broadest possible search
+		if (jugador.getUser().getApellido() == null) {
+			jugador.getUser().setApellido("") ; // empty string signifies broadest possible search
 		}
 
 		// find jugadores by last name
-		Collection<Jugador> results = this.jugadorService.findOwnerByLastName(jugador.getLastName());
+		Collection<Jugador> results = this.jugadorService.findOwnerByLastName(jugador.getUser().getApellido());
 		if (results.isEmpty()) {
 			// no jugadores found
-			result.rejectValue("lastName", "notFound", "not found");
+			result.rejectValue("apellido", "notFound", "not found");
 			return "jugadores/findJugadores";
 		}
 		else if (results.size() == 1) {
