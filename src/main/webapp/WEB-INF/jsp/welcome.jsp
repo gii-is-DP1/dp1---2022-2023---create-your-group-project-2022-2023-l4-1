@@ -33,7 +33,8 @@
             <div class="col-md-12">
                 <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
                 <spring:url value="/resources/images/dwarf.jpg" htmlEscape="true" var="dwarfImage"/>
-                <!--<center><img class="img-responsive" src="${dwarfImage}"/></center> -->
+                <spring:url value="/resources/images/DwarfGif.gif" htmlEscape="true" var="dwarfGif"/>
+                <marquee><img class="img-responsive" src="${dwarfGif}"/></marquee>
             </div>
         </div>
         </body>

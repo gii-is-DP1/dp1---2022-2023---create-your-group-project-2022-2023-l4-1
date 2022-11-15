@@ -48,17 +48,18 @@
 						</ul>					
 				</petclinic:menuItem>	
 
-				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas/"
-					title="partidas" dropdown="${true}">
+				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida"
+					title="Partidas" dropdown="${true}">
 					<ul class="dropdown-menu">
 							<li>
-								<a href="<c:url value="/partida/partidas/admin" />">Todas las Partidas</a>		
+								<a href="<c:url value="/partida/partidas" />">Todas las Partidas</a>		
 							</li>
 							<li class="divider"></li>
 							<li>								
-								<a href="<c:url value="/partida/partidas/player" />">Mis partidas</a>
+								<a href="<c:url value="/partida/misPartidas" />">Mis partidas</a>
 							</li>
 						</ul>
+
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'usuarios'}" url="/users/"
@@ -67,13 +68,14 @@
 					<span>Usuarios</span>
 				</petclinic:menuItem>	
 
+				<petclinic:menuItem active="${name eq 'Mis partidas'}" url="/partida/misPartidas"
+					title="Mis partidas">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Mis Partidas</span>
+				</petclinic:menuItem>
+
 			</ul>
 			
-			
-
-
-
-
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
