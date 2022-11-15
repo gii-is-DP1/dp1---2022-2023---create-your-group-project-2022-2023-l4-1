@@ -16,6 +16,9 @@ INSERT INTO authorities(id,username,authority) VALUES (4,'gabvacgoy','owner');
 -- Another owner user, named pabmarval with password pabmarval
 INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('pabmarval','pabmarval',TRUE,'Pablo','Martínez','nada','hola','ejemplo5@gmail.com');
 INSERT INTO authorities(id,username,authority) VALUES (5,'pabmarval','admin');
+-- Another owner user, named manpalpin02 with password manpalpin02
+INSERT INTO users(username,password,enabled,nombre, apellido, foto_perfil,biografia, email) VALUES ('manpalpin02','manpalpin02',TRUE,'Manuel','Palacios','nada','hola','ejemplo6@gmail.com');
+INSERT INTO authorities(id,username,authority) VALUES (6,'manpalpin02','admin');
 
 /*
 INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'pabmarval');

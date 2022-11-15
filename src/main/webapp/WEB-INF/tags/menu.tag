@@ -52,6 +52,12 @@
 					title="partidas">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 					<span>Partidas</span>
+				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'usuarios'}" url="/users/"
+					title="usuarios">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Usuarios</span>
 				</petclinic:menuItem>			
 
 			</ul>
