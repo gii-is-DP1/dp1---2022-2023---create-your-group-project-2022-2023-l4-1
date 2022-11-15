@@ -28,45 +28,64 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Ignacio Warleta
  * @author Gabriel Vacaro
  */
 @Controller
+@RequestMapping(value = "/users")
 public class UserController {
 
-	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
+//	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
 
-	private final JugadorService jugadorService;
+	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
+
+//	private final JugadorService jugadorService;
+
+	private UserService userService;
+
+//	@Autowired
+//	public UserController(JugadorService js) {
+//		this.jugadorService = js;
+//	}
 
 	@Autowired
-	public UserController(JugadorService js) {
-		this.jugadorService = js;
+	public UserController(UserService userService){
+		this.userService = userService;
 	}
 
-	@InitBinder
-	public void setAllowedFields(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
+//	@InitBinder
+//	public void setAllowedFields(WebDataBinder dataBinder) {
+//		dataBinder.setDisallowedFields("id");
+//	}
 
-	@GetMapping(value = "/users/new")
-	public String initCreationForm(Map<String, Object> model) {
-		Jugador jugador = new Jugador();
-		model.put("jugador", jugador);
-		return VIEWS_JUGADOR_CREATE_FORM;
-	}
+//	@GetMapping(value = "/new")
+//	public String initCreationForm(Map<String, Object> model) {
+//		Jugador jugador = new Jugador();
+//		model.put("jugador", jugador);
+//		return VIEWS_JUGADOR_CREATE_FORM;
+//	}
 
-	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
-		if (result.hasErrors()) {
-			return VIEWS_JUGADOR_CREATE_FORM;
-		}
-		else {
-			//creating owner, user, and authority
-			this.jugadorService.saveJugador(jugador);
-			return "redirect:/";
-		}
-	}
+//	@PostMapping(value = "/new")
+//	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
+//		if (result.hasErrors()) {
+//			return VIEWS_JUGADOR_CREATE_FORM;
+//		}
+//		else {
+//			//creating owner, user, and authority
+//			this.jugadorService.saveJugador(jugador);
+//			return "redirect:/";
+//		}
+//	}
+
+	@GetMapping("/")
+    public ModelAndView showPartidas(){
+        ModelAndView result = new ModelAndView(USUARIOS_LISTING_VIEW);
+        result.addObject("usuarios", userService.getUsuarios());
+        return result;
+    }
 
 }

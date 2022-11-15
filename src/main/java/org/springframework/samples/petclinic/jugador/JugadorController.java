@@ -48,7 +48,6 @@ public class JugadorController {
 			return VIEWS_JUGADORES_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			//creating jugador, user and authorities
 			this.jugadorService.saveJugador(jugador);
 			
 			return "redirect:/jugadores/" + jugador.getId();
@@ -64,25 +63,20 @@ public class JugadorController {
 	@GetMapping(value = "/jugadores")
 	public String processFindForm(Jugador jugador, BindingResult result, Map<String, Object> model) {
 
-		// allow parameterless GET request for /jugadores to return all records
-		if (jugador.getUser().getApellido() == null) {
-			jugador.getUser().setApellido("") ; // empty string signifies broadest possible search
+		if (jugador.getUser().getApellidos() == null) {
+			jugador.getUser().setApellidos("") ;
 		}
 
-		// find jugadores by last name
-		Collection<Jugador> results = this.jugadorService.findOwnerByLastName(jugador.getUser().getApellido());
+		Collection<Jugador> results = this.jugadorService.findOwnerByLastName(jugador.getUser().getApellidos());
 		if (results.isEmpty()) {
-			// no jugadores found
 			result.rejectValue("apellido", "notFound", "not found");
 			return "jugadores/findJugadores";
 		}
 		else if (results.size() == 1) {
-			// 1 jugador found
 			jugador = results.iterator().next();
 			return "redirect:/jugadores/" + jugador.getId();
 		}
 		else {
-			// multiple jugadores found
 			model.put("selections", results);
 			return "jugadores/jugadoresList";
 		}
@@ -108,11 +102,6 @@ public class JugadorController {
 		}
 	}
 
-	/**
-	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
-	 * @return a ModelMap with the model attributes for the view
-	 */
 	@GetMapping("/jugadores/{jugadorId}")
 	public ModelAndView showJugador(@PathVariable("jugadorId") int jugadorId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
