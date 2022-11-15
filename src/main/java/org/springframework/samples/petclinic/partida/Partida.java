@@ -33,15 +33,15 @@ public class Partida extends BaseEntity {
     @Min(1)
     private Integer numRonda;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "jugador0", referencedColumnName = "id")
     private Jugador jugador0;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "jugador1", referencedColumnName = "id")
     private Jugador jugador1;
    
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "jugador2", referencedColumnName = "id")
     private Jugador jugador2;
 
@@ -57,7 +57,7 @@ public class Partida extends BaseEntity {
     @Range(min=0,max=2)
     private Integer siguienteJugador;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "ganador", referencedColumnName = "id")
     private Jugador ganador;
 
