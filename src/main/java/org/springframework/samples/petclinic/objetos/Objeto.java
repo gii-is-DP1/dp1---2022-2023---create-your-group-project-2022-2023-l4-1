@@ -21,7 +21,6 @@ public class Objeto extends BaseEntity{
     @NotNull
     @Enumerated(value = EnumType.STRING)
     private TipoObjeto tipoObjeto;
-
     @NotNull
     private Integer cantidadBase;
 
