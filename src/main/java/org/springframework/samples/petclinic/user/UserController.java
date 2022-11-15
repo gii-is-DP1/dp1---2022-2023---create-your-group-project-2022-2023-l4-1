@@ -18,40 +18,24 @@ package org.springframework.samples.petclinic.user;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.jugador.Jugador;
-import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Ignacio Warleta
  * @author Gabriel Vacaro
  */
+
 @Controller
 public class UserController {
 
-//	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
-
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
 
-//	private final JugadorService jugadorService;
-
 	private UserService userService;
-
-//	@Autowired
-//	public UserController(JugadorService js) {
-//		this.jugadorService = js;
-//	}
 
 	@Autowired
 	public UserController(UserService userService){
@@ -67,25 +51,20 @@ public class UserController {
 	@GetMapping(value = "/users")
 	public String processFindForm(User user, BindingResult result, Map<String, Object> model) {
 
-		// allow parameterless GET request for /owners to return all records
 		if (user.getNombre() == null) {
-			user.setNombre(""); // empty string signifies broadest possible search
+			user.setNombre("");
 		}
 
-		// find users by last name
 		Collection<User> results = this.userService.findOwnerByName(user.getNombre());
 		if (results.isEmpty()) {
-			// no users found
 			result.rejectValue("nombre", "notFound", "not found");
 			return "users/findUsers";
 		}
 		else if (results.size() == 1) {
-			// 1 owner found
 			user = results.iterator().next();
 			return "redirect:/users/" + user.getUsername();
 		}
 		else {
-			// multiple owners found
 			model.put("selections", results);
 			return "users/UsersListing";
 		}
@@ -97,31 +76,6 @@ public class UserController {
 		mav.addObject(this.userService.findUser("username"));
 		return mav;
 	}
-
-
-//	@InitBinder
-//	public void setAllowedFields(WebDataBinder dataBinder) {
-//		dataBinder.setDisallowedFields("id");
-//	}
-
-//	@GetMapping(value = "/new")
-//	public String initCreationForm(Map<String, Object> model) {
-//		Jugador jugador = new Jugador();
-//		model.put("jugador", jugador);
-//		return VIEWS_JUGADOR_CREATE_FORM;
-//	}
-
-//	@PostMapping(value = "/new")
-//	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
-//		if (result.hasErrors()) {
-//			return VIEWS_JUGADOR_CREATE_FORM;
-//		}
-//		else {
-//			//creating owner, user, and authority
-//			this.jugadorService.saveJugador(jugador);
-//			return "redirect:/";
-//		}
-//	}
 
 	@GetMapping("/users/")
     public ModelAndView showPartidas(){
