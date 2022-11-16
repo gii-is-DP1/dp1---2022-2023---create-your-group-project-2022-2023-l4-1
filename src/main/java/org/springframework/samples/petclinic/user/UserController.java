@@ -65,7 +65,7 @@ public class UserController {
 		}
 
 		// find users by last name
-		User results = this.userService.findUser(user.getUsername());
+		User results = this.userService.findUser(user.getUsername()).get();
 		if (results == null) {
 			// no users found
 			result.rejectValue("username", "notFound", "not found");
