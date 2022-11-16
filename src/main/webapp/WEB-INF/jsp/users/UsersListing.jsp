@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <petclinic:layout pageName="usuarios">
     <h2>Usuarios</h2>
@@ -11,7 +12,9 @@
         <thead>
         <tr>
             <th>Username</th>
-            <th>Password</th>
+            <sec:authorize access="hasAuthority('admin')">
+                <th>Password</th>
+            </sec:authorize>
             <th>Nombre</th>
             <th>Apellidos</th>
             <th>Foto de Perfil</th>
@@ -24,9 +27,11 @@
                 <td>
                     <c:out value="${usuario.username}"/>
                 </td>
-                <td>
-                    <c:out value="${usuario.password}"/>
-                </td>
+                <sec:authorize access="hasAuthority('admin')">
+                    <td>
+                        <c:out value="${usuario.password}"/>
+                    </td>
+                </sec:authorize>
                  <td>
                     <c:out value="${usuario.nombre}"/>
                  </td>

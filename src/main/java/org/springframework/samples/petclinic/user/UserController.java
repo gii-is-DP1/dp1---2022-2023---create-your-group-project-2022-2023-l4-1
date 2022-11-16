@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.user;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -59,7 +60,7 @@ public class UserController {
 	@GetMapping("/users/")
     public ModelAndView showPartidas(){
         ModelAndView result = new ModelAndView(USUARIOS_LISTING_VIEW);
-        result.addObject("selections", userService.getUsuarios());
+        result.addObject("selections", userService.getUsuarios().stream().filter(x -> !x.getUsername().equals("admin1")).collect(Collectors.toList()));
         return result;
     }
 
