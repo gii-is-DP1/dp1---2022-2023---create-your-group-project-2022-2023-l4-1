@@ -13,7 +13,7 @@
     <form:form modelAttribute="jugador" class="form-horizontal" id="add-jugador-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="First Name" name="user.nombre"/>
-            <petclinic:inputField label="Last Name" name="user.apellido"/>
+            <petclinic:inputField label="Last Name" name="user.apellidos"/>
             <petclinic:inputField label="Foto de perfil" name="user.fotoPerfil"/>
             <petclinic:inputField label="Username" name="user.username"/>
             <petclinic:inputField label="Password" name="user.password"/>
