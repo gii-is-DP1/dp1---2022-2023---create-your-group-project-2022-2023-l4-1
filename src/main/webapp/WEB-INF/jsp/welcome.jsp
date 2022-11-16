@@ -19,13 +19,13 @@
 
 <petclinic:layout pageName="home">
     <body class="background">
-        <center><h1 style="color: rgb(0, 255, 51);"><FONT FACE="verdana" SIZE=7><fmt:message key="welcome"/></FONT></h1></center>
+        <center><h1 style = "color: white; text-shadow: 3px 3px 6px #000000;"><FONT FACE="verdana" SIZE=7><fmt:message key="welcome"/></FONT></h1></center>
         <div class="row">
-        <center><h2 style="color: rgb(0, 255, 51);"><font face="verdana" SIZE="5">Project ${title}</font></h2></center>
-        <p><h2 style="color: rgb(0, 255, 51);"> Group ${group}</h2></p>
+        <center><h2 style="color: white; text-shadow: 3px 3px 6px #000000;"><font face="verdana" SIZE="5">Project ${title}</font></h2></center>
+        <p><h2 style="color: white; text-shadow: 3px 3px 6px #000000;"> Group ${group}</h2></p>
         <p><ul>
         <c:forEach items="${persons}" var="person">
-            <li style="color: rgb(0, 255, 51);">${person.firstName}&nbsp;${person.lastName}</li>
+            <li style="color: white; text-shadow: 3px 3px 6px #000000;">${person.firstName}&nbsp;${person.lastName}</li>
         </c:forEach>
         </ul></p>
         </div>
@@ -38,8 +38,8 @@
 
                 <petclinic:menuItem active="${name eq 'partida'}" url="/partida/new/"
 					title="partida">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Crear partida</span>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
+					<span style="color: white; text-shadow: 3px 3px 6px #000000;">Crear partida</span>
 				</petclinic:menuItem>	
 
             </div>
