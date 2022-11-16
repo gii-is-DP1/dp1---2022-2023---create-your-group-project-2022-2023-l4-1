@@ -1,10 +1,15 @@
 package org.springframework.samples.petclinic.statistics;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+
 import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
 import lombok.Setter;

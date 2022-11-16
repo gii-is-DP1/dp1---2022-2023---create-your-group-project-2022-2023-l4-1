@@ -7,7 +7,7 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (2, 'davcorrom', 'player');
 
 -- Usuario asociado al desarrollador Daniel Guedes Preciados. Username: danguepre. Contraseña: danguepre.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('danguepre', 'danguepre', TRUE, 'Daniel', 'Guedes Preciados', 'nada', 'hola', 'danguepre@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('danguepre', 'danguepre', TRUE, 'Daniel', 'Guedes Preciados', 'https://i1.sndcdn.com/avatars-DF0Bde0hu41IBzdH-vMBNsQ-t500x500.jpg', 'hola', 'danguepre@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (4, 'danguepre', 'player');
 
 -- Usuario asociado al desarrollador Pablo Martínez Valladares. Username: pabmarval. Contraseña: pabmarval.
@@ -19,11 +19,11 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (7, 'Manpalpin02', 'player');
 
 -- Usuario asociado al desarrollador Gabriel María Vacaro Goytia. Username: gabvacgoy. Contraseña: gabvacgoy.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('gabvacgoy', 'gabvacgoy', TRUE, 'Gabriel', 'Vacaro Goytia', 'nada', 'hola', 'gabvacgoy@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('gabvacgoy', 'gabvacgoy', TRUE, 'Gabriel', 'Vacaro Goytia', 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg', 'a oa oa la la la', 'gabvacgoy@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (5, 'gabvacgoy', 'player');
 
 -- Usuario asociado al desarrollador Ignacio Warleta Murcia. Username: ignwarmur. Contraseña: ignwarmur.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('ignwarmur', 'ignwarmur', TRUE, 'Ignacio', 'Warleta Murcia', 'nada', 'hola', 'ignwarmur@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('ignwarmur', 'ignwarmur', TRUE, 'Ignacio', 'Warleta Murcia', 'https://lastfm.freetls.fastly.net/i/u/300x300/6d8a8ff92b706d445650a5efa88a3dfa.jpg', 'Soy Leroy Wilkinson y estoy en la cárcel por fraude fiscal. Me dedico a hacer lindo lazos para ramos de novias.', 'ignwarmur@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (3, 'ignwarmur', 'player');
 
 
@@ -104,10 +104,16 @@ INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion
 
 -- Logros.
 
-INSERT INTO achievement(id,name,description,threshold,badge_image) 
-                VALUES (1,'Viciado','Si juegas <THRESHOLD> partidas o más, consideramos que ya estás enganchado.',10.0,'https://bit.ly/certifiedGamer'),
-                        (2,'Triunfador','Si ganas <THRESHOLD> o  más partidas es que eres todo un triunfador.',20.0,'https://bit.ly/proGamer');
-
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (1,'¡A ganar, a ganar, pollo para cenar!','Consigues este logro si ganas <THRESHOLD> partidas o más.',10.0,'https://bit.ly/proGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (2,'¿No tienes nada mejor que hacer?','Consigues este logro si juegas <THRESHOLD> partidas o  más.',10.0,'https://bit.ly/certifiedGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (3,'Para ti solo existe Dwarf','Consigues este logro si juegas durante <THRESHOLD> minutos o  más.',4000.0,'/resources/images/logro_tiempo.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (4,'Estudiante de la condición humana','Consigues este logro si agregas a tu pirmer amigo.',0.0,'/resources/images/logro_amistad.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (5,'Mejor juega a otra cosa','Consigues este logro si pierdes <THRESHOLD> partidas o  más.',10.0,'/resources/images/logro_loser.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (6,'La leyenda aumenta','Consigues este logro si consigues derrotar a El Draco.',0.0,'https://bit.ly/proGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (7,'Experto en herreria','Consigues este logro si ganas tu primera partida habiendo fabricado 4 objetos.',0.0,'/resources/images/logro_herreria.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (8,'Mi tesoro...','Consigues este logro si consigues poseer todos los tipos de recurso a la vez.',0.0,'/resources/images/logro_tesoro.png');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (9,'Acaparador','Consigues este logro si consigues poseer <THRESHOLD> recursos o  más.',50.0,'/resources/images/logro_riqueza.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (10,'El enano legendario','Consigues este logro si consigues obtener todos los logros de Dwarf.',0.0,'/resources/images/logro_enano.jpg');
 
 
 INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('pabmarval', 'False', 'True','https://cdn-icons-png.flaticon.com/512/747/747969.png' );
@@ -116,5 +122,11 @@ INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES (
 
 -- Partidas de ejemplo.
 
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1);
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1);
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1, 'RONDAS_LIMITADAS');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1, 'SIN_LIMITE');
+
+-- relacion logros-usuario
+
+INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarval', 2);
+INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarval', 3);
+INSERT INTO users_achievements(user_username, achievements_id) VALUES ('davcorrom', 3);

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
-<!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->  
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
 
@@ -35,6 +35,13 @@
                 <spring:url value="/resources/images/dwarf.jpg" htmlEscape="true" var="dwarfImage"/>
                 <spring:url value="/resources/images/DwarfGif.gif" htmlEscape="true" var="dwarfGif"/>
                 <marquee><img class="img-responsive" src="${dwarfGif}"/></marquee>
+
+                <petclinic:menuItem active="${name eq 'partida'}" url="/partida/new/"
+					title="partida">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Crear partida</span>
+				</petclinic:menuItem>	
+
             </div>
         </div>
         </body>

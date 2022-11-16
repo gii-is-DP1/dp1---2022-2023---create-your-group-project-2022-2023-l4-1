@@ -29,7 +29,7 @@
                     <c:out value="${partida.usernameList}"/>
                  </td>
                  <td> 
-                    <a href="/partida/partidas/${partida.id}/delete"> 
+                    <a href="/partida/${partida.id}/delete"> 
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>                            
                     </a>       
                 </td>
