@@ -22,6 +22,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.jugador.Jugador;
+import org.springframework.samples.petclinic.jugador.JugadorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,10 +32,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
 	private UserRepository userRepository;
+	private JugadorRepository jugadorRepository;
 
 	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
+	}
+
+	List<User> getUsers(){
+		return userRepository.findAll();
 	}
 
 	@Transactional
@@ -54,18 +61,14 @@ public class UserService {
 	public List<User> getUsuarios() {
 		return userRepository.findAll();
 	}
-/* 
-	public User getById(int id){
-        return userRepository.findById(id).get();
-    }
 
+	@Transactional(readOnly = true)
+	public Jugador findPlayerById(int id) throws DataAccessException {
+		return jugadorRepository.findById(id);
+	}
+/*
     public void deleteUserById(int id){
         userRepository.deleteById(id);
     }
-
-    public void save(User user){
-        userRepository.save(user);
-    }
-
 	*/
 }

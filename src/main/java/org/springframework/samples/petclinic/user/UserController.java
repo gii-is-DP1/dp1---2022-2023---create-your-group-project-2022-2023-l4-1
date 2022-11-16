@@ -19,10 +19,12 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -117,34 +119,32 @@ public class UserController {
         result.addObject("usuarios", userService.getUsuarios());
         return result;
     }
-
-	/* 
-	@GetMapping("/{id}/edit")
-    public ModelAndView editUser(@PathVariable int id){
-        User achievement=userService.getById(id);        
-        ModelAndView result=new ModelAndView(VIEWS_JUGADOR_CREATE_FORM);
-        result.addObject("achievement", achievement);
-        return result;
-    }
+ 
+	@GetMapping(value = "/players/{playerid}/edit")
+	public String initUpdateOwnerForm(@PathVariable("playerid") int playerid, Model model) {
+		Jugador jugador = this.userService.findPlayerById(playerid);
+		model.addAttribute("jugador",jugador);
+		return VIEWS_JUGADOR_CREATE_FORM;
+	}
 
 
     @PostMapping("/{id}/edit")
     public String saveUser(@PathVariable int id,User user){
 		String view = "redirect:/users/";
-        User userToBeUpdated=userService.getById(id);
+        Jugador userToBeUpdated=userService.findPlayerById(id);
         BeanUtils.copyProperties(user,userToBeUpdated,"id");
-        userService.saveUser(userToBeUpdated);
+        jugadorService.saveJugador(userToBeUpdated);
         return view;
     }
-
+/* 
 	@GetMapping("/{id}/delete")
     public String deleteAchievement(@PathVariable int id){
 		String view = "redirect:/users/";
         userService.deleteAchievementById(id);        
         return view;
     }
-
 	*/
+
 
 
 }

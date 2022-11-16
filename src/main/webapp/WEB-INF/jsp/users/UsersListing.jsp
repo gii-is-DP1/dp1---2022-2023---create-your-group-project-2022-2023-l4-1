@@ -16,6 +16,7 @@
             <th>Apellidos</th>
             <th>Foto de Perfil</th>
             <th>Biografia</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +42,12 @@
                 </td>
                 <td>
                     <c:out value="${usuario.biografia}"/>
+                </td>
+
+                <td>
+                    <a href="/user/users/${user.id}/edit"> 
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>                            
+                    </a>
                 </td>
             </tr>
         </c:forEach>
