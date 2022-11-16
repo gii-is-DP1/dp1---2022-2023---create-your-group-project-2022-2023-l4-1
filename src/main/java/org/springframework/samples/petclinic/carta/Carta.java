@@ -14,7 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-@Table(name = "cartas")
 public class Carta extends BaseEntity {
 
     @NotNull

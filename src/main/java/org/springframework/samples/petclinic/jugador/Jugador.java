@@ -38,4 +38,3 @@ public class Jugador extends BaseEntity{
 
     
 }
-

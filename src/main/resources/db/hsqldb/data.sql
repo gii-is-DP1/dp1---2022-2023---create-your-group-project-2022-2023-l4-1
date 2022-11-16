@@ -3,7 +3,7 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (1, 'admin1', 'admin');
 
 -- Usuario asociado al desarrollador David Cortabarra Romero. Username: davcorrom. Contraseña: davcorrom.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('davcorrom', 'davcorrom', TRUE, 'David', 'Cortabarra Romero', 'nada', 'hola', 'davcorrom@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('davcorrom', 'davcorrom', TRUE, 'David', 'Cortabarra Romero', 'https://i.pinimg.com/originals/30/8d/79/308d795c3cac0f8f16610f53df4e1005.jpg', 'hola', 'davcorrom@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (2, 'davcorrom', 'player');
 
 -- Usuario asociado al desarrollador Daniel Guedes Preciados. Username: danguepre. Contraseña: danguepre.
@@ -109,7 +109,7 @@ INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (2,'¿
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (3,'Para ti solo existe Dwarf','Consigues este logro si juegas durante <THRESHOLD> minutos o  más.',4000.0,'/resources/images/logro_tiempo.jpg');
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (4,'Estudiante de la condición humana','Consigues este logro si agregas a tu pirmer amigo.',0.0,'/resources/images/logro_amistad.jpg');
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (5,'Mejor juega a otra cosa','Consigues este logro si pierdes <THRESHOLD> partidas o  más.',10.0,'/resources/images/logro_loser.jpg');
-INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (6,'La leyenda aumenta','Consigues este logro si consigues derrotar a El Draco.',0.0,'https://bit.ly/proGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (6,'La leyenda aumenta','Consigues este logro si consigues derrotar a El Draco.',0.0,'/resources/images/logro_leyenda.png');
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (7,'Experto en herreria','Consigues este logro si ganas tu primera partida habiendo fabricado 4 objetos.',0.0,'/resources/images/logro_herreria.jpg');
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (8,'Mi tesoro...','Consigues este logro si consigues poseer todos los tipos de recurso a la vez.',0.0,'/resources/images/logro_tesoro.png');
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (9,'Acaparador','Consigues este logro si consigues poseer <THRESHOLD> recursos o  más.',50.0,'/resources/images/logro_riqueza.jpg');
@@ -122,8 +122,8 @@ INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES (
 
 -- Partidas de ejemplo.
 
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1, 'RONDAS_LIMITADAS');
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1, 'SIN_LIMITE');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1, 'RONDAS_LIMITADAS', 'FIN');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1, 'SIN_LIMITE', 'FIN');
 
 -- relacion logros-usuario
 

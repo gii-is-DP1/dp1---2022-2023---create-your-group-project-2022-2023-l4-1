@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.partida;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
 
 import lombok.Getter;
@@ -39,6 +41,7 @@ public class Partida extends BaseEntity {
     @Min(1)
     private Integer numRonda;
     
+    @NotNull
     @OneToOne
     @JoinColumn(name = "jugador0", referencedColumnName = "id")
     private Jugador jugador0;
@@ -62,6 +65,11 @@ public class Partida extends BaseEntity {
     @NotNull
     @Range(min=0,max=2)
     private Integer siguienteJugador;
+
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "fase_actual")
+    private Fase faseActual;
 
     @OneToOne
     @JoinColumn(name = "ganador", referencedColumnName = "id")
