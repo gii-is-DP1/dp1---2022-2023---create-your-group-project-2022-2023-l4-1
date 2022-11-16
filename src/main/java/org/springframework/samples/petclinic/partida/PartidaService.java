@@ -2,8 +2,6 @@ package org.springframework.samples.petclinic.partida;
 
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesRepository;
@@ -13,12 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-
 public class PartidaService {
 
-
     PartidaRepository repo;
-
     AuthoritiesRepository authRepo;
     
     @Autowired
@@ -31,7 +26,6 @@ public class PartidaService {
 	public Partida findPartidaById(int id) throws DataAccessException {
 		return repo.findById(id).get();
 	}
-
 
     List<Partida> getPartidas(){
         return repo.findAll();
@@ -48,6 +42,10 @@ public class PartidaService {
 
     public void deletePartidaById(int id){
         repo.deleteById(id);
+    }
+
+    public void save(Partida partida){
+        repo.save(partida);
     }
 
 }
