@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.user;
 
+import java.util.Collection;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -40,6 +41,8 @@ public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
 
+	private static final String USUARIOS_LISTING_VIEW_ALL = "/users/UsersListingAll";
+
 	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
 
 	private final JugadorService jugadorService;
@@ -52,10 +55,18 @@ public class UserController {
 		this.jugadorService = js;
 	}
 
+	@GetMapping("/users/")
+    public ModelAndView showPartidas(){
+        ModelAndView result = new ModelAndView(USUARIOS_LISTING_VIEW);
+        result.addObject("selections", userService.getUsuarios());
+        return result;
+    }
+
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
+
 
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
@@ -91,7 +102,7 @@ public class UserController {
 		}
 
 		// find users by last name
-		User results = this.userService.findUser(user.getUsername()).get();
+		Collection<User> results = this.userService.findUserByUsername(user.getUsername());
 		if (results == null) {
 			// no users found
 			result.rejectValue("username", "notFound", "not found");
@@ -105,18 +116,13 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{userId}")
-	public ModelAndView showOwner(@PathVariable("username") int ownerId) {
+	public ModelAndView showUser(@PathVariable("username") int ownerId) {
 		ModelAndView mav = new ModelAndView("users/");
 		mav.addObject(this.userService.findUser("username"));
 		return mav;
 	}
 
-	@GetMapping("/users/")
-    public ModelAndView showPartidas(){
-        ModelAndView result = new ModelAndView(USUARIOS_LISTING_VIEW);
-        result.addObject("usuarios", userService.getUsuarios());
-        return result;
-    }
+	
 
 	/* 
 	@GetMapping("/{id}/edit")

@@ -16,10 +16,10 @@
     <form:form modelAttribute="user" action="/users" method="get" class="form-horizontal"
                id="search-user-form">
         <div class="form-group">
-            <div class="control-group" id="nombre">
+            <div class="control-group" id="username">
                 <label class="col-sm-2 control-label">Nombre </label>
                 <div class="col-sm-10">
-                    <form:input class="form-control" path="nombre" size="30" maxlength="80"/>
+                    <form:input class="form-control" path="username" size="30" maxlength="80"/>
                     <span class="help-inline"><form:errors path="*"/></span>
                 </div>
             </div>
