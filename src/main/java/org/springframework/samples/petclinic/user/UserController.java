@@ -15,16 +15,13 @@
  */
 package org.springframework.samples.petclinic.user;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
-import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -65,7 +62,7 @@ public class UserController {
 		}
 
 		// find users by last name
-		User results = this.userService.findUser(user.getUsername());
+		Optional<User> results = this.userService.findUser(user.getUsername());
 		if (results == null) {
 			// no users found
 			result.rejectValue("username", "notFound", "not found");

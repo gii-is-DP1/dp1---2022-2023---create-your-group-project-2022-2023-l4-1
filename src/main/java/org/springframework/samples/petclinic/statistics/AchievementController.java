@@ -2,7 +2,6 @@ package org.springframework.samples.petclinic.statistics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -52,7 +51,7 @@ public class AchievementController {
     public ModelAndView showMyAchievements(){
         ModelAndView result=new ModelAndView(MY_ACHIEVEMENTS_LISTING_VIEW);
         String currentUsername = currentUser.returnLoggedUserName();
-        User actualUser = userService.findUser(currentUsername);
+        User actualUser = userService.findUser(currentUsername).get();
         List<Achievement> logros = new ArrayList<Achievement>(actualUser.getAchievements());
         result.addObject("achievements", logros);
         return result;
