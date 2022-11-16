@@ -47,8 +47,8 @@ public class UserService {
 		return userRepository.findById(username);
 	}
 	@Transactional(readOnly = true)
-	public Collection<User> findOwnerByName(String nombre) throws DataAccessException {
-		return userRepository.findByName(nombre);
+	public Collection<User> findUserByUsername(String nombre) throws DataAccessException {
+		return userRepository.findUserByUsername(nombre);
 	}
 
 	public List<User> getUsuarios() {

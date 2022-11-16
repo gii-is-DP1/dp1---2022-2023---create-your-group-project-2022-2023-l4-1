@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${usuarios}" var="usuario">
+        <c:forEach items="${selections}" var="usuario">
             <tr>
                 <td>
                     <c:out value="${usuario.username}"/>
