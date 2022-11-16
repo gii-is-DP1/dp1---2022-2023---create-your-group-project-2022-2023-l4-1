@@ -13,7 +13,6 @@
             <th>Nombre</th>
             <th>Ganador</th>
             <th>Jugadores</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -28,11 +27,6 @@
                  <td>
                     <c:out value="${partida.usernameList}"/>
                  </td>
-                 <td> 
-                    <a href="/partida/partidas/${partida.id}/delete"> 
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>                            
-                    </a>       
-                </td>
             </tr>
         </c:forEach>
         </tbody>

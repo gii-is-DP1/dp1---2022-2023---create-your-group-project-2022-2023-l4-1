@@ -25,6 +25,7 @@ public class PartidaController {
 
     PartidaService service;
 
+    private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
 
@@ -46,7 +47,7 @@ public class PartidaController {
     @Transactional(readOnly = true)
     @GetMapping("/misPartidas")
     public ModelAndView showMisPartidas(){
-        ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
+        ModelAndView res = new ModelAndView(MIS_PARTIDAS_LISTING_VIEW);
         String currentUsername = currentUser.returnLoggedUserName();
         List<Partida> partidas = new ArrayList<Partida>();
 
