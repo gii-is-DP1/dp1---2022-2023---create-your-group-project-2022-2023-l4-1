@@ -44,6 +44,11 @@ public class UserController {
 
 	private UserService userService;
 
+	@Autowired
+	public UserController(UserService userService){
+		this.userService = userService;
+	}
+
 	@GetMapping(value = "/users/find")
 	public String initFindForm(Map<String, Object> model) {
 		model.put("user", new User());
@@ -86,15 +91,8 @@ public class UserController {
         return result;
     }
 
-
 	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
 
-	private final JugadorService jugadorService;
-
-	@Autowired
-	public UserController(JugadorService js) {
-		this.jugadorService = js;
-	}
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
@@ -109,15 +107,16 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
+	public String processCreationForm(@Valid User user, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_JUGADOR_CREATE_FORM;
 		}
 		else {
 			//creating owner, user, and authority
-			this.jugadorService.saveJugador(jugador);
+			this.userService.saveUser(user);
 			return "redirect:/";
 		}
 	}
+
 
 }
