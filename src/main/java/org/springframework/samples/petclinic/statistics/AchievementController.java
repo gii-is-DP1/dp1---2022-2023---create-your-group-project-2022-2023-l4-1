@@ -35,8 +35,9 @@ public class AchievementController {
     LoggedUserController currentUser;
 
     @Autowired
-    public AchievementController(AchievementService service){
+    public AchievementController(AchievementService service, UserService userService){
         this.service=service;
+        this.userService = userService;
     }
 
     @Transactional(readOnly = true)
@@ -46,6 +47,7 @@ public class AchievementController {
         result.addObject("achievements", service.getAchievements());
         return result;
     }
+    
     @Transactional(readOnly = true)
     @GetMapping("/myAchievements")
     public ModelAndView showMyAchievements(){
