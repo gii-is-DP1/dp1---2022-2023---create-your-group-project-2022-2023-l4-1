@@ -1,9 +1,17 @@
 package org.springframework.samples.petclinic.statistics;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
+
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.user.User;
+import org.springframework.samples.petclinic.user.UserService;
+import org.springframework.samples.petclinic.web.LoggedUserController;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -17,10 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/statistics/achievements")
 public class AchievementController {
 
+    private final String MY_ACHIEVEMENTS_LISTING_VIEW="/achievements/MyAchievementListing";
     private final String ACHIEVEMENTS_LISTING_VIEW="/achievements/AchievementsListing";
     private final String ACHIEVEMENTS_FORM="/achievements/createOrUpdateAchievementForm";
 
     private AchievementService service;
+    private UserService userService;
+    
+    @Autowired
+    LoggedUserController currentUser;
 
     @Autowired
     public AchievementController(AchievementService service){
@@ -32,6 +45,16 @@ public class AchievementController {
     public ModelAndView showAchievements(){
         ModelAndView result=new ModelAndView(ACHIEVEMENTS_LISTING_VIEW);
         result.addObject("achievements", service.getAchievements());
+        return result;
+    }
+    @Transactional(readOnly = true)
+    @GetMapping("/myAchievements")
+    public ModelAndView showMyAchievements(){
+        ModelAndView result=new ModelAndView(MY_ACHIEVEMENTS_LISTING_VIEW);
+        String currentUsername = currentUser.returnLoggedUserName();
+        User actualUser = userService.findUser(currentUsername);
+        List<Achievement> logros = new ArrayList<Achievement>(actualUser.getAchievements());
+        result.addObject("achievements", logros);
         return result;
     }
 

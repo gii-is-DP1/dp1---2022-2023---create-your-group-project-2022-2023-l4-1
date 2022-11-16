@@ -7,7 +7,7 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (2, 'davcorrom', 'player');
 
 -- Usuario asociado al desarrollador Daniel Guedes Preciados. Username: danguepre. Contraseña: danguepre.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('danguepre', 'danguepre', TRUE, 'Daniel', 'Guedes Preciados', 'nada', 'hola', 'danguepre@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('danguepre', 'danguepre', TRUE, 'Daniel', 'Guedes Preciados', 'https://i1.sndcdn.com/avatars-DF0Bde0hu41IBzdH-vMBNsQ-t500x500.jpg', 'hola', 'danguepre@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (4, 'danguepre', 'player');
 
 -- Usuario asociado al desarrollador Pablo Martínez Valladares. Username: pabmarval. Contraseña: pabmarval.
@@ -19,11 +19,11 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (7, 'Manpalpin02', 'player');
 
 -- Usuario asociado al desarrollador Gabriel María Vacaro Goytia. Username: gabvacgoy. Contraseña: gabvacgoy.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('gabvacgoy', 'gabvacgoy', TRUE, 'Gabriel', 'Vacaro Goytia', 'nada', 'hola', 'gabvacgoy@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('gabvacgoy', 'gabvacgoy', TRUE, 'Gabriel', 'Vacaro Goytia', 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg', 'a oa oa la la la', 'gabvacgoy@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (5, 'gabvacgoy', 'player');
 
 -- Usuario asociado al desarrollador Ignacio Warleta Murcia. Username: ignwarmur. Contraseña: ignwarmur.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('ignwarmur', 'ignwarmur', TRUE, 'Ignacio', 'Warleta Murcia', 'nada', 'hola', 'ignwarmur@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('ignwarmur', 'ignwarmur', TRUE, 'Ignacio', 'Warleta Murcia', 'https://lastfm.freetls.fastly.net/i/u/300x300/6d8a8ff92b706d445650a5efa88a3dfa.jpg', 'Soy Leroy Wilkinson y estoy en la cárcel por fraude fiscal. Me dedico a hacer lindo lazos para ramos de novias.', 'ignwarmur@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (3, 'ignwarmur', 'player');
 
 
@@ -124,3 +124,9 @@ INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES (
 
 INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1, 'RONDAS_LIMITADAS');
 INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1, 'SIN_LIMITE');
+
+-- relacion logros-usuario
+
+INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarval', 2);
+INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarval', 3);
+INSERT INTO users_achievements(user_username, achievements_id) VALUES ('davcorrom', 3);

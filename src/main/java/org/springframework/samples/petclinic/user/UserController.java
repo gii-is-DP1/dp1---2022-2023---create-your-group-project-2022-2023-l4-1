@@ -17,9 +17,11 @@ package org.springframework.samples.petclinic.user;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
@@ -30,7 +32,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -40,18 +41,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
-//	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
-
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
 
-//	private final JugadorService jugadorService;
-
 	private UserService userService;
-
-//	@Autowired
-//	public UserController(JugadorService js) {
-//		this.jugadorService = js;
-//	}
 
 	@Autowired
 	public UserController(UserService userService){
@@ -68,21 +60,16 @@ public class UserController {
 	public String processFindForm(User user, BindingResult result, Map<String, Object> model) {
 
 		// allow parameterless GET request for /owners to return all records
-		if (user.getNombre() == null) {
-			user.setNombre(""); // empty string signifies broadest possible search
+		if (user.getUsername() == null) {
+			user.setUsername(""); // empty string signifies broadest possible search
 		}
 
 		// find users by last name
-		Collection<User> results = this.userService.findOwnerByName(user.getNombre());
-		if (results.isEmpty()) {
+		User results = this.userService.findUser(user.getUsername());
+		if (results == null) {
 			// no users found
-			result.rejectValue("nombre", "notFound", "not found");
+			result.rejectValue("username", "notFound", "not found");
 			return "users/findUsers";
-		}
-		else if (results.size() == 1) {
-			// 1 owner found
-			user = results.iterator().next();
-			return "redirect:/users/" + user.getUsername();
 		}
 		else {
 			// multiple owners found
@@ -98,36 +85,69 @@ public class UserController {
 		return mav;
 	}
 
-
-//	@InitBinder
-//	public void setAllowedFields(WebDataBinder dataBinder) {
-//		dataBinder.setDisallowedFields("id");
-//	}
-
-//	@GetMapping(value = "/new")
-//	public String initCreationForm(Map<String, Object> model) {
-//		Jugador jugador = new Jugador();
-//		model.put("jugador", jugador);
-//		return VIEWS_JUGADOR_CREATE_FORM;
-//	}
-
-//	@PostMapping(value = "/new")
-//	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
-//		if (result.hasErrors()) {
-//			return VIEWS_JUGADOR_CREATE_FORM;
-//		}
-//		else {
-//			//creating owner, user, and authority
-//			this.jugadorService.saveJugador(jugador);
-//			return "redirect:/";
-//		}
-//	}
-
 	@GetMapping("/users/")
     public ModelAndView showPartidas(){
         ModelAndView result = new ModelAndView(USUARIOS_LISTING_VIEW);
         result.addObject("usuarios", userService.getUsuarios());
         return result;
     }
+
+	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
+
+
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
+
+	@GetMapping(value = "/users/new")
+	public String initCreationForm(Map<String, Object> model) {
+		Jugador jugador = new Jugador();
+		model.put("jugador", jugador);
+		return VIEWS_JUGADOR_CREATE_FORM;
+	}
+
+	@PostMapping(value = "/users/new")
+	public String processCreationForm(@Valid User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return VIEWS_JUGADOR_CREATE_FORM;
+		}
+		else {
+			//creating owner, user, and authority
+			this.userService.saveUser(user);
+			return "redirect:/";
+		}
+	}
+
+
+
+	/* 
+	@GetMapping("/{id}/edit")
+    public ModelAndView editUser(@PathVariable int id){
+        User achievement=userService.getById(id);        
+        ModelAndView result=new ModelAndView(VIEWS_JUGADOR_CREATE_FORM);
+        result.addObject("achievement", achievement);
+        return result;
+    }
+
+
+    @PostMapping("/{id}/edit")
+    public String saveUser(@PathVariable int id,User user){
+		String view = "redirect:/users/";
+        User userToBeUpdated=userService.getById(id);
+        BeanUtils.copyProperties(user,userToBeUpdated,"id");
+        userService.saveUser(userToBeUpdated);
+        return view;
+    }
+
+	@GetMapping("/{id}/delete")
+    public String deleteAchievement(@PathVariable int id){
+		String view = "redirect:/users/";
+        userService.deleteAchievementById(id);        
+        return view;
+    }
+
+	*/
+
 
 }

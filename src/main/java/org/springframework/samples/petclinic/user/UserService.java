@@ -42,9 +42,9 @@ public class UserService {
 		userRepository.save(user);
 	}
 	
-	@Transactional(readOnly = true)
-	public Optional<User> findUser(String username) {
-		return userRepository.findById(username);
+	
+	public User findUser(String username) {
+		return userRepository.findById(username).get();
 	}
 	@Transactional(readOnly = true)
 	public Collection<User> findOwnerByName(String nombre) throws DataAccessException {
@@ -54,4 +54,18 @@ public class UserService {
 	public List<User> getUsuarios() {
 		return userRepository.findAll();
 	}
+/* 
+	public User getById(int id){
+        return userRepository.findById(id).get();
+    }
+
+    public void deleteUserById(int id){
+        userRepository.deleteById(id);
+    }
+
+    public void save(User user){
+        userRepository.save(user);
+    }
+
+	*/
 }
