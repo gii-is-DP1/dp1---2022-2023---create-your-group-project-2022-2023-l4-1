@@ -13,7 +13,6 @@
             <th>Name</th>
             <th>Description</th>
             <th>BadgeImage</th>
-            <th>Threshold</th>
             <th></th>
             <th></th>
         </tr>
@@ -33,10 +32,6 @@
                         <img src="${achievement.badgeImage}" width="100px"  /> 
                     </c:if>
                 </td>
-                <td>       
-                    <c:out value="${achievement.threshold} "/>
-                </td>
-            
                 <td> 
                     <a href="/statistics/achievements/${achievement.id}/edit"> 
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>                            

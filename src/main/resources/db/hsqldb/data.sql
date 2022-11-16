@@ -104,10 +104,16 @@ INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion
 
 -- Logros.
 
-INSERT INTO achievement(id,name,description,threshold,badge_image) 
-                VALUES (1,'Viciado','Si juegas <THRESHOLD> partidas o más, consideramos que ya estás enganchado.',10.0,'https://bit.ly/certifiedGamer'),
-                        (2,'Triunfador','Si ganas <THRESHOLD> o  más partidas es que eres todo un triunfador.',20.0,'https://bit.ly/proGamer');
-
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (1,'¡A ganar, a ganar, pollo para cenar!','Consigues este logro si ganas <THRESHOLD> partidas o más.',10.0,'https://bit.ly/proGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (2,'¿No tienes nada mejor que hacer?','Consigues este logro si juegas <THRESHOLD> partidas o  más.',10.0,'https://bit.ly/certifiedGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (3,'Para ti solo existe Dwarf','Consigues este logro si juegas durante <THRESHOLD> minutos o  más.',4000.0,'/resources/images/logro_tiempo.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (4,'Estudiante de la condición humana','Consigues este logro si agregas a tu pirmer amigo.',0.0,'/resources/images/logro_amistad.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (5,'Mejor juega a otra cosa','Consigues este logro si pierdes <THRESHOLD> partidas o  más.',10.0,'/resources/images/logro_loser.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (6,'La leyenda aumenta','Consigues este logro si consigues derrotar a El Draco.',0.0,'https://bit.ly/proGamer');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (7,'Experto en herreria','Consigues este logro si ganas tu primera partida habiendo fabricado 4 objetos.',0.0,'/resources/images/logro_herreria.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (8,'Mi tesoro...','Consigues este logro si consigues poseer todos los tipos de recurso a la vez.',0.0,'/resources/images/logro_tesoro.png');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (9,'Acaparador','Consigues este logro si consigues poseer <THRESHOLD> recursos o  más.',50.0,'/resources/images/logro_riqueza.jpg');
+INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (10,'El enano legendario','Consigues este logro si consigues obtener todos los logros de Dwarf.',0.0,'/resources/images/logro_enano.jpg');
 
 
 INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('pabmarval', 'False', 'True','https://cdn-icons-png.flaticon.com/512/747/747969.png' );
