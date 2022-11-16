@@ -11,7 +11,7 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (4, 'danguepre', 'player');
 
 -- Usuario asociado al desarrollador Pablo Martínez Valladares. Username: pabmarval. Contraseña: pabmarval.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('pabmarval', 'pabmarval', TRUE, 'Pablo', 'Martínez Valladares', 'nada', 'hola', 'pabmarval@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('pabmarval', 'pabmarval', TRUE, 'Pablo', 'Martínez Valladares', 'https://pbs.twimg.com/media/EgY_O3EWsAUgv5S.jpg', 'Amante de Dwarf, amante de la vida', 'pabmarval@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (6, 'pabmarval', 'player');
 
 -- Usuario asociado al desarrollador Manuel Palacios Pineda. Username: manpalpin. Contraseña: manpalpin.
