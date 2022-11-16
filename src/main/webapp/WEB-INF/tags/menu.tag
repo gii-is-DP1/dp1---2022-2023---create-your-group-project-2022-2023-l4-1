@@ -28,6 +28,12 @@
 					<span>Home</span>
 				</petclinic:menuItem>
 
+				<petclinic:menuItem active="${name eq 'info'}" url="/info"
+					title="Reglas">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Reglas</span>
+				</petclinic:menuItem>
+
 				<sec:authorize access="isAuthenticated()">
 					<petclinic:menuItem active="${name eq 'usuarios'}" url="/users/"
 						title="usuarios">
