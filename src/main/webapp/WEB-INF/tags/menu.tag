@@ -28,47 +28,53 @@
 					<span>Home</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'find users'}" url="/users/find"
-					title="find users">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Find users</span>
-				</petclinic:menuItem>
+				<sec:authorize access="isAuthenticated()">
+					<petclinic:menuItem active="${name eq 'usuarios'}" url="/users/"
+						title="usuarios">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span>Usuarios</span>
+					</petclinic:menuItem>
+				</sec:authorize>
 
-				<petclinic:menuItem active="${name eq 'achievements'}" url="/statistics/achievements"
-					title="Achievements" dropdown="${true}">										
-						<ul class="dropdown-menu">
-							<li>
-								<a href="<c:url value="/statistics/achievements/" />">Achievements listing</a>		
-							</li>
-							<li class="divider"></li>
-							<li>								
-								<a href="<c:url value="/statistics/achievements/myAchievements" />">My Achievements <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></a>		
+				<sec:authorize access="isAuthenticated()">
+					<petclinic:menuItem active="${name eq 'find users'}" url="/users/find"
+						title="find users">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span>Find users</span>
+					</petclinic:menuItem>
+				</sec:authorize>
 
-							</li>
-						</ul>					
-				</petclinic:menuItem>	
+				<sec:authorize access="hasAuthority('admin')">
+					<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas"
+						title="Partidas">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span>Partidas</span>
+					</petclinic:menuItem>
+				</sec:authorize>	
+				
+				<sec:authorize access="hasAuthority('player')">
+					<petclinic:menuItem active="${name eq 'mis partidas'}" url="/partida/misPartidas"
+						title="Mis partidas">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span>Mis Partidas</span>
+					</petclinic:menuItem>
+				</sec:authorize>
 
+				<sec:authorize access="isAuthenticated()">
+					<petclinic:menuItem active="${name eq 'achievements'}" url="/statistics/achievements"
+						title="Achievements" dropdown="${true}">										
+							<ul class="dropdown-menu">
+								<li>
+									<a href="<c:url value="/statistics/achievements/" />">Achievements listing</a>		
+								</li>
+								<li class="divider"></li>
+								<li>								
+									<a href="<c:url value="/statistics/achievements/myAchievements" />">My Achievements <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></a>		
 
-				<petclinic:menuItem active="${name eq 'usuarios'}" url="/users/"
-					title="usuarios">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Usuarios</span>
-				</petclinic:menuItem>	
-
-				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas"
-					title="Partidas">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Partidas</span>
-				</petclinic:menuItem>	
-
-				<petclinic:menuItem active="${name eq 'mis partidas'}" url="/partida/misPartidas"
-					title="Mis partidas">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Mis Partidas</span>
-				</petclinic:menuItem>	
-
-
-			
+								</li>
+							</ul>					
+					</petclinic:menuItem>
+				</sec:authorize>	
 
 			</ul>
 			
