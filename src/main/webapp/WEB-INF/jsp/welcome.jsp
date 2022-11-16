@@ -38,8 +38,8 @@
 
                 <petclinic:menuItem active="${name eq 'partida'}" url="/partida/new/"
 					title="partida">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Crear partida</span>
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
+					<span style="color: white; text-shadow: 3px 3px 6px #000000;">Crear partida</span>
 				</petclinic:menuItem>	
 
             </div>
