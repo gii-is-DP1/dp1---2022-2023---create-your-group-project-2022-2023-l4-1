@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.user;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -68,21 +69,16 @@ public class UserController {
 	public String processFindForm(User user, BindingResult result, Map<String, Object> model) {
 
 		// allow parameterless GET request for /owners to return all records
-		if (user.getNombre() == null) {
-			user.setNombre(""); // empty string signifies broadest possible search
+		if (user.getUsername() == null) {
+			user.setUsername(""); // empty string signifies broadest possible search
 		}
 
 		// find users by last name
-		Collection<User> results = this.userService.findOwnerByName(user.getNombre());
+		Optional<User> results = this.userService.findUser(user.getUsername());
 		if (results.isEmpty()) {
 			// no users found
-			result.rejectValue("nombre", "notFound", "not found");
+			result.rejectValue("username", "notFound", "not found");
 			return "users/findUsers";
-		}
-		else if (results.size() == 1) {
-			// 1 owner found
-			user = results.iterator().next();
-			return "redirect:/users/" + user.getUsername();
 		}
 		else {
 			// multiple owners found
