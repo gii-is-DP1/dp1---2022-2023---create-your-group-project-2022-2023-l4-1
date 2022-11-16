@@ -33,7 +33,15 @@
             <div class="col-md-12">
                 <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
                 <spring:url value="/resources/images/dwarf.jpg" htmlEscape="true" var="dwarfImage"/>
-                <!--<center><img class="img-responsive" src="${dwarfImage}"/></center> -->
+                <spring:url value="/resources/images/DwarfGif.gif" htmlEscape="true" var="dwarfGif"/>
+                <marquee><img class="img-responsive" src="${dwarfGif}"/></marquee>
+
+                <petclinic:menuItem active="${name eq 'partida'}" url="/partida/new/"
+					title="partida">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+					<span>Crear partida</span>
+				</petclinic:menuItem>	
+
             </div>
         </div>
         </body>

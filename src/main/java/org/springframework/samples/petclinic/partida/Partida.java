@@ -3,8 +3,9 @@ package org.springframework.samples.petclinic.partida;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.partida.enums.NumRondas;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +26,10 @@ public class Partida extends BaseEntity {
     
     @NotNull
     private String nombreSala;
+
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
+    private NumRondas rondas;
 
     @NotNull
     @Min(0)
