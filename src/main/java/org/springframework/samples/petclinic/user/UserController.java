@@ -21,6 +21,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
+import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -39,11 +40,40 @@ public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
 
+	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
+
+	private final JugadorService jugadorService;
+
 	private UserService userService;
 
 	@Autowired
-	public UserController(UserService userService){
+	public UserController(JugadorService js, UserService userService) {
 		this.userService = userService;
+		this.jugadorService = js;
+	}
+
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
+
+	@GetMapping(value = "/users/new")
+	public String initCreationForm(Map<String, Object> model) {
+		Jugador jugador = new Jugador();
+		model.put("jugador", jugador);
+		return VIEWS_JUGADOR_CREATE_FORM;
+	}
+
+	@PostMapping(value = "/users/new")
+	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
+		if (result.hasErrors()) {
+			return VIEWS_JUGADOR_CREATE_FORM;
+		}
+		else {
+			//creating owner, user, and authority
+			this.jugadorService.saveJugador(jugador);
+			return "redirect:/";
+		}
 	}
 
 	@GetMapping(value = "/users/find")
@@ -87,35 +117,6 @@ public class UserController {
         result.addObject("usuarios", userService.getUsuarios());
         return result;
     }
-
-	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
-
-
-	@InitBinder
-	public void setAllowedFields(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
-
-	@GetMapping(value = "/users/new")
-	public String initCreationForm(Map<String, Object> model) {
-		Jugador jugador = new Jugador();
-		model.put("jugador", jugador);
-		return VIEWS_JUGADOR_CREATE_FORM;
-	}
-
-	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid User user, BindingResult result) {
-		if (result.hasErrors()) {
-			return VIEWS_JUGADOR_CREATE_FORM;
-		}
-		else {
-			//creating owner, user, and authority
-			this.userService.saveUser(user);
-			return "redirect:/";
-		}
-	}
-
-
 
 	/* 
 	@GetMapping("/{id}/edit")
