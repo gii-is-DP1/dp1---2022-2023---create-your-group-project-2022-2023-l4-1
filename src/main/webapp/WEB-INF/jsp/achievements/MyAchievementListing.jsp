@@ -30,10 +30,6 @@
                         <img src="${achievement.badgeImage}" width="100px"  /> 
                     </c:if>
                 </td>
-                <td>       
-                    <c:out value="${achievement.threshold} "/>
-                </td>
-
             </tr>
         </c:forEach>
         </tbody>
