@@ -76,18 +76,6 @@ public class PartidaController {
     @GetMapping("/new")
     public ModelAndView createPartida(){
         Partida partida = new Partida();
-        Jugador jugador0 = new Jugador();
-        Jugador jugador1 = new Jugador();
-        Jugador jugador2 = new Jugador();
-        partida.setDuracion(0);
-        partida.setNumRonda(1);
-        partida.setTiempoRestRonda(60);
-        partida.setJugadorActivo(1);
-        partida.setSiguienteJugador(2);
-        partida.setJugador0(jugador0);
-        partida.setJugador1(jugador1);
-        partida.setJugador2(jugador2);
-        partida.setGanador(jugador1);
         ModelAndView result = new ModelAndView(PARTIDAS_FORM);        
         result.addObject("partida", partida);
         result.addObject("numRondas", Arrays.asList(NumRondas.values()));        
@@ -97,18 +85,6 @@ public class PartidaController {
     @Transactional
     @PostMapping("/new")
     public ModelAndView saveNewPartida(@Valid Partida partida, BindingResult br){
-        Jugador jugador0 = new Jugador();
-        Jugador jugador1 = new Jugador();
-        Jugador jugador2 = new Jugador();
-        partida.setDuracion(0);
-        partida.setNumRonda(1);
-        partida.setTiempoRestRonda(60);
-        partida.setJugadorActivo(1);
-        partida.setSiguienteJugador(2);
-        partida.setJugador0(jugador0);
-        partida.setJugador1(jugador1);
-        partida.setJugador2(jugador2);
-        partida.setGanador(jugador1);
         ModelAndView result = null;
         if(br.hasErrors()){
             result = new ModelAndView(PARTIDAS_FORM, br.getModel());
