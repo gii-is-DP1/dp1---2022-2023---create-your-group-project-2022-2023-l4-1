@@ -42,7 +42,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>								
-								<a href="<c:url value="/statistics/achievements/" />">My Achievements <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></a>		
+								<a href="<c:url value="/statistics/achievements/myAchievements" />">My Achievements <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></a>		
 
 							</li>
 						</ul>					

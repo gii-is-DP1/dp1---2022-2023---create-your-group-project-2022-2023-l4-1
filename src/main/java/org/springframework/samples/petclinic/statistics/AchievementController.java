@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/statistics/achievements")
 public class AchievementController {
 
+    private final String MY_ACHIEVEMENTS_LISTING_VIEW="/achievements/MyAchievementListing";
     private final String ACHIEVEMENTS_LISTING_VIEW="/achievements/AchievementsListing";
     private final String ACHIEVEMENTS_FORM="/achievements/createOrUpdateAchievementForm";
 
@@ -31,6 +32,13 @@ public class AchievementController {
     @GetMapping("/")
     public ModelAndView showAchievements(){
         ModelAndView result=new ModelAndView(ACHIEVEMENTS_LISTING_VIEW);
+        result.addObject("achievements", service.getAchievements());
+        return result;
+    }
+    @Transactional(readOnly = true)
+    @GetMapping("/myAchievements")
+    public ModelAndView showMyAchievements(){
+        ModelAndView result=new ModelAndView(MY_ACHIEVEMENTS_LISTING_VIEW);
         result.addObject("achievements", service.getAchievements());
         return result;
     }

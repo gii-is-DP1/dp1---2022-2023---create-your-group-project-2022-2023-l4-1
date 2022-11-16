@@ -1,17 +1,21 @@
 package org.springframework.samples.petclinic.user;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.samples.petclinic.statistics.Achievement;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -48,6 +52,11 @@ public class User {
 	@Size(min = 0, max = 280)
 	@Column(name = "biografia")
 	private String biografia;
+
+
+
+	@ManyToMany
+	private Set<Achievement> achievements;
 
 	private boolean enabled;
 
