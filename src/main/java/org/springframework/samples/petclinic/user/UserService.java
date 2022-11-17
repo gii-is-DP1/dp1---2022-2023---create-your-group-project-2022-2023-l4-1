@@ -53,6 +53,10 @@ public class UserService {
 	public List<User> getUsuarios() {
 		return userRepository.findAll();
 	}
+
+	public void deleteUserById(String username){
+        userRepository.deleteById(username);
+    }
 /* 
 	public User getById(int id){
         return userRepository.findById(id).get();
