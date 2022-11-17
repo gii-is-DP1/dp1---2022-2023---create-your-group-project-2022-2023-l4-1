@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
 
@@ -19,7 +20,7 @@
 
 <petclinic:layout pageName="home">
     <body class="background">
-        <center><h1 style = "color: white; text-shadow: 3px 3px 6px #000000;"><FONT FACE="verdana" SIZE=7><fmt:message key="welcome"/></FONT></h1></center>
+        <center><h1 style = "color: white; text-shadow: 3px 3px 6px #000000;"><FONT FACE="verdana" SIZE=15><fmt:message key="welcome"/></FONT></h1></center>
         <div class="row">
         <center><h2 style="color: white; text-shadow: 3px 3px 6px #000000;"><font face="verdana" SIZE="5">Project ${title}</font></h2></center>
         <p><h2 style="color: white; text-shadow: 3px 3px 6px #000000;"> Group ${group}</h2></p>
@@ -38,9 +39,11 @@
 
                 <petclinic:menuItem active="${name eq 'partida'}" url="/partida/new/"
 					title="partida">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
-					<span style="color: white; text-shadow: 3px 3px 6px #000000;">Crear partida</span>
-				</petclinic:menuItem>	
+                    <sec:authorize access="isAuthenticated()">
+					    <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
+                        <span style="color: white; text-shadow: 3px 3px 6px #000000;"><Font size=5>Crear partida</Font></span>
+                    </sec:authorize>
+                </petclinic:menuItem>	
 
             </div>
         </div>

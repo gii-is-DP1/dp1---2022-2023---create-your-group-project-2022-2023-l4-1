@@ -10,6 +10,7 @@ import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,14 +44,15 @@ public class JugadorController {
 	}
 
 	@PostMapping(value = "/jugadores/new")
-	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
+	public String processCreationForm(@Valid Jugador jugador, BindingResult result, ModelMap modelMap) {
 		if (result.hasErrors()) {
+			modelMap.put("jugador", jugador);
 			return VIEWS_JUGADORES_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			this.jugadorService.saveJugador(jugador);
 			
-			return "redirect:/jugadores/" + jugador.getId();
+			return "redirect:/users/";
 		}
 	}
 

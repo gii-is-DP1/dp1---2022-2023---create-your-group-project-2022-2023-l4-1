@@ -43,8 +43,6 @@ public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
 
-	private static final String USUARIOS_LISTING_VIEW_ALL = "/users/UsersListingAll";
-
 	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
 
 	private final JugadorService jugadorService;
@@ -58,7 +56,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/")
-    public ModelAndView showPartidas(){
+    public ModelAndView showUsuarios(){
         ModelAndView result = new ModelAndView(USUARIOS_LISTING_VIEW);
         result.addObject("selections", userService.getUsuarios().stream().filter(x -> !x.getUsername().equals("admin1")).collect(Collectors.toList()));
         return result;
@@ -73,6 +71,8 @@ public class UserController {
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Jugador jugador = new Jugador();
+		User user = new User();
+		jugador.setUser(user);
 		model.put("jugador", jugador);
 		return VIEWS_JUGADOR_CREATE_FORM;
 	}
@@ -121,6 +121,15 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("users/");
 		mav.addObject(this.userService.findUser("username"));
 		return mav;
+	}
+
+	@GetMapping(path="/users/delete/{username}")
+	public ModelAndView delteOrgano(@PathVariable("username") String username){		
+		userService.deleteUserById(username);
+		ModelAndView result=showUsuarios();		
+		result.addObject("mensaje", "Usuario borrado con éxito!");		
+		result.addObject("tipomensaje", "success");
+		return result;
 	}
 
 	
