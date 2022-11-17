@@ -37,7 +37,7 @@
                 <spring:url value="/resources/images/DwarfGif.gif" htmlEscape="true" var="dwarfGif"/>
                 <marquee><img class="img-responsive" src="${dwarfGif}"/></marquee>
 
-                <petclinic:menuItem active="${name eq 'partida'}" url="/partida/new/"
+                <petclinic:menuItem active="${name eq 'partida'}" url="/partida/create/"
 					title="partida">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
 					<span style="color: white; text-shadow: 3px 3px 6px #000000;"><Font size=5>Crear partida</Font></span>
