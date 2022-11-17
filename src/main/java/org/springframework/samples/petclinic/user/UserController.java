@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,6 +74,8 @@ public class UserController {
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Jugador jugador = new Jugador();
+		User user = new User();
+		jugador.setUser(user);
 		model.put("jugador", jugador);
 		return VIEWS_JUGADOR_CREATE_FORM;
 	}
