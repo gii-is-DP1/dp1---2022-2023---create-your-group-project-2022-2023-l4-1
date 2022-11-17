@@ -37,5 +37,12 @@
         </c:forEach>
         </tbody>
     </table>
+    <div class="row">
+        <div class="col-md-12">
+            <spring:url value="/resources/images/meme-shaggy.gif" htmlEscape="true" var="dwarfGif"/>
+            <marquee><img class="img-responsive" src="${dwarfGif}"/></marquee>	
+
+        </div>
+    </div>
 
 </petclinic:layout>
