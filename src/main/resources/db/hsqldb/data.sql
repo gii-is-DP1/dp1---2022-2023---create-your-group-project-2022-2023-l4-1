@@ -3,7 +3,7 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (1, 'admin1', 'admin');
 
 -- Usuario asociado al desarrollador David Cortabarra Romero. Username: davcorrom. Contraseña: davcorrom.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('davcorrom', 'davcorrom', TRUE, 'David', 'Cortabarra Romero', 'https://i.pinimg.com/originals/30/8d/79/308d795c3cac0f8f16610f53df4e1005.jpg', 'hola', 'davcorrom@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('davcorrom', 'davcorrom', TRUE, 'David', 'Cortabarra Romero', 'https://i.pinimg.com/originals/30/8d/79/308d795c3cac0f8f16610f53df4e1005.jpg', 'Jugador profesional de Dwarf (el mejor del mundo). Palmarés: vacío.', 'davcorrom@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (2, 'davcorrom', 'player');
 
 -- Usuario asociado al desarrollador Daniel Guedes Preciados. Username: danguepre. Contraseña: danguepre.

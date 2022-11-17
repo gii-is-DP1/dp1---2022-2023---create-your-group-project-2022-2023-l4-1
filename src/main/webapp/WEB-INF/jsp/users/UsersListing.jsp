@@ -20,6 +20,7 @@
             <th>Apellidos</th>
             <th>Foto de Perfil</th>
             <th>Biografia</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -47,6 +48,13 @@
                 </td>
                 <td>
                     <c:out value="${usuario.biografia}"/>
+                </td>
+                <td> 
+                    <a href="/users/delete/${usuario.username}">
+                        <sec:authorize access="hasAuthority('admin')">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </sec:authorize>
+                    </a>      
                 </td>
             </tr>
         </c:forEach>
