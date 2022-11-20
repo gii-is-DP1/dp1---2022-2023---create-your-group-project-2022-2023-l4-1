@@ -39,9 +39,11 @@
 
                 <petclinic:menuItem active="${name eq 'partida'}" url="/partida/create/"
 					title="partida">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
-					<span style="color: white; text-shadow: 3px 3px 6px #000000;"><Font size=5>Crear partida</Font></span>
-				</petclinic:menuItem>	
+                    <sec:authorize access="isAuthenticated()">
+					    <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
+                        <span style="color: white; text-shadow: 3px 3px 6px #000000;"><Font size=5>Crear partida</Font></span>
+                    </sec:authorize>
+                </petclinic:menuItem>	
 
             </div>
         </div>
