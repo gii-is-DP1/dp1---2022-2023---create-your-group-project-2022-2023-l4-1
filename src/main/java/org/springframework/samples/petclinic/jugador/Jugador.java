@@ -18,18 +18,11 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "jugador")
-public class Jugador extends BaseEntity{
+public class Jugador extends BaseEntity {
 
     
-    @Column(name = "es_administrador")
-    private Boolean esAdministrador;
+    private String extra;
 
-    
-    private boolean esGanador;
-
-    @Column(name = "avatar_url")
-	@NotEmpty
-	String avatarUrl;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")

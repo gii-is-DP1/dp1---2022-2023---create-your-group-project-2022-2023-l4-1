@@ -1,15 +1,17 @@
 package org.springframework.samples.petclinic.jugador;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
-@Repository
 public interface JugadorRepository extends CrudRepository<Jugador, Integer>{
+
+	<S extends Jugador> S save(Jugador jugador) throws DataAccessException;
     
 	@Query("SELECT DISTINCT jugador FROM Jugador jugador WHERE jugador.user.apellidos LIKE :lastName%")
 	public Collection<Jugador> findByLastName(@Param("lastName") String lastName);
