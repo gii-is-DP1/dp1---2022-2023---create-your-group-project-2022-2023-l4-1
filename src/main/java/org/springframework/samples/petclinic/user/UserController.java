@@ -43,7 +43,7 @@ public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
 
-	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
+	private static final String VIEWS_JUGADOR_CREATE_FORM = "users/createOrUpdateUserForm";
 
 	private final JugadorService jugadorService;
 
@@ -70,21 +70,19 @@ public class UserController {
 
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Jugador jugador = new Jugador();
 		User user = new User();
-		jugador.setUser(user);
-		model.put("jugador", jugador);
+		model.put("user", user);
 		return VIEWS_JUGADOR_CREATE_FORM;
 	}
 
 	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
+	public String processCreationForm(@Valid User user, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_JUGADOR_CREATE_FORM;
 		}
 		else {
 			//creating owner, user, and authority
-			this.jugadorService.saveJugador(jugador);
+			this.userService.saveUser(user);
 			return "redirect:/";
 		}
 	}

@@ -37,11 +37,11 @@ public class JugadorService {
 		return jugadorRepository.findByLastName(lastName);
 	}
 
-	@Transactional
+	/*@Transactional
 	public void saveJugador(Jugador jugador) throws DataAccessException {
 		jugadorRepository.save(jugador);		
 		userService.saveUser(jugador.getUser());
-		authoritiesService.saveAuthorities(jugador.getUser().getUsername(), "jugador");
-	}		
+		authoritiesService.saveAuthorities(jugador.getUser().getUsername(), "player");
+	}		*/
     
 }

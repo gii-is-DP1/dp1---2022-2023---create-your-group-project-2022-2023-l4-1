@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,18 +72,26 @@ public class PartidaController {
 
     }
 
-    @Transactional(readOnly = true)
-    @GetMapping("/new")
+    @GetMapping(path = "/create/")
+    public ModelAndView crearPartida() {
+        ModelAndView result = new ModelAndView(PARTIDAS_FORM);
+        result.addObject("partida", new Partida());
+        result.addObject("numRondas", Arrays.asList(NumRondas.values()));
+        return result;
+    }
+
+    /*@Transactional(readOnly = true)
+    @GetMapping("/create")
     public ModelAndView createPartida(){
         Partida partida = new Partida();
         ModelAndView result = new ModelAndView(PARTIDAS_FORM);        
         result.addObject("partida", partida);
         result.addObject("numRondas", Arrays.asList(NumRondas.values()));        
         return result;
-    }
+    }*/
 
-    @Transactional
-    @PostMapping("/new")
+    /*@Transactional
+    @PostMapping("/create/")
     public ModelAndView saveNewPartida(@Valid Partida partida, BindingResult br){
         ModelAndView result = null;
         if(br.hasErrors()){
@@ -94,6 +103,27 @@ public class PartidaController {
         result = showPartidas();
         result.addObject("message", "La partida fue creada correctamente.");
         return result;
-    }
+    }*/
+
+    @PostMapping(value = "/create")
+	public String processCreationForm(@Valid Partida partida, BindingResult result) {
+		if (result.hasErrors()) {
+			return PARTIDAS_FORM;
+		}
+		else {
+			//creating owner, user, and authority
+			this.service.save(partida);
+			return "redirect:/partida/partidas";
+		}
+	}
+
+    /*@PostMapping(path="/save")
+    public ModelAndView salvarPartida(@ModelAttribute("partida") Partida partida) {
+        service.save(partida);
+        ModelAndView result = showMisPartidas();
+        result.addObject("mensaje", "Partida guardada de forma exitosa.");
+        result.addObject("tipomensaje", "success");
+        return result;
+    }*/
  
 }
