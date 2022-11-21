@@ -24,6 +24,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.web.LoggedUserController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -42,17 +46,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
-
 	private static final String VIEWS_JUGADOR_CREATE_FORM = "users/createOrUpdateUserForm";
-
-	private final JugadorService jugadorService;
+	private static final String VIEW_PERFIL = "users/perfil";
 
 	private UserService userService;
 
 	@Autowired
-	public UserController(JugadorService js, UserService userService) {
+	public UserController(UserService userService) {
 		this.userService = userService;
-		this.jugadorService = js;
 	}
 
 	@GetMapping("/users/")
@@ -81,7 +82,6 @@ public class UserController {
 			return VIEWS_JUGADOR_CREATE_FORM;
 		}
 		else {
-			//creating owner, user, and authority
 			this.userService.saveUser(user);
 			return "redirect:/";
 		}
@@ -96,19 +96,16 @@ public class UserController {
 	@GetMapping(value = "/users")
 	public String processFindForm(User user, BindingResult result, Map<String, Object> model) {
 
-		// allow parameterless GET request for /owners to return all records
 		if (user.getUsername() == null) {
-			user.setUsername(""); // empty string signifies broadest possible search
+			user.setUsername("");
 		}
 
-		// find users by last name
 		Collection<User> results = this.userService.findUserByUsername(user.getUsername());
+
 		if (results == null) {
-			// no users found
 			result.rejectValue("username", "notFound", "not found");
 			return "users/findUsers";
-		}
-		else {
+		} else {
 			model.put("selections", results);
 			return "users/UsersListing";
 		}
@@ -128,6 +125,26 @@ public class UserController {
 		result.addObject("mensaje", "Usuario borrado con éxito!");		
 		result.addObject("tipomensaje", "success");
 		return result;
+	}
+
+	@GetMapping(value = "/users/perfil")
+	public ModelAndView showPerfil() {
+
+		// Obtención del usuario autenticado.
+		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		String username = "";
+		if (auth!=null) {
+			if (auth.isAuthenticated() && auth.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
+				org.springframework.security.core.userdetails.User userLogged = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
+				username = userLogged.getUsername();
+			}
+		}
+
+		// Representación de los datos del perfil del usuario que ha iniciado sesión.
+		ModelAndView mav = new ModelAndView(VIEW_PERFIL);
+		User userToShow = this.userService.findUser(username).get();
+		mav.addObject("user", userToShow);
+		return mav;
 	}
 
 	
