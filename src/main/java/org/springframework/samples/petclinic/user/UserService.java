@@ -32,13 +32,18 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
+	private AuthoritiesService authoritiesService;
+
+	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
 	@Transactional
 	public void saveUser(User user) throws DataAccessException {
+		user.setEnabled(true);
 		userRepository.save(user);
+		authoritiesService.saveAuthorities(user.getUsername(), "player");
 	}
 	
 	
