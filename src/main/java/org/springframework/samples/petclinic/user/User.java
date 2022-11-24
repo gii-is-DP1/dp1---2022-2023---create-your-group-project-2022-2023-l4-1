@@ -31,11 +31,11 @@ public class User {
 	@Size(min = 1, max = 25)
 	@Column(name = "username")
 	@Id
-	private String username;
+	String username;
 	
 	@NotNull
 	@Column(name = "password")
-	private String password;
+	String password;
 
 	@NotNull
 	@NotEmpty(message = "No puede estar vacio")
