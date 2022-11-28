@@ -43,7 +43,7 @@ public class JugadorController {
 		return VIEWS_JUGADORES_CREATE_OR_UPDATE_FORM;
 	}
 
-	@PostMapping(value = "/jugadores/new")
+	/*@PostMapping(value = "/jugadores/new")
 	public String processCreationForm(@Valid Jugador jugador, BindingResult result, ModelMap modelMap) {
 		if (result.hasErrors()) {
 			modelMap.put("jugador", jugador);
@@ -54,7 +54,7 @@ public class JugadorController {
 			
 			return "redirect:/users/";
 		}
-	}
+	}*/
 
 	@GetMapping(value = "/jugadores/find")
 	public String initFindForm(Map<String, Object> model) {
@@ -91,7 +91,7 @@ public class JugadorController {
 		return VIEWS_JUGADORES_CREATE_OR_UPDATE_FORM;
 	}
 
-	@PostMapping(value = "/jugadores/{jugadorId}/edit")
+	/*@PostMapping(value = "/jugadores/{jugadorId}/edit")
 	public String processUpdateJugadorForm(@Valid Jugador jugador, BindingResult result,
 			@PathVariable("jugadorId") int jugadorId) {
 		if (result.hasErrors()) {
@@ -102,7 +102,7 @@ public class JugadorController {
 			this.jugadorService.saveJugador(jugador);
 			return "redirect:/jugadores/{jugadorId}";
 		}
-	}
+	}*/
 
 	@GetMapping("/jugadores/{jugadorId}")
 	public ModelAndView showJugador(@PathVariable("jugadorId") int jugadorId) {

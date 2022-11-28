@@ -19,7 +19,7 @@ INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biograf
 INSERT INTO authorities(id,username,authority) VALUES (7, 'Manpalpin02', 'player');
 
 -- Usuario asociado al desarrollador Gabriel María Vacaro Goytia. Username: gabvacgoy. Contraseña: gabvacgoy.
-INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('gabvacgoy', 'gabvacgoy', TRUE, 'Gabriel', 'Vacaro Goytia', 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg', 'a oa oa la la la', 'gabvacgoy@alum.us.es');
+INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('gabvacgoy', 'gabvacgoy', TRUE, 'Gabriel', 'Vacaro Goytia', 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg', 'kichiano kichino, eresh de malaga?', 'gabvacgoy@alum.us.es');
 INSERT INTO authorities(id,username,authority) VALUES (5, 'gabvacgoy', 'player');
 
 -- Usuario asociado al desarrollador Ignacio Warleta Murcia. Username: ignwarmur. Contraseña: ignwarmur.
@@ -116,9 +116,9 @@ INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (9,'Ac
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (10,'El enano legendario','Consigues este logro si consigues obtener todos los logros de Dwarf.',0.0,'/resources/images/logro_enano.jpg');
 
 
-INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('pabmarval', 'False', 'True','https://cdn-icons-png.flaticon.com/512/747/747969.png' );
-INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('ignwarmur', 'False', 'False','https://cdn-icons-png.flaticon.com/512/747/747969.png' );
-INSERT INTO jugador(username, es_administrador, es_ganador, avatar_url) VALUES ('davcorrom', 'False', 'False', 'https://cdn-icons-png.flaticon.com/512/747/747969.png');
+INSERT INTO jugador(username, extra) VALUES ('pabmarval', 'prueba');
+INSERT INTO jugador(username, extra) VALUES ('ignwarmur', 'prueba');
+INSERT INTO jugador(username, extra) VALUES ('davcorrom', 'prueba');
 
 -- Partidas de ejemplo.
 

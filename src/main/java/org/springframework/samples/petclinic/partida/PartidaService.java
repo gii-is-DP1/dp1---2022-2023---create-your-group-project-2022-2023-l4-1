@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
+import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesRepository;
+import org.springframework.samples.petclinic.web.LoggedUserController;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ public class PartidaService {
 
     PartidaRepository repo;
     AuthoritiesRepository authRepo;
+    LoggedUserController loggedUser;
     
     @Autowired
     public PartidaService(PartidaRepository repo, AuthoritiesRepository authRepo) {
@@ -47,17 +50,14 @@ public class PartidaService {
 
     public void save(Partida partida){
         Jugador jugador0 = new Jugador();
-        Jugador jugador1 = new Jugador();
-        Jugador jugador2 = new Jugador();
         partida.setDuracion(0);
         partida.setNumRonda(1);
         partida.setTiempoRestRonda(60);
         partida.setJugadorActivo(1);
         partida.setSiguienteJugador(2);
         partida.setJugador0(jugador0);
-        partida.setJugador1(jugador1);
-        partida.setJugador2(jugador2);
-        partida.setGanador(jugador1);
+        partida.setGanador(jugador0);
+        partida.setFaseActual(Fase.EXTRACCION);
         repo.save(partida);
     }
 
