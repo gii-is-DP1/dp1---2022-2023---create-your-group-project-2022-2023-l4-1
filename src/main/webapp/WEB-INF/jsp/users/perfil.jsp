@@ -22,12 +22,17 @@
     <table class="table table-striped">
         
         <tr>
-            <th>Name</th>
+            <th>Nombre de usuario</th>
             <td><b><c:out value="${user.username}"/></b></td>
         </tr>
         <tr>
-            <th>Contrasena</th>
-            <td><b><c:out value="${user.password}"/></b></td>
+            <th>Nombre</th>
+            <td><b><c:out value="${user.nombre}"/></b></td>
+        </tr>
+
+        <tr>
+            <th>Apellidos</th>
+            <td><b><c:out value="${user.apellidos}"/></b></td>
         </tr>
 
         <tr>
@@ -39,26 +44,13 @@
             <th>Biografia</th>
             <td><b><c:out value="${user.biografia}"/></b></td>
         </tr>
-
-        <tr>
-            <th>Nombre</th>
-            <td><b><c:out value="${user.nombre}"/></b></td>
-        </tr>
-
-        <tr>
-            <th>Apellidos</th>
-            <td><b><c:out value="${user.apellidos}"/></b></td>
-        </tr>
         
 
     </table>
 
-    <spring:url value="{usurname}/edit" var="editUrl">
-        <spring:param name="usurname" value="${usurname}"/>
+    <spring:url value="perfil/edit/${user.username}" var="editUrl">
     </spring:url>
-    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Edit Usuario</a>
-
+    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Editar perfil</a>
     
 	
 </petclinic:layout>
-

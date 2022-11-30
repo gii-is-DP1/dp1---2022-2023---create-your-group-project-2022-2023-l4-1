@@ -29,6 +29,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +47,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
-	private static final String VIEWS_JUGADOR_CREATE_FORM = "users/createOrUpdateUserForm";
+	private static final String VIEWS_JUGADOR_CREATE_FORM = "users/createUserForm";
+	private static final String VIEWS_JUGADOR_UPDATE_FORM = "users/updateUserForm";
 	private static final String VIEW_PERFIL = "users/perfil";
 
 	private UserService userService;
@@ -147,28 +149,28 @@ public class UserController {
 		return mav;
 	}
 
-	
+	@GetMapping(value = "/users/perfil/edit/{username}")
+	public String initUpdateOwnerForm(@PathVariable("username") String username, Model model) {
+		User user = this.userService.findUser(username).get();
+		model.addAttribute(user);
+		return VIEWS_JUGADOR_UPDATE_FORM;
+	}
 
-	/* 
-	@GetMapping("/{id}/edit")
-    public ModelAndView editUser(@PathVariable int id){
-        User achievement=userService.getById(id);        
-        ModelAndView result=new ModelAndView(VIEWS_JUGADOR_CREATE_FORM);
-        result.addObject("achievement", achievement);
-        return result;
-    }
+	@PostMapping(value = "/users/perfil/edit/{username}")
+	public String processUpdateOwnerForm(@Valid User user, BindingResult result,
+			@PathVariable("username") String username) {
+		if (result.hasErrors()) {
+			return VIEWS_JUGADOR_UPDATE_FORM;
+		}
+		else {
+			user.setUsername(username);
+			this.userService.saveUser(user);
+			return "redirect:/users/perfil";
+		}
+	}
 
 
-    @PostMapping("/{id}/edit")
-    public String saveUser(@PathVariable int id,User user){
-		String view = "redirect:/users/";
-        User userToBeUpdated=userService.getById(id);
-        BeanUtils.copyProperties(user,userToBeUpdated,"id");
-        userService.saveUser(userToBeUpdated);
-        return view;
-    }
-
-	@GetMapping("/{id}/delete")
+	/*@GetMapping("/{id}/delete")
     public String deleteAchievement(@PathVariable int id){
 		String view = "redirect:/users/";
         userService.deleteAchievementById(id);        

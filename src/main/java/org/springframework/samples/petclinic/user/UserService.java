@@ -46,7 +46,6 @@ public class UserService {
 		authoritiesService.saveAuthorities(user.getUsername(), "player");
 	}
 	
-	
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
 	}
