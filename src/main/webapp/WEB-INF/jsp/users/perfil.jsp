@@ -15,8 +15,14 @@
             <td><b><c:out value="${user.username}"/></b></td>
             <th>Contrasena</th>
             <td><b><c:out value="${user.password}"/></b></td>
+            <th>Nombre</th>
+            <td><b><c:out value="${user.nombre}"/></b></td>
         </tr>
     </table>
+
+    <spring:url value="perfil/edit/${user.username}" var="editUrl">
+    </spring:url>
+    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Editar perfil</a>
 
 
 </petclinic:layout>
