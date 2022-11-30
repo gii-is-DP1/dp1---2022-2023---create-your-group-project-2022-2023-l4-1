@@ -9,13 +9,17 @@
     <h2>Mi perfil</h2>
 
 
+    
+        <div style="padding-top: 25px; padding-bottom: 20px; padding-left: 375px">
+            <td>                    
+                <c:if test="${user.fotoPerfil == ''}">none</c:if>
+                <c:if test="${user.fotoPerfil != ''}">
+                    <img src="${user.fotoPerfil}" width="500px"  /> 
+                </c:if>
+            </td>
+        </div>    
+
     <table class="table table-striped">
-        <td>                    
-            <c:if test="${user.fotoPerfil == ''}">none</c:if>
-            <c:if test="${user.fotoPerfil != ''}">
-                <img src="${user.fotoPerfil}" width="500px"  /> 
-            </c:if>
-        </td>
         
         <tr>
             <th>Name</th>
