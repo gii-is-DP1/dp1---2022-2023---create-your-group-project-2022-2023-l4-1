@@ -27,7 +27,13 @@ public class AchievementService {
         repo.deleteById(id);
     }
 
-    public void save(Achievement achievement){
+    public void save(Achievement achievement) throws Exception{
+        List<Achievement> achievements = repo.findByName(achievement.getName());
+        for(Achievement a : achievements){
+            if(a.getName() == achievement.getName()){
+                throw new Exception();
+            }
+        }
         repo.save(achievement);
     }
 }
