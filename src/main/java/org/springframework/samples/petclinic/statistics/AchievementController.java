@@ -77,7 +77,7 @@ public class AchievementController {
  
     @Transactional
     @PostMapping("/{id}/edit")
-    public ModelAndView saveAchievement(@PathVariable int id,@Valid Achievement achievement, BindingResult br){
+    public ModelAndView saveAchievement(@PathVariable int id,@Valid Achievement achievement, BindingResult br) throws Exception{
         if(br.hasErrors()){
             return new ModelAndView(ACHIEVEMENTS_FORM,br.getModel());            
         }
@@ -100,7 +100,7 @@ public class AchievementController {
 
     @Transactional
     @PostMapping("/new")
-    public ModelAndView saveNewAchievement(@Valid Achievement achievement, BindingResult br){
+    public ModelAndView saveNewAchievement(@Valid Achievement achievement, BindingResult br) throws Exception{
         if(br.hasErrors()){
             return new ModelAndView(ACHIEVEMENTS_FORM,br.getModel());            
         }
