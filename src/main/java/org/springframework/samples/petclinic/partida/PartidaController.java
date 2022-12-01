@@ -28,6 +28,7 @@ public class PartidaController {
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
+    private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
 
     @Autowired
     LoggedUserController currentUser;
@@ -43,6 +44,7 @@ public class PartidaController {
         res.addObject("partidas", service.getPartidas());
         return res;
     }
+
 
     @Transactional(readOnly = true)
     @GetMapping("/misPartidas")
@@ -61,6 +63,21 @@ public class PartidaController {
 
         res.addObject("partidas", partidas);
 
+        return res;
+    }
+
+    @Transactional(readOnly = true)
+    @GetMapping("/partidasActivas")
+    public ModelAndView partidasActivas(){
+        ModelAndView res = new ModelAndView(PARTIDAS_ACTIVAS_VIEW);
+        List<Partida> partidas = new ArrayList<Partida>();
+        for(int i=0 ; i < service.getPartidas().size();i++){
+            Partida partida = service.getPartidas().get(i);
+            if(partida.getGanador()==null){
+                partidas.add(partida);
+            }
+        }
+        res.addObject("partidas", partidas);
         return res;
     }
 
