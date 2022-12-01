@@ -7,27 +7,27 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<petclinic:layout pageName="jugadores">
+<petclinic:layout pageName="users">
     <h2>
-        <c:if test="${jugador['new']}">New </c:if> Jugador
+        Actualizar datos del perfil <c:out value="${user.username}"/>
     </h2>
-    <form:form modelAttribute="jugador" class="form-horizontal" id="add-jugador-form">
+    <form:form modelAttribute="user" class="form-horizontal" id="add-user-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="First Name" name="user.nombre"/>
-            <petclinic:inputField label="Last Name" name="user.apellidos"/>
-            <petclinic:inputField label="Username" name="user.username"/>
-            <petclinic:inputField label="Password" name="user.password"/>
-            <petclinic:inputField label="Email" name="user.email"/>
-            <petclinic:inputField label="Extra" name="extra"/>
+            <petclinic:inputField label="Email" name="email"/>
+            <petclinic:inputField label="Contraseña" name="password"/>
+            <petclinic:inputField label="Nombre" name="nombre"/>
+            <petclinic:inputField label="Apellidos" name="apellidos"/>
+            <petclinic:inputField label="Biografía" name="biografia"/>
+            <petclinic:inputField label="Foto de perfil" name="fotoPerfil"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
-                    <c:when test="${jugador['new']}">
-                        <button class="btn btn-default" type="submit">Add Jugador</button>
+                    <c:when test="username=null">
+                        <button class="btn btn-default" type="submit">Crear jugador</button>
                     </c:when>
                     <c:otherwise>
-                        <button class="btn btn-default" type="submit">Update Jugador</button>
+                        <button class="btn btn-default" type="submit">Actualizar jugador</button>
                     </c:otherwise>
                 </c:choose>
             </div>

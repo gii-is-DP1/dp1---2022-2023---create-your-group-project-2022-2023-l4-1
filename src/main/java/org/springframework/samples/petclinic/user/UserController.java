@@ -24,7 +24,12 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.web.LoggedUserController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,17 +47,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
 	private static final String USUARIOS_LISTING_VIEW = "/users/UsersListing";
-
-	private static final String VIEWS_JUGADOR_CREATE_FORM = "jugadores/createOrUpdateJugadorForm";
-
-	private final JugadorService jugadorService;
+	private static final String VIEWS_JUGADOR_CREATE_FORM = "users/createUserForm";
+	private static final String VIEWS_JUGADOR_UPDATE_FORM = "users/updateUserForm";
+	private static final String VIEW_PERFIL = "users/perfil";
 
 	private UserService userService;
 
 	@Autowired
-	public UserController(JugadorService js, UserService userService) {
+	public UserController(UserService userService) {
 		this.userService = userService;
-		this.jugadorService = js;
 	}
 
 	@GetMapping("/users/")
@@ -70,21 +73,18 @@ public class UserController {
 
 	@GetMapping(value = "/users/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Jugador jugador = new Jugador();
 		User user = new User();
-		jugador.setUser(user);
-		model.put("jugador", jugador);
+		model.put("user", user);
 		return VIEWS_JUGADOR_CREATE_FORM;
 	}
 
 	@PostMapping(value = "/users/new")
-	public String processCreationForm(@Valid Jugador jugador, BindingResult result) {
+	public String processCreationForm(@Valid User user, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_JUGADOR_CREATE_FORM;
 		}
 		else {
-			//creating owner, user, and authority
-			this.jugadorService.saveJugador(jugador);
+			this.userService.saveUser(user);
 			return "redirect:/";
 		}
 	}
@@ -98,19 +98,16 @@ public class UserController {
 	@GetMapping(value = "/users")
 	public String processFindForm(User user, BindingResult result, Map<String, Object> model) {
 
-		// allow parameterless GET request for /owners to return all records
 		if (user.getUsername() == null) {
-			user.setUsername(""); // empty string signifies broadest possible search
+			user.setUsername("");
 		}
 
-		// find users by last name
 		Collection<User> results = this.userService.findUserByUsername(user.getUsername());
+
 		if (results == null) {
-			// no users found
 			result.rejectValue("username", "notFound", "not found");
 			return "users/findUsers";
-		}
-		else {
+		} else {
 			model.put("selections", results);
 			return "users/UsersListing";
 		}
@@ -132,28 +129,48 @@ public class UserController {
 		return result;
 	}
 
-	
+	@GetMapping(value = "/users/perfil")
+	public ModelAndView showPerfil() {
 
-	/* 
-	@GetMapping("/{id}/edit")
-    public ModelAndView editUser(@PathVariable int id){
-        User achievement=userService.getById(id);        
-        ModelAndView result=new ModelAndView(VIEWS_JUGADOR_CREATE_FORM);
-        result.addObject("achievement", achievement);
-        return result;
-    }
+		// Obtención del usuario autenticado.
+		Authentication auth =SecurityContextHolder.getContext().getAuthentication();
+		String username = "";
+		if (auth!=null) {
+			if (auth.isAuthenticated() && auth.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
+				org.springframework.security.core.userdetails.User userLogged = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
+				username = userLogged.getUsername();
+			}
+		}
+
+		// Representación de los datos del perfil del usuario que ha iniciado sesión.
+		ModelAndView mav = new ModelAndView(VIEW_PERFIL);
+		User userToShow = this.userService.findUser(username).get();
+		mav.addObject("user", userToShow);
+		return mav;
+	}
+
+	@GetMapping(value = "/users/perfil/edit/{username}")
+	public String initUpdateOwnerForm(@PathVariable("username") String username, Model model) {
+		User user = this.userService.findUser(username).get();
+		model.addAttribute(user);
+		return VIEWS_JUGADOR_UPDATE_FORM;
+	}
+
+	@PostMapping(value = "/users/perfil/edit/{username}")
+	public String processUpdateOwnerForm(@Valid User user, BindingResult result,
+			@PathVariable("username") String username) {
+		if (result.hasErrors()) {
+			return VIEWS_JUGADOR_UPDATE_FORM;
+		}
+		else {
+			user.setUsername(username);
+			this.userService.saveUser(user);
+			return "redirect:/users/perfil";
+		}
+	}
 
 
-    @PostMapping("/{id}/edit")
-    public String saveUser(@PathVariable int id,User user){
-		String view = "redirect:/users/";
-        User userToBeUpdated=userService.getById(id);
-        BeanUtils.copyProperties(user,userToBeUpdated,"id");
-        userService.saveUser(userToBeUpdated);
-        return view;
-    }
-
-	@GetMapping("/{id}/delete")
+	/*@GetMapping("/{id}/delete")
     public String deleteAchievement(@PathVariable int id){
 		String view = "redirect:/users/";
         userService.deleteAchievementById(id);        

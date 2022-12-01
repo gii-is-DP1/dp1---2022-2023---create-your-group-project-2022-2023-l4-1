@@ -14,6 +14,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.core.style.ToStringCreator;
+import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.statistics.Achievement;
 
 import lombok.Getter;
@@ -29,21 +31,17 @@ public class User {
 	@Size(min = 1, max = 25)
 	@Column(name = "username")
 	@Id
-	private String username;
+	String username;
 	
 	@NotNull
 	@Column(name = "password")
-	private String password;
+	String password;
 
 	@NotNull
-	@Size(min = 1, max = 50)
-	@Column(name = "nombre")
-	private String nombre;
-
-	@NotNull
-	@Size(min = 1, max = 75)
-	@Column(name = "apellidos")
-	private String apellidos;
+	@NotEmpty(message = "No puede estar vacio")
+	// @Email
+	@Column(unique=true)
+	private String email;
 
 	@Column(name = "foto_perfil")
 	private String fotoPerfil;
@@ -52,6 +50,10 @@ public class User {
 	@Column(name = "biografia")
 	private String biografia;
 
+	private String nombre;
+
+	private String apellidos;
+
 
 
 	@ManyToMany
@@ -59,12 +61,19 @@ public class User {
 
 	private boolean enabled;
 
-	@NotNull
-	@NotEmpty(message = "No puede estar vacio")
-	@Email
-	@Column(unique=true)
-	private String email;
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Authorities> authorities;
+
+	public boolean isNew() {
+		return this.username == null;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringCreator(this)
+
+				.append("username", this.getUsername()).append("new", this.isNew()).append("apellidos", this.getApellidos())
+				.append("nombre", this.getNombre()).append("password", this.password).append("email", this.email)
+				.append("biografia", this.biografia).toString();
+	}
 }
