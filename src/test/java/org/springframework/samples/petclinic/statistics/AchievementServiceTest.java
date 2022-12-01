@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.achievement;
+package org.springframework.samples.petclinic.statistics;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -12,9 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.samples.petclinic.statistics.Achievement;
-import org.springframework.samples.petclinic.statistics.AchievementRepository;
-import org.springframework.samples.petclinic.statistics.AchievementService;
 
 @ExtendWith(MockitoExtension.class)
 public class AchievementServiceTest {
