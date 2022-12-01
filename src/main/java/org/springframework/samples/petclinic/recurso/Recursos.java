@@ -62,7 +62,7 @@ public class Recursos extends BaseEntity {
     public void addRecurso(TipoRecurso recurso, Integer cantidad) throws Exception {
 		String resourceName = this.getRecurso(recurso);
 
-		cantidad += this.getResourceAmount(recurso);
+		cantidad += this.getRecursosAmount(recurso);
 
 		Method setter = this.getClass().getMethod("set" + resourceName, Integer.class);
 		cantidad = cantidad < 0 ? 0:cantidad;
@@ -75,17 +75,10 @@ public class Recursos extends BaseEntity {
 		return methodName;
 	}
 
-    public Integer getResourceAmount(TipoRecurso recurso) throws Exception {
+    public Integer getRecursosAmount(TipoRecurso recurso) throws Exception {
 		String nombreRecurso = this.getRecurso(recurso);
 		Method getter = this.getClass().getMethod("get" + nombreRecurso);
 		return (Integer)getter.invoke(this);
 	}
-
-    @NotNull
-    @Enumerated(value = EnumType.STRING)
-    private TipoRecurso nombre;
-
-    @NotNull
-    private Integer cantidadBase;
     
 }
