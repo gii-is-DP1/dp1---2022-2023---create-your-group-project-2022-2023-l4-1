@@ -27,7 +27,7 @@ public class RecursosController {
 
 	@GetMapping()
 	public String listRecursos(ModelMap modelMap) {
-		String view = "resources/listResources";
+		String view = "resources/listRecursos";
 		Iterable<Recursos> recursos = recursosService.findAll();
 		modelMap.addAttribute("recursos", recursos);
 		return view;
