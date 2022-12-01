@@ -30,15 +30,15 @@ public class AchievementController {
 
     private AchievementService service;
     private UserService userService;
-    
-    @Autowired
-    LoggedUserController currentUser;
+    private LoggedUserController currentUser;
 
-    @Autowired
-    public AchievementController(AchievementService service, UserService userService){
+    @Autowired(required = true)
+    public AchievementController(AchievementService service, UserService userService, LoggedUserController currentUser){
         this.service=service;
         this.userService = userService;
+        this.currentUser = currentUser;
     }
+
 
     @Transactional(readOnly = true)
     @GetMapping("/")
