@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/recursos")
 public class RecursosController {
 
-    private static final String VIEWS_RESOURCES_CREATE_OR_UPDATE_FORM = "resources/createOrUpdateResourcesForm";
+    private static final String VIEWS_RESOURCES_CREATE_OR_UPDATE_FORM = "recursos/createOrUpdateResourcesForm";
 
 	private RecursosService recursosService;
 
@@ -33,8 +33,6 @@ public class RecursosController {
 		return view;
 
 	}
-	
-    //UPDATE
 
 	@GetMapping(value = "/{recursosId}/edit")
 	public String initUpdateOwnerForm(@PathVariable("resourcesId") int resourcesId, Model model) {
