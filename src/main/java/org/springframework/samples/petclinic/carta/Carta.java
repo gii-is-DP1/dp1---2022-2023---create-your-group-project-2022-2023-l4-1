@@ -26,4 +26,6 @@ public class Carta extends BaseEntity {
     @Max(12)
     private Integer posicion;
     
+
+
 }

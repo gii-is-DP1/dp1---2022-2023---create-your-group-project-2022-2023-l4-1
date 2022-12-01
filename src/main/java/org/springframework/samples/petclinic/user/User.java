@@ -35,11 +35,12 @@ public class User {
 	
 	@NotNull
 	@Column(name = "password")
+	@NotEmpty(message = "No puede estar vacio")
 	String password;
 
 	@NotNull
 	@NotEmpty(message = "No puede estar vacio")
-	// @Email
+	@Email
 	@Column(unique=true)
 	private String email;
 
@@ -50,8 +51,10 @@ public class User {
 	@Column(name = "biografia")
 	private String biografia;
 
+	@NotEmpty(message = "No puede estar vacio")
 	private String nombre;
 
+	@NotEmpty(message = "No puede estar vacio")
 	private String apellidos;
 
 

@@ -43,6 +43,13 @@
 					    <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
                         <span style="color: white; text-shadow: 3px 3px 6px #000000;"><Font size=5>Crear partida</Font></span>
                     </sec:authorize>
+                </petclinic:menuItem>
+                <petclinic:menuItem active="${name eq 'partida'}" url="/partida/partidasActivas"
+					title="partida abierta">
+                    <sec:authorize access="isAuthenticated()">
+					    <span class="glyphicon glyphicon-th-list" aria-hidden="true" style="color: white; text-shadow: 3px 3px 6px #000000;"></span>
+                        <span style="color: white; text-shadow: 3px 3px 6px #000000;"><Font size=5>Unirse a partida</Font></span>
+                    </sec:authorize>
                 </petclinic:menuItem>	
 
             </div>
