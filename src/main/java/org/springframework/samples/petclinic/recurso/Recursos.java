@@ -38,8 +38,8 @@ public class Recursos extends BaseEntity {
     @Column(name = "Medalla")
     Integer medalla;
 
-    //@Column(name = "Objetos")
-    //Integer objetos;
+    @Column(name = "Objetos")
+    Integer objetos;
 
     @OneToOne
     @JoinColumn(name="jugadorID")
