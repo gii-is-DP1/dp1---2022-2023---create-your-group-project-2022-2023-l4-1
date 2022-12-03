@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.recurso;
+/*package org.springframework.samples.petclinic.recurso;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,5 +80,34 @@ public class Recursos extends BaseEntity {
 		Method getter = this.getClass().getMethod("get" + nombreRecurso);
 		return (Integer)getter.invoke(this);
 	}
+    
+}
+*/
+package org.springframework.samples.petclinic.recurso;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.recurso.enums.TipoRecurso;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "recursos")
+public class Recursos extends BaseEntity {
+
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
+    private TipoRecurso nombre;
+
+    @NotNull
+    private Integer cantidadBase;
     
 }
