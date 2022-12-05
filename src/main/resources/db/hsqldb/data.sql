@@ -116,17 +116,23 @@ INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (9,'Ac
 INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (10,'El enano legendario','Consigues este logro si consigues obtener todos los logros de Dwarf.',0.0,'/resources/images/logro_enano.jpg');
 
 
-INSERT INTO jugador(username, extra) VALUES ('pabmarval', 'prueba');
-INSERT INTO jugador(username, extra) VALUES ('ignwarmur', 'prueba');
-INSERT INTO jugador(username, extra) VALUES ('davcorrom', 'prueba');
+-- Juadores de ejemplo.
+
+INSERT INTO jugador(id, es_jugador_inicial, es_ganador, num_enanos_pico, num_enanos_mazo, cantidad_hierro, cantidad_acero, cantidad_oro, cantidad_medallas, username) VALUES (1, TRUE, FALSE, 2, 2, 15, 5, 2, 1, 'pabmarval');
+INSERT INTO jugador(id, es_jugador_inicial, es_ganador, num_enanos_pico, num_enanos_mazo, cantidad_hierro, cantidad_acero, cantidad_oro, cantidad_medallas, username) VALUES (2, TRUE, FALSE, 2, 2, 15, 5, 2, 1, 'ignwarmur');
+INSERT INTO jugador(id, es_jugador_inicial, es_ganador, num_enanos_pico, num_enanos_mazo, cantidad_hierro, cantidad_acero, cantidad_oro, cantidad_medallas, username) VALUES (3, TRUE, FALSE, 2, 2, 15, 5, 2, 1, 'davcorrom');
+INSERT INTO jugador(id, es_jugador_inicial, es_ganador, num_enanos_pico, num_enanos_mazo, cantidad_hierro, cantidad_acero, cantidad_oro, cantidad_medallas, username) VALUES (4, TRUE, FALSE, 2, 2, 15, 5, 2, 1, 'davcorrom');
+
 
 -- Partidas de ejemplo.
 
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1, 'RONDAS_LIMITADAS', 'FIN');
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1, 'SIN_LIMITE', 'FIN');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 1, 2, 3, 1, 'LIMITADAS', 'FIN');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, jugador0, jugador1, jugador2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 1,2, 3, 1, 'ILIMITADAS', 'FIN');
 
 -- relacion logros-usuario
 
 INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarval', 2);
 INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarval', 3);
 INSERT INTO users_achievements(user_username, achievements_id) VALUES ('davcorrom', 3);
+
+

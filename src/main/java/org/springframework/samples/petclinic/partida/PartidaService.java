@@ -48,16 +48,16 @@ public class PartidaService {
         repo.deleteById(id);
     }
 
-    public void save(Partida partida){
-        Jugador jugador0 = new Jugador();
-        partida.setDuracion(0);
+    public void save(Partida partida) {
+
+        partida.setDuracion(50);
         partida.setNumRonda(1);
-        partida.setTiempoRestRonda(60);
+        partida.setTiempoRestRonda(42);
         partida.setJugadorActivo(1);
         partida.setSiguienteJugador(2);
-        partida.setJugador0(jugador0);
-        partida.setGanador(jugador0);
         partida.setFaseActual(Fase.EXTRACCION);
+        partida.setGanador(null);
+
         repo.save(partida);
     }
 

@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.partida;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -72,13 +73,32 @@ public class PartidaController {
 
     }
 
-    @GetMapping(path = "/create/")
+    /*@GetMapping(path = "/create/")
     public ModelAndView crearPartida() {
         ModelAndView result = new ModelAndView(PARTIDAS_FORM);
         result.addObject("partida", new Partida());
         result.addObject("numRondas", Arrays.asList(NumRondas.values()));
         return result;
-    }
+    }*/
+
+    @GetMapping(value = "/create")
+	public String initCreationForm(Map<String, Object> model) {
+		Partida partida = new Partida();
+		model.put("partida", partida);
+        model.put("numRondas", Arrays.asList(NumRondas.values()));
+		return PARTIDAS_FORM;
+	}
+
+	@PostMapping(value = "/create")
+	public String processCreationForm(@Valid Partida partida, BindingResult result) {
+		if (result.hasErrors()) {
+			return PARTIDAS_FORM;
+		}
+		else {
+			this.service.save(partida);
+			return "redirect:/";
+		}
+	}
 
     /*@Transactional(readOnly = true)
     @GetMapping("/create")
@@ -105,7 +125,7 @@ public class PartidaController {
         return result;
     }*/
 
-    @PostMapping(value = "/create")
+    /*@PostMapping(value = "/create")
 	public String processCreationForm(@Valid Partida partida, BindingResult result) {
 		if (result.hasErrors()) {
 			return PARTIDAS_FORM;
@@ -115,7 +135,7 @@ public class PartidaController {
 			this.service.save(partida);
 			return "redirect:/partida/partidas";
 		}
-	}
+	}*/
 
     /*@PostMapping(path="/save")
     public ModelAndView salvarPartida(@ModelAttribute("partida") Partida partida) {

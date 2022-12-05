@@ -13,6 +13,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.partida.enums.Fase;
@@ -33,15 +34,29 @@ public class Partida extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private NumRondas rondas;
 
-    @NotNull
     @Min(0)
     private Integer duracion;
 
-    @NotNull
     @Min(1)
     private Integer numRonda;
+
+    @Range(min=0,max=60)
+    private Integer tiempoRestRonda;
     
-    @NotNull
+    @Range(min=0,max=2)
+    private Integer jugadorActivo;
+
+    @Range(min=0,max=2)
+    private Integer siguienteJugador;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "fase_actual")
+    private Fase faseActual;
+
+    @OneToOne
+    @JoinColumn(name = "ganador", referencedColumnName = "id")
+    private Jugador ganador;
+
     @OneToOne
     @JoinColumn(name = "jugador0", referencedColumnName = "id")
     private Jugador jugador0;
@@ -53,27 +68,6 @@ public class Partida extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "jugador2", referencedColumnName = "id")
     private Jugador jugador2;
-
-    @NotNull
-    @Range(min=0,max=60)
-    private Integer tiempoRestRonda;
-    
-    @NotNull
-    @Range(min=0,max=2)
-    private Integer jugadorActivo;
-
-    @NotNull
-    @Range(min=0,max=2)
-    private Integer siguienteJugador;
-
-    @NotNull
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "fase_actual")
-    private Fase faseActual;
-
-    @OneToOne
-    @JoinColumn(name = "ganador", referencedColumnName = "id")
-    private Jugador ganador;
 
     public List<String> getUsernameList() {
 		List<String> pList = new ArrayList<String>();
@@ -89,4 +83,19 @@ public class Partida extends BaseEntity {
 		
 		return pList;
 	}
+
+    public boolean isNew() {
+		return this.nombreSala == null;
+	}
+
+    /*@Override
+	public String toString() {
+		return new ToStringCreator(this)
+
+				.append("nombreSala", this.getNombreSala()()).append("new", this.isNew()).append("rondas", this.getRondas())
+				.append("duracion", this.getDuracion()).append("numRonda", this.getNumRonda()).append("tiempoRestRonda", this.getTiempoRestRonda())
+				.append("jugadorActivo", this.getJugadorActivo()).append("siguienteJugador", this.getSiguienteJugador())
+                .append("faseActual", this.getFaseActual()).append("ganador", this.getGanador())
+                .append("jugador0", this.getJugador0()).append("jugador1", this.getJugador1()).append("jugador2", this.getJugador2()).toString();
+	}*/
 }
