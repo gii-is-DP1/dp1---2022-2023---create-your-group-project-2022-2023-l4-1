@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.partida;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +13,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
-import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
+import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -54,48 +54,40 @@ public class Partida extends BaseEntity {
     private Fase faseActual;
 
     @OneToOne
-    @JoinColumn(name = "ganador", referencedColumnName = "id")
-    private Jugador ganador;
-
-    @OneToOne
-    @JoinColumn(name = "jugador0", referencedColumnName = "id")
-    private Jugador jugador0;
+    @JoinColumn(name = "user0", referencedColumnName = "username")
+    private User user0;
     
     @OneToOne
-    @JoinColumn(name = "jugador1", referencedColumnName = "id")
-    private Jugador jugador1;
+    @JoinColumn(name = "user1", referencedColumnName = "username")
+    private User user1;
    
     @OneToOne
-    @JoinColumn(name = "jugador2", referencedColumnName = "id")
-    private Jugador jugador2;
+    @JoinColumn(name = "user2", referencedColumnName = "username")
+    private User user2;
 
-    public List<String> getUsernameList() {
-		List<String> pList = new ArrayList<String>();
-		
-		if(this.jugador0 != null)
-			pList.add(this.jugador0.getUser().getUsername());
+    public Set<User> getUsersOnTheGame() {
 
-        if(this.jugador0 != null)
-		pList.add(this.jugador1.getUser().getUsername());
+		Set<User> usersOnTheGame = new HashSet<User>();
 		
-        if(this.jugador0 != null)
-	    pList.add(this.jugador2.getUser().getUsername());
+		if(this.user0 != null)
+			usersOnTheGame.add(this.user0);
+
+        if(this.user1 != null)
+            usersOnTheGame.add(this.user1);
 		
-		return pList;
+        if(this.user2 != null)
+            usersOnTheGame.add(this.user2);
+		
+		return usersOnTheGame;
+
 	}
+
+    @OneToOne
+    @JoinColumn(name = "ganador", referencedColumnName = "id")
+    private Jugador ganador;
 
     public boolean isNew() {
 		return this.nombreSala == null;
 	}
 
-    /*@Override
-	public String toString() {
-		return new ToStringCreator(this)
-
-				.append("nombreSala", this.getNombreSala()()).append("new", this.isNew()).append("rondas", this.getRondas())
-				.append("duracion", this.getDuracion()).append("numRonda", this.getNumRonda()).append("tiempoRestRonda", this.getTiempoRestRonda())
-				.append("jugadorActivo", this.getJugadorActivo()).append("siguienteJugador", this.getSiguienteJugador())
-                .append("faseActual", this.getFaseActual()).append("ganador", this.getGanador())
-                .append("jugador0", this.getJugador0()).append("jugador1", this.getJugador1()).append("jugador2", this.getJugador2()).toString();
-	}*/
 }
