@@ -9,20 +9,55 @@
     <h2>Mi perfil</h2>
 
 
+    
+        <div style="padding-top: 25px; padding-bottom: 20px; padding-left: 375px">
+            <td>                    
+                <c:if test="${user.fotoPerfil == ''}">none</c:if>
+                <c:if test="${user.fotoPerfil != ''}">
+                    <img src="${user.fotoPerfil}" width="500px"  /> 
+                </c:if>
+            </td>
+        </div>    
+
     <table class="table table-striped">
+        
         <tr>
             <th>Name</th>
             <td><b><c:out value="${user.username}"/></b></td>
+        </tr>
+        <tr>
             <th>Contrasena</th>
             <td><b><c:out value="${user.password}"/></b></td>
             <th>Nombre</th>
             <td><b><c:out value="${user.nombre}"/></b></td>
         </tr>
+
+        <tr>
+            <th>Email</th>
+            <td><b><c:out value="${user.email}"/></b></td>
+        </tr>
+
+        <tr>
+            <th>Biografia</th>
+            <td><b><c:out value="${user.biografia}"/></b></td>
+        </tr>
+
+        <tr>
+            <th>Nombre</th>
+            <td><b><c:out value="${user.nombre}"/></b></td>
+        </tr>
+
+        <tr>
+            <th>Apellidos</th>
+            <td><b><c:out value="${user.apellidos}"/></b></td>
+        </tr>
+        
+
     </table>
 
     <spring:url value="perfil/edit/${user.username}" var="editUrl">
     </spring:url>
     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Editar perfil</a>
-
-
+    
+	
 </petclinic:layout>
