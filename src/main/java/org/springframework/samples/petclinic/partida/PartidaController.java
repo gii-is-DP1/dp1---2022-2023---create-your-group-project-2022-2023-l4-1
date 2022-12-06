@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
 import org.springframework.samples.petclinic.user.User;
@@ -28,6 +30,7 @@ public class PartidaController {
 
     PartidaService partidaService;
     UserService userService;
+    JugadorService jugadorService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
@@ -39,9 +42,10 @@ public class PartidaController {
     LoggedUserController currentUser;
 
     @Autowired
-    public PartidaController(PartidaService partidaService, UserService userService) {
+    public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService) {
         this.partidaService = partidaService;
         this.userService = userService;
+        this.jugadorService = jugadorService;
     }
 
     @GetMapping("/partidas")
@@ -103,21 +107,41 @@ public class PartidaController {
 
     @Transactional()
 	@PostMapping(value = "/create")
-	public ModelAndView processCreationForm(@Valid Partida partida, BindingResult result) {
-        ModelAndView res = new ModelAndView(PARTIDAS_FORM);
+	public String processCreationForm(@Valid Partida partida, BindingResult result, Map<String, Object> model) {
 		if (result.hasErrors()) {
-			return res;
+			return PARTIDAS_FORM;
 		}
 		else {
 			this.partidaService.save(partida);
-			return goToLobby(partida.getId());
+            Integer id_sala = partida.getId();
+			return "redirect:../lobby/" + id_sala;
 		}
 	}
 
+    @Transactional()
     @GetMapping("lobby/{id_sala}")
-    public ModelAndView goToLobby(@PathVariable("id_sala") Integer id_sala) {
-        ModelAndView res = new ModelAndView(LOBBY_VIEW);
-        res.addObject("partida", partidaService.findPartidaById(id_sala));
+    public ModelAndView goToLobby(@PathVariable("id_sala") Integer id_sala, HttpServletResponse response) {
+
+        // Refresco de página.
+        response.addHeader("Refresh", "5");
+
+        ModelAndView res = new ModelAndView(LOBBY_VIEW); // Muestra el lobby de la partida.
+        Partida partida = partidaService.findPartidaById(id_sala); // Obtiene la partida que se acaba de crear.
+
+        // Para los usuarios que deseen unirse a una partida.
+        // Si el usuario no se encuentra en la partida...
+        if (!partida.getUsersOnTheGame().contains(partidaService.getUserLogged())) {
+            jugadorService.save(partidaService.getUserLogged()); // Se guarda un nuevo jugador relacionado al usuario que se une a la partida.
+
+            // Si la partida tiene 1 solo jugador entonces el nuevo usuario será el usuario 2 de la partida.
+            if (partida.getUser1() == null) partida.setUser1(partidaService.getUserLogged());
+            // Si la partida tiene 2 jugadores entonces el nuevo usuario será el usuario 3 de la partida.
+            else {
+                if (partida.getUser2() == null) partida.setUser2(partidaService.getUserLogged());
+            } 
+        }
+
+        res.addObject("partida", partida);
         return res;
     }
  
