@@ -33,6 +33,7 @@ public class PartidaController {
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
     private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
+    private final String LOBBY_VIEW = "partidas/Lobby";
 
     @Autowired
     LoggedUserController currentUser;
@@ -102,14 +103,22 @@ public class PartidaController {
 
     @Transactional()
 	@PostMapping(value = "/create")
-	public String processCreationForm(@Valid Partida partida, BindingResult result) {
+	public ModelAndView processCreationForm(@Valid Partida partida, BindingResult result) {
+        ModelAndView res = new ModelAndView(PARTIDAS_FORM);
 		if (result.hasErrors()) {
-			return PARTIDAS_FORM;
+			return res;
 		}
 		else {
 			this.partidaService.save(partida);
-			return "redirect:/";
+			return goToLobby(partida.getId());
 		}
 	}
+
+    @GetMapping("lobby/{id_sala}")
+    public ModelAndView goToLobby(@PathVariable("id_sala") Integer id_sala) {
+        ModelAndView res = new ModelAndView(LOBBY_VIEW);
+        res.addObject("partida", partidaService.findPartidaById(id_sala));
+        return res;
+    }
  
 }
