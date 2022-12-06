@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
@@ -53,36 +54,31 @@ public class PartidaController {
     @Transactional(readOnly = true)
     @GetMapping("/misPartidas")
     public ModelAndView showMisPartidas(){
+
         ModelAndView res = new ModelAndView(MIS_PARTIDAS_LISTING_VIEW);
         String currentUsername = currentUser.returnLoggedUserName();
         User userLogged = userService.findUser(currentUsername).get();
-
         List<Partida> partidas = new ArrayList<Partida>();
 
-        for(int i=0 ; i < partidaService.getPartidas().size();i++){
-            Partida partida = partidaService.getPartidas().get(i);
-
-            if(partida.getUsersOnTheGame().contains(userLogged)){
-                partidas.add(partida);
-            }
+        for (Partida partida: partidaService.getPartidas()) {
+            if (partida.getUsersOnTheGame().contains(userLogged)) partidas.add(partida);
         }
 
         res.addObject("partidas", partidas);
-
         return res;
     }
 
     @Transactional(readOnly = true)
     @GetMapping("/partidasActivas")
     public ModelAndView partidasActivas(){
+        
         ModelAndView res = new ModelAndView(PARTIDAS_ACTIVAS_VIEW);
         List<Partida> partidas = new ArrayList<Partida>();
-        for(int i=0 ; i < service.getPartidas().size();i++){
-            Partida partida = service.getPartidas().get(i);
-            if(partida.getGanador()==null){
-                partidas.add(partida);
-            }
+
+        for (Partida partida: partidaService.getPartidas()){
+            if (partida.getFaseActual() == Fase.INICIANDO) partidas.add(partida);
         }
+
         res.addObject("partidas", partidas);
         return res;
     }
