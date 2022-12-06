@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,6 +78,7 @@ public class PartidaController {
 
     }
 
+    @Transactional(readOnly = true)
     @GetMapping(value = "/create")
 	public String initCreationForm(Map<String, Object> model) {
 		Partida partida = new Partida();
@@ -87,6 +87,7 @@ public class PartidaController {
 		return PARTIDAS_FORM;
 	}
 
+    @Transactional()
 	@PostMapping(value = "/create")
 	public String processCreationForm(@Valid Partida partida, BindingResult result) {
 		if (result.hasErrors()) {

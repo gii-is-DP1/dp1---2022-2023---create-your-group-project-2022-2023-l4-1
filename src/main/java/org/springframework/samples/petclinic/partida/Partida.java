@@ -37,7 +37,7 @@ public class Partida extends BaseEntity {
     @Min(0)
     private Integer duracion;
 
-    @Min(1)
+    @Min(0)
     private Integer numRonda;
 
     @Range(min=0,max=60)
