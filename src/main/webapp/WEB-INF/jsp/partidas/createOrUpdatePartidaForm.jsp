@@ -15,25 +15,20 @@
     </jsp:attribute>
     <jsp:body>
         <h2>
-            <c:if test="${partida['new']}">Crear </c:if> Partida
+            <c:if test="${partida['new']}">Crear partida</c:if>
         </h2>
         <form:form modelAttribute="partida"
                    class="form-horizontal">
             <input type="hidden" name="id" value="${partida.id}"/>
             <div class="form-group has-feedback">                
                 <petclinic:inputField label="Nombre de la sala" name="nombreSala"/>
-                <petclinic:selectField label="Numero de rondas"  name="rondas" names="${numRondas}" size="2"/>
+                <petclinic:selectField label="Número de rondas"  name="rondas" names="${numRondas}" size="2"/>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <c:choose>
-                        <c:when test="${partida['new']}">
+                    <c:if test="${partida['new']}">
                             <button class="btn btn-default" type="submit">Confirmar</button>
-                        </c:when>
-                        <c:otherwise>
-                            <button class="btn btn-default" type="submit">Confirmar</button>
-                        </c:otherwise>
-                    </c:choose>
+                    </c:if>
                 </div>
             </div>
         </form:form>                

@@ -3,17 +3,19 @@ package org.springframework.samples.petclinic.partida;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
+import org.springframework.samples.petclinic.user.User;
+import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.samples.petclinic.web.LoggedUserController;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/partida")
 public class PartidaController {
 
-    PartidaService service;
+    PartidaService partidaService;
+    UserService userService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
@@ -34,14 +37,15 @@ public class PartidaController {
     LoggedUserController currentUser;
 
     @Autowired
-    public PartidaController(PartidaService service) {
-        this.service = service;
+    public PartidaController(PartidaService partidaService, UserService userService) {
+        this.partidaService = partidaService;
+        this.userService = userService;
     }
 
     @GetMapping("/partidas")
     public ModelAndView showPartidas(){
         ModelAndView res = new ModelAndView(PARTIDAS_LISTING_VIEW);
-        res.addObject("partidas", service.getPartidas());
+        res.addObject("partidas", partidaService.getPartidas());
         return res;
     }
 
@@ -51,12 +55,14 @@ public class PartidaController {
     public ModelAndView showMisPartidas(){
         ModelAndView res = new ModelAndView(MIS_PARTIDAS_LISTING_VIEW);
         String currentUsername = currentUser.returnLoggedUserName();
+        User userLogged = userService.findUser(currentUsername).get();
+
         List<Partida> partidas = new ArrayList<Partida>();
 
-        for(int i=0 ; i < service.getPartidas().size();i++){
-            Partida partida = service.getPartidas().get(i);
+        for(int i=0 ; i < partidaService.getPartidas().size();i++){
+            Partida partida = partidaService.getPartidas().get(i);
 
-            if(partida.getUsernameList().contains(currentUsername)){
+            if(partida.getUsersOnTheGame().contains(userLogged)){
                 partidas.add(partida);
             }
         }
@@ -84,63 +90,30 @@ public class PartidaController {
     @Transactional()
     @GetMapping("/{id}/delete")
     public ModelAndView deletePartida(@PathVariable int id){
-        service.deletePartidaById(id);        
+        partidaService.deletePartidaById(id);        
         return showPartidas();
 
     }
 
-    @GetMapping(path = "/create/")
-    public ModelAndView crearPartida() {
-        ModelAndView result = new ModelAndView(PARTIDAS_FORM);
-        result.addObject("partida", new Partida());
-        result.addObject("numRondas", Arrays.asList(NumRondas.values()));
-        return result;
-    }
+    @Transactional(readOnly = true)
+    @GetMapping(value = "/create")
+	public String initCreationForm(Map<String, Object> model) {
+		Partida partida = new Partida();
+		model.put("partida", partida);
+        model.put("numRondas", Arrays.asList(NumRondas.values()));
+		return PARTIDAS_FORM;
+	}
 
-    /*@Transactional(readOnly = true)
-    @GetMapping("/create")
-    public ModelAndView createPartida(){
-        Partida partida = new Partida();
-        ModelAndView result = new ModelAndView(PARTIDAS_FORM);        
-        result.addObject("partida", partida);
-        result.addObject("numRondas", Arrays.asList(NumRondas.values()));        
-        return result;
-    }*/
-
-    /*@Transactional
-    @PostMapping("/create/")
-    public ModelAndView saveNewPartida(@Valid Partida partida, BindingResult br){
-        ModelAndView result = null;
-        if(br.hasErrors()){
-            result = new ModelAndView(PARTIDAS_FORM, br.getModel());
-            result.addObject("numRondas",Arrays.asList(NumRondas.values()));                  
-            return result;
-        }
-        service.save(partida);
-        result = showPartidas();
-        result.addObject("message", "La partida fue creada correctamente.");
-        return result;
-    }*/
-
-    @PostMapping(value = "/create")
+    @Transactional()
+	@PostMapping(value = "/create")
 	public String processCreationForm(@Valid Partida partida, BindingResult result) {
 		if (result.hasErrors()) {
 			return PARTIDAS_FORM;
 		}
 		else {
-			//creating owner, user, and authority
-			this.service.save(partida);
-			return "redirect:/partida/partidas";
+			this.partidaService.save(partida);
+			return "redirect:/";
 		}
 	}
-
-    /*@PostMapping(path="/save")
-    public ModelAndView salvarPartida(@ModelAttribute("partida") Partida partida) {
-        service.save(partida);
-        ModelAndView result = showMisPartidas();
-        result.addObject("mensaje", "Partida guardada de forma exitosa.");
-        result.addObject("tipomensaje", "success");
-        return result;
-    }*/
  
 }
