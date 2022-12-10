@@ -16,9 +16,11 @@
 package org.springframework.samples.petclinic.user;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,7 @@ public class UserController {
 	private static final String VIEWS_JUGADOR_CREATE_FORM = "users/createUserForm";
 	private static final String VIEWS_JUGADOR_UPDATE_FORM = "users/updateUserForm";
 	private static final String VIEW_PERFIL = "users/perfil";
+	private static final String VIEW_USER_FRIENDS = "users/friends";
 
 	private UserService userService;
 
@@ -174,6 +177,23 @@ public class UserController {
     }
 
 	*/
+
+	@Transactional
+    @GetMapping("/users/{username}/friends")
+	public ModelAndView showFriends(@PathVariable("username") String username) {
+		List<User> friends = userService.getFriends(username);
+		ModelAndView mav = new ModelAndView(VIEW_USER_FRIENDS);
+		mav.addObject("friends", friends);
+		mav.addObject("user", this.userService.findUserOptional(username).get());
+		return mav;
+	}
+
+	@Transactional
+	@GetMapping(value = "/users/{username}/friends/{username2}/delete")
+    public String deleteFriend(@PathVariable String username, @PathVariable String username2){
+        userService.Deletefriend(username, username2);        
+        return "redirect:/users/"+username+"/friends";
+    }
 
 
 }
