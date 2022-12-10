@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.user;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+
+import org.springframework.samples.petclinic.invitacion.invitacion;
+
 
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.statistics.Achievement;
@@ -77,5 +84,39 @@ public class User {
 				.append("username", this.getUsername()).append("new", this.isNew()).append("apellidos", this.getApellidos())
 				.append("nombre", this.getNombre()).append("password", this.password).append("email", this.email)
 				.append("biografia", this.biografia).toString();
+	}
+
+
+	@ManyToMany(cascade = {CascadeType.PERSIST , CascadeType.REFRESH, CascadeType.REMOVE})
+	@JoinTable(name="friends",
+			joinColumns= {@JoinColumn(name="friend_id")},
+			inverseJoinColumns = {@JoinColumn(name="aux_friend_id")})
+	private Set<User> friends = new HashSet<User>();
+
+    @ManyToMany(mappedBy="friends", cascade = {CascadeType.PERSIST , CascadeType.REFRESH, CascadeType.REMOVE})
+	private Set<User> auxFriends = new HashSet<User>();
+
+	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+	private Set<invitacion> receivedInvitations = new HashSet<invitacion>();
+    
+	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+	private Set<invitacion> sendedInvitations = new HashSet<invitacion>();
+
+    public boolean canInvite(String username) {
+		if(getUsername().equals(username))
+			return false;
+		for(User friend : friends) 
+			if(friend.getUsername().equals(username))
+				return false;
+		for(User friend : auxFriends) 
+			if(friend.getUsername().equals(username))
+				return false;
+		for(invitacion sended : sendedInvitations) 
+			if(sended.esDelUsuario(username))
+				return false;
+		for(invitacion receiver : receivedInvitations) 
+			if(receiver.esDelUsuario(username))
+				return false;
+		return true;
 	}
 }
