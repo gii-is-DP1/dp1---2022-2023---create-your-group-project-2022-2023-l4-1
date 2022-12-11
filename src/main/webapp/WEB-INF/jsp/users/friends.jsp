@@ -8,7 +8,7 @@
     <table id="usersTable" class="table table-striped">
         <thead>
         <tr>
-            <th>First Name</th>
+            <th>Nombre</th>
             <th>Username</th>
             <th></th>
         </tr>
