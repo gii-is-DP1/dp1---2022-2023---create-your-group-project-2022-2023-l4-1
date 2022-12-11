@@ -8,7 +8,7 @@
     <table id="invitationsTable" class="table table-striped">
         <thead>
         <tr>
-            <th>Sender</th>
+            <th>Solicitudes</th>
             <th></th>
         </tr>
         </thead>
@@ -19,8 +19,8 @@
                     <c:out value="${invitation.sender.username}"/>
                 </td> 
                 <td style="text-align:right">
-                    <a class="btn btn-default" href="/users/${invitation.receiver.username}/accept/${invitation.id}">Accept Invitation</a>
-                    <a class="btn btn-default" href="/users/${invitation.receiver.username}/cancelInvite/${invitation.id}">Cancel Invitation</a>
+                    <a class="btn btn-default" href="/users/${invitation.receiver.username}/accept/${invitation.id}">Aceptar</a>
+                    <a class="btn btn-default" href="/users/${invitation.receiver.username}/cancelInvite/${invitation.id}">Rechazar</a>
                 </td> 
             </tr>
         </c:forEach>
