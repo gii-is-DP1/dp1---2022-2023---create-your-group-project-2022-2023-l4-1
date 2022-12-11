@@ -40,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/users/perfil/**").hasAnyAuthority("admin","player")
 				.antMatchers("/session/**").permitAll()
 				.antMatchers("/info").permitAll()
+				.antMatchers("/users/{username}/**").authenticated()
 				.antMatchers("/statistics/achievements/new").hasAnyAuthority("admin")
 				.antMatchers("/statistics/achievements/").hasAnyAuthority("admin", "player")
 				.antMatchers("/statistics/achievements/myAchievements").hasAnyAuthority("admin","player")
@@ -54,6 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/partida/save/").hasAnyAuthority("admin", "player")
 				.antMatchers("/partida/misPartidas").hasAnyAuthority("admin", "player")
 				.antMatchers("/partida/partidasActivas").hasAnyAuthority("admin", "player")
+				.antMatchers("/partida/lobby/**").hasAnyAuthority("admin", "player")
 
 				.antMatchers("/jugador/**").hasAnyAuthority(("player"))
         .antMatchers("/jugadores/**").hasAnyAuthority("owner","admin")	

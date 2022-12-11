@@ -14,6 +14,7 @@
             <th>Nombre</th>
             <th>Ganador</th>
             <th>Jugadores</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +26,17 @@
                 <td>
                     <c:out value="${partida.ganador.user.username}"/>
                 </td>
-                 <td>
-                    <c:out value="${partida.usernameList}"/>
-                 </td>
+                <td>
+                    <c:forEach items="${partida.usersOnTheGame}" var="entry">
+                        <c:out value="${entry.username}"/>
+                        <p></p>
+                    </c:forEach>
+                </td>
+                <td>
+                    <a href="/partida/lobby/${partida.id}">
+                        <button type="button" class="btn btn-success">Unirme</button>
+                    </a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
