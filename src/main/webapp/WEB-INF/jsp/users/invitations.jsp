@@ -29,7 +29,7 @@
 
     <tr> 
         <td>
-            <a class="btn btn-default" href="/users/${username}/invite">Create invitation</a>
+            <a class="btn btn-default" href="/users/${username}/invite">Enviar Solicitud</a>
         </td>  
     </tr>
 
