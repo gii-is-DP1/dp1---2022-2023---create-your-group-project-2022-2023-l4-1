@@ -9,7 +9,6 @@
         <thead>
         <tr>
             <th>First Name</th>
-            <th>LastName</th>
             <th>Username</th>
             <th></th>
         </tr>
@@ -19,9 +18,6 @@
             <tr>
                 <td>
                     <c:out value="${friend.nombre}"/>
-                </td>
-                <td>                    
-                    <c:out value="${friend.apellidos} "/>                                        
                 </td>
                 <td>                    
                     <c:out value="${friend.username}"/>
