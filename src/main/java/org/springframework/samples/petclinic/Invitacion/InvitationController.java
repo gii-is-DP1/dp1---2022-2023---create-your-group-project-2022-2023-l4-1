@@ -45,7 +45,7 @@ public class InvitationController {
 	public String invitateUser(@PathVariable("username1") String username1, @PathVariable("username2") String username2 ) {
 		invitationService.sendInvitation(username1, username2);		
 		
-		return "redirect:/users/"+ username1;
+		return "redirect:/users/"+ username1+"/invite";
 	}
 
     @Transactional
