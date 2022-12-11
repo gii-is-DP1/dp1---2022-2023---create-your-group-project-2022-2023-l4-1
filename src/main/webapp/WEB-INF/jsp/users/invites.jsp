@@ -5,14 +5,14 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="users">
-    <h2>Available Users</h2>
+    <h2>Usuarios</h2>
 
     <table id="usersTable" class="table table-striped">
         <thead>
         <tr>
-            <th>First Name</th>
+            <th>Nombre</th>
             <th>Username</th>
-            <th>Invite</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
