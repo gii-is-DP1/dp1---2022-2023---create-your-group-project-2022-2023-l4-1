@@ -58,13 +58,13 @@
     
     <tr> 
         <td>
-            <a class="btn btn-default" href="/users/${user.username}/invitations">invitations</a>
+            <a class="btn btn-default" href="/users/${user.username}/invitations">Agregar Amigo</a>
         </td>  
     </tr>
 
     <tr> 
         <td>
-            <a class="btn btn-default" href="/users/${user.username}/friends">friends</a>
+            <a class="btn btn-default" href="/users/${user.username}/friends">Amigos</a>
         </td>  
     </tr>
 </petclinic:layout>
