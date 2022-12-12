@@ -1,5 +1,6 @@
 -- Administrador del sistema.
 INSERT INTO users(username,password,enabled,nombre,apellidos,foto_perfil,biografia,email) VALUES ('admin1', '4dm1n', TRUE, 'Administrador', 'del sistema', 'nada', 'hola', 'nada@gmail,com');
+INSERT INTO estadistica(tiempo_jugado, partidas_jugadas, partidas_ganadas, hierro_total, oro_total, acero_total, objetos_total, medallas_total, username) VALUES ('345', 8, 5, 150, 70, 75, 28, 15, 'admin1');
 INSERT INTO authorities(id,username,authority) VALUES (1, 'admin1', 'admin');
 
 -- Usuario asociado al desarrollador David Cortabarra Romero. Username: davcorrom. Contraseña: davcorrom.
@@ -139,4 +140,4 @@ INSERT INTO users_achievements(user_username, achievements_id) VALUES ('davcorro
 INSERT INTO Friends(friend_id, aux_friend_id) VALUES('ignwarmur', 'davcorrom');
 INSERT INTO Friends(friend_id, aux_friend_id) VALUES('davcorrom', 'ignwarmur');
 
-INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwarmur', 'davcorrom');
+INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwarmur', 'gabvacgoy');
