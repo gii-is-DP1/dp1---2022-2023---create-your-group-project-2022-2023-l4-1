@@ -33,4 +33,10 @@
         </td>  
     </tr>
 
+    <tr> 
+        <td>
+            <a class="btn btn-default" href="/users/perfil">Volver</a>
+        </td>  
+    </tr>
+
 </petclinic:layout>
