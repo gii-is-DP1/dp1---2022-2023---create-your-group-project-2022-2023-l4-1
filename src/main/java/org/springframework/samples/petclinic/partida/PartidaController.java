@@ -81,7 +81,9 @@ public class PartidaController {
         List<Partida> partidas = new ArrayList<Partida>();
 
         for (Partida partida: partidaService.getPartidas()){
-            if (partida.getFaseActual() == Fase.INICIANDO) partidas.add(partida);
+            if (partida.getFaseActual() == Fase.INICIANDO) {
+                if (partida.getUsersOnTheGame().size() < 3) partidas.add(partida);
+            }
         }
 
         res.addObject("partidas", partidas);
