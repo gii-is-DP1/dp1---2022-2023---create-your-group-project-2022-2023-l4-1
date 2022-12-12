@@ -12,7 +12,6 @@
         <thead>
         <tr>
             <th>Nombre</th>
-            <th>Ganador</th>
             <th>Jugadores</th>
             <th></th>
         </tr>
@@ -22,9 +21,6 @@
             <tr>
                 <td>
                     <c:out value="${partida.nombreSala}"/>
-                </td>
-                <td>
-                    <c:out value="${partida.ganador.user.username}"/>
                 </td>
                 <td>
                     <c:forEach items="${partida.usersOnTheGame}" var="entry">
