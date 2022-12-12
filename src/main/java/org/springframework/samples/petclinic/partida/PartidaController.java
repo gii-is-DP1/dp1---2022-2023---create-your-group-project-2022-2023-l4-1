@@ -95,7 +95,13 @@ public class PartidaController {
     public ModelAndView deletePartida(@PathVariable int id){
         partidaService.deletePartidaById(id);        
         return showPartidas();
+    }
 
+    @Transactional()
+    @GetMapping("/delete/{id}")
+    public String deletePartidaDesdeLobby(@PathVariable int id) {
+        partidaService.deletePartidaById(id);
+        return "redirect:/";
     }
 
     @Transactional(readOnly = true)
