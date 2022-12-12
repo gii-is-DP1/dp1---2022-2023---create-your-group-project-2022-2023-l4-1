@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.partida;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
-import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
@@ -65,9 +64,9 @@ public class Partida extends BaseEntity {
     @JoinColumn(name = "user2", referencedColumnName = "username")
     private User user2;
 
-    public Set<User> getUsersOnTheGame() {
+    public List<User> getUsersOnTheGame() {
 
-		Set<User> usersOnTheGame = new HashSet<User>();
+		List<User> usersOnTheGame = new ArrayList<User>();
 		
 		if(this.user0 != null)
 			usersOnTheGame.add(this.user0);
@@ -83,8 +82,8 @@ public class Partida extends BaseEntity {
 	}
 
     @OneToOne
-    @JoinColumn(name = "ganador", referencedColumnName = "id")
-    private Jugador ganador;
+    @JoinColumn(name = "ganador", referencedColumnName = "username")
+    private User ganador;
 
     public boolean isNew() {
 		return this.nombreSala == null;

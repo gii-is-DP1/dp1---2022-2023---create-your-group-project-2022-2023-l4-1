@@ -22,16 +22,26 @@
                     <c:out value="${partida.nombreSala}"/>
                 </td>
                  <td>
-                    <c:forEach items="${partida.usersOnTheGame}" var="entry">
-                        <c:out value="${entry.username}"/>
-                        <p></p>
-                    </c:forEach>
+                    <c:out value="${partida.user0.username}"/>
+                    <c:out value=" (Administrador de la partida)"/>
+                    <p></p>
+                    <c:out value="${partida.user1.username}"/>
+                    <p></p>
+                    <c:out value="${partida.user2.username}"/>
                  </td>
             </tr>
         </tbody>
     </table>
-    <spring:url value="/partida/delete/${partida.id}" var="editUrl"></spring:url>
-                <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Eliminar sala</a>
+    <c:choose>
+        <c:when test="${partida.user0.username==logged}">
+            <spring:url value="/partida/delete/${partida.id}" var="editUrl"></spring:url>
+                        <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Eliminar sala</a>
+        </c:when>
+        <c:otherwise>
+            <spring:url value="/partida/leave/${partida.id}" var="editUrl"></spring:url>
+                        <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Abandonar sala</a>
+        </c:otherwise>
+    </c:choose>
     <div class="row">
         <div class="col-md-12">
             <spring:url value="/resources/images/meme-shaggy.gif" htmlEscape="true" var="dwarfGif"/>
