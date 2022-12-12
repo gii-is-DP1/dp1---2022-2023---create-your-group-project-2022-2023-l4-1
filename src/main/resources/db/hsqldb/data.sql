@@ -137,3 +137,7 @@ INSERT INTO users_achievements(user_username, achievements_id) VALUES ('pabmarva
 INSERT INTO users_achievements(user_username, achievements_id) VALUES ('davcorrom', 3);
 
 
+INSERT INTO Friends(friend_id, aux_friend_id) VALUES('ignwarmur', 'davcorrom');
+INSERT INTO Friends(friend_id, aux_friend_id) VALUES('davcorrom', 'ignwarmur');
+
+INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwarmur', 'gabvacgoy');

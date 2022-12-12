@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.partida;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesRepository;
@@ -19,38 +20,41 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PartidaService {
 
-    PartidaRepository repo;
+    PartidaRepository partidaRepository;
     AuthoritiesRepository authRepo;
     UserService userService;
     LoggedUserController loggedUser;
+    JugadorService jugadorService;
     
     @Autowired
-    public PartidaService(PartidaRepository repo, AuthoritiesRepository authRepo, UserService userService) {
-        this.repo = repo;
+    public PartidaService(PartidaRepository partidaRepository, AuthoritiesRepository authRepo, UserService userService,
+            JugadorService jugadorService) {
+        this.partidaRepository = partidaRepository;
         this.authRepo = authRepo;
         this.userService = userService;
+        this.jugadorService = jugadorService;
     }
 
-    @Transactional(readOnly = true)
-	public Partida findPartidaById(int id) throws DataAccessException {
-		return repo.findById(id).get();
-	}
-
     List<Partida> getPartidas(){
-        return repo.findAll();
+        return partidaRepository.findAll();
     }
 
     Authorities getAuthorityByUsername(String username){
         return authRepo.findByUser(username);
     }
 
+    @Transactional(readOnly = true)
+    public Partida findPartidaById(Integer id) throws DataAccessException {
+        return partidaRepository.findById(id).get();
+    }
+
     @Transactional(rollbackFor = Exception.class)
 	public void delete(Partida partida) throws Exception{
-		repo.delete(partida);
+		partidaRepository.delete(partida);
 	}
 
     public void deletePartidaById(int id){
-        repo.deleteById(id);
+        partidaRepository.deleteById(id);
     }
 
     public void save(Partida partida) {
@@ -63,7 +67,9 @@ public class PartidaService {
         partida.setTiempoRestRonda(60);
         partida.setUser0(getUserLogged());
 
-        repo.save(partida);
+        jugadorService.save(getUserLogged());
+
+        partidaRepository.save(partida);
     }
 
     public User getUserLogged() {
