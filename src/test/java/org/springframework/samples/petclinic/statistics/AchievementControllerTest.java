@@ -13,7 +13,11 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -22,6 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     excludeFilters=@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, classes=WebSecurityConfigurer.class),
     excludeAutoConfiguration=SecurityConfiguration.class)
 public class AchievementControllerTest {
+
+    public static final String ID_ACHIEVEMENT_TO_EDIT = "1";
     
     @Autowired
     private MockMvc mockMvc;
@@ -40,5 +46,53 @@ public class AchievementControllerTest {
                 andExpect(status().isOk()).
                 andExpect(view().name("/achievements/AchievementsListing")).
                 andExpect(model().attributeExists("achievements"));
+    }
+
+    @WithMockUser
+    @Test
+    public void testCreateNewAchievement() throws Exception{
+        mockMvc.perform(get("/statistics/achievements/new")).
+                andExpect(status().isOk()).
+                andExpect(view().name("/achievements/createOrUpdateAchievementForm")).
+                andExpect(model().attributeExists("achievement"));
+    }
+
+    @WithMockUser
+    @Test
+    public void testEditAchievement() throws Exception{
+        when(achievementService.getById(anyInt())).thenReturn(new Achievement());
+
+        mockMvc.perform(get("/statistics/achievements/{id}/edit", ID_ACHIEVEMENT_TO_EDIT)).
+                andExpect(status().isOk()).
+                andExpect(view().name("/achievements/createOrUpdateAchievementForm")).
+                andExpect(model().attributeExists("achievement"));
+    }
+
+    @WithMockUser
+    @Test
+    public void testAchievementUpdateUnsuccessful() throws Exception{
+        when(achievementService.getById(anyInt())).thenReturn(new Achievement());
+
+        mockMvc.perform(post("/statistics/achievements/{id}/edit",ID_ACHIEVEMENT_TO_EDIT).
+                            with(csrf()).
+                            param("name","Enano Supremo, la Venganza")).
+                andExpect(status().isOk()).
+                andExpect(view().name("/achievements/createOrUpdateAchievementForm")).
+                andExpect(model().attributeExists("achievement"));
+    }
+
+    @WithMockUser
+    @Test
+    public void testAchievementUpdateSuccessful() throws Exception{
+        when(achievementService.getById(anyInt())).thenReturn(new Achievement());
+
+        mockMvc.perform(post("/statistics/achievements/{id}/edit",ID_ACHIEVEMENT_TO_EDIT).
+                            with(csrf()).
+                            param("name","Enano Supremo, la Venganza").
+                            param("description","Toma tu venganza frente a un antiguo rival").
+                            param("badgeImage", "ejemploDeImagen.png")).
+                andExpect(status().isOk()).
+                andExpect(view().name("/achievements/AchievementsListing")).
+                andExpect(model().attributeExists("achievement"));
     }
 }

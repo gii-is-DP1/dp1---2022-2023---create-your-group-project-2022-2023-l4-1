@@ -55,5 +55,20 @@
     <spring:url value="delete/${user.username}" var="editUrl">
     </spring:url>
     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Eliminar perfil</a>
-	
+
+    <spring:url value="perfil/estadistica" var="editUrl">
+    </spring:url>
+    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Estadisticas</a>
+    
+    <tr> 
+        <td>
+            <a class="btn btn-default" href="/users/${user.username}/invitations">Agregar Amigo</a>
+        </td>  
+    </tr>
+
+    <tr> 
+        <td>
+            <a class="btn btn-default" href="/users/${user.username}/friends">Amigos</a>
+        </td>  
+    </tr>
 </petclinic:layout>

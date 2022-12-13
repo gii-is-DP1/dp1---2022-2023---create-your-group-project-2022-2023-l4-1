@@ -13,10 +13,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
-import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
+import org.springframework.samples.petclinic.user.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,60 +33,60 @@ public class Partida extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private NumRondas rondas;
 
-    @NotNull
     @Min(0)
     private Integer duracion;
 
-    @NotNull
-    @Min(1)
+    @Min(0)
     private Integer numRonda;
-    
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "jugador0", referencedColumnName = "id")
-    private Jugador jugador0;
-    
-    @OneToOne
-    @JoinColumn(name = "jugador1", referencedColumnName = "id")
-    private Jugador jugador1;
-   
-    @OneToOne
-    @JoinColumn(name = "jugador2", referencedColumnName = "id")
-    private Jugador jugador2;
 
-    @NotNull
     @Range(min=0,max=60)
     private Integer tiempoRestRonda;
     
-    @NotNull
     @Range(min=0,max=2)
     private Integer jugadorActivo;
 
-    @NotNull
     @Range(min=0,max=2)
     private Integer siguienteJugador;
 
-    @NotNull
     @Enumerated(value = EnumType.STRING)
     @Column(name = "fase_actual")
     private Fase faseActual;
 
     @OneToOne
-    @JoinColumn(name = "ganador", referencedColumnName = "id")
-    private Jugador ganador;
+    @JoinColumn(name = "user0", referencedColumnName = "username")
+    private User user0;
+    
+    @OneToOne
+    @JoinColumn(name = "user1", referencedColumnName = "username")
+    private User user1;
+   
+    @OneToOne
+    @JoinColumn(name = "user2", referencedColumnName = "username")
+    private User user2;
 
-    public List<String> getUsernameList() {
-		List<String> pList = new ArrayList<String>();
-		
-		if(this.jugador0 != null)
-			pList.add(this.jugador0.getUser().getUsername());
+    public List<User> getUsersOnTheGame() {
 
-        if(this.jugador0 != null)
-		pList.add(this.jugador1.getUser().getUsername());
+		List<User> usersOnTheGame = new ArrayList<User>();
 		
-        if(this.jugador0 != null)
-	    pList.add(this.jugador2.getUser().getUsername());
+		if(this.user0 != null)
+			usersOnTheGame.add(this.user0);
+
+        if(this.user1 != null)
+            usersOnTheGame.add(this.user1);
 		
-		return pList;
+        if(this.user2 != null)
+            usersOnTheGame.add(this.user2);
+		
+		return usersOnTheGame;
+
 	}
+
+    @OneToOne
+    @JoinColumn(name = "ganador", referencedColumnName = "username")
+    private User ganador;
+
+    public boolean isNew() {
+		return this.nombreSala == null;
+	}
+
 }
