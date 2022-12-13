@@ -24,10 +24,13 @@
                     <c:out value="${partida.nombreSala}"/>
                 </td>
                 <td>
-                    <c:out value="${partida.ganador.user.username}"/>
+                    <c:out value="${partida.ganador.username}"/>
                 </td>
                  <td>
-                    <c:out value="${partida.usernameList}"/>
+                    <c:forEach items="${partida.usersOnTheGame}" var="entry">
+                        <c:out value="${entry.username}"/>
+                        <p></p>
+                    </c:forEach>
                  </td>
                  <td> 
                     <a href="/partida/${partida.id}/delete"> 
