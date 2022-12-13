@@ -1,8 +1,10 @@
 package org.springframework.samples.petclinic.partida;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.user.Authorities;
@@ -57,6 +59,24 @@ public class PartidaService {
         partidaRepository.deleteById(id);
     }
 
+    public void deleteUserInAGame(Integer id) {
+        Partida game = findPartidaById(id);
+        String username = getUserLogged().getUsername();
+        List<Jugador> jugadoresInGame = getPlayersInAGame(id);
+        if (game.getUser1().getUsername() == username) {
+            for (Jugador j: jugadoresInGame) {
+                if (j.getUser().getUsername() == getUserLogged().getUsername()) jugadorService.deleteJugadorById(j.getId());
+            }
+            game.setUser1(null);
+        }
+        else {
+            for (Jugador j: jugadoresInGame) {
+                if (j.getUser().getUsername() == getUserLogged().getUsername()) jugadorService.deleteJugadorById(j.getId());
+            }
+            game.setUser2(null);
+        }
+    }
+
     public void save(Partida partida) {
 
         partida.setDuracion(0);
@@ -66,8 +86,6 @@ public class PartidaService {
         partida.setSiguienteJugador(2);
         partida.setTiempoRestRonda(60);
         partida.setUser0(getUserLogged());
-
-        jugadorService.save(getUserLogged());
 
         partidaRepository.save(partida);
     }
@@ -82,6 +100,15 @@ public class PartidaService {
 			}
 		}
         return userService.findUser(username).get();
+    }
+
+    public List<Jugador> getPlayersInAGame(int idPartida) {
+        List<Jugador> jugadores = new ArrayList<Jugador>();
+        List<Jugador> jugadoresGeneral = jugadorService.getJugadores();
+        for (Jugador j: jugadoresGeneral) {
+            if (j.getPartida().getId() == idPartida) jugadores.add(j);
+        }
+        return jugadores;
     }
 
 }

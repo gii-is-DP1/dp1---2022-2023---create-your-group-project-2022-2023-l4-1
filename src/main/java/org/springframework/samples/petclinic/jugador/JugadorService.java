@@ -1,9 +1,11 @@
 package org.springframework.samples.petclinic.jugador;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.partida.Partida;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +21,12 @@ public class JugadorService {
 	}	
 
 	@Transactional(readOnly = true)
-	public Jugador findOwnerById(int id) throws DataAccessException {
+	public Jugador findJugadorById(int id) throws DataAccessException {
 		return jugadorRepository.findById(id);
+	}
+
+	public List<Jugador> getJugadores() {
+		return jugadorRepository.findAll();
 	}
 
 	@Transactional(readOnly = true)
@@ -28,7 +34,11 @@ public class JugadorService {
 		return jugadorRepository.findByLastName(lastName);
 	}
 
-	public void save(User user) {
+	public void deleteJugadorById(int id){
+        jugadorRepository.deleteById(id);
+    }
+
+	public void save(User user, Partida partida) {
 
 		Jugador jugador = new Jugador();
 		jugador.setEsJugadorInicial(false);
@@ -40,6 +50,7 @@ public class JugadorService {
 		jugador.setCantidadOro(0);
 		jugador.setCantidadMedallas(0);
 		jugador.setUser(user);
+		jugador.setPartida(partida);
 
 		jugadorRepository.save(jugador);
 	}

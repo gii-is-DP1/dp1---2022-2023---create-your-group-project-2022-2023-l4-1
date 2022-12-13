@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
@@ -100,7 +101,18 @@ public class PartidaController {
     @Transactional()
     @GetMapping("/delete/{id}")
     public String deletePartidaDesdeLobby(@PathVariable int id) {
+        List<Jugador> jugadoresInGame = partidaService.getPlayersInAGame(id);
+        for (Jugador j: jugadoresInGame) {
+            jugadorService.deleteJugadorById(j.getId());
+        }
         partidaService.deletePartidaById(id);
+        return "redirect:/";
+    }
+
+    @Transactional()
+    @GetMapping("/leave/{id}")
+    public String leaveGame(@PathVariable int id) {
+        partidaService.deleteUserInAGame(id);
         return "redirect:/";
     }
 
@@ -121,6 +133,7 @@ public class PartidaController {
 		}
 		else {
 			this.partidaService.save(partida);
+            this.jugadorService.save(partidaService.getUserLogged(), partida);
             Integer id_sala = partida.getId();
 			return "redirect:../lobby/" + id_sala;
 		}
@@ -139,7 +152,7 @@ public class PartidaController {
         // Para los usuarios que deseen unirse a una partida.
         // Si el usuario no se encuentra en la partida...
         if (!partida.getUsersOnTheGame().contains(partidaService.getUserLogged())) {
-            jugadorService.save(partidaService.getUserLogged()); // Se guarda un nuevo jugador relacionado al usuario que se une a la partida.
+            jugadorService.save(partidaService.getUserLogged(), partida); // Se guarda un nuevo jugador relacionado al usuario que se une a la partida.
 
             // Si la partida tiene 1 solo jugador entonces el nuevo usuario será el usuario 2 de la partida.
             if (partida.getUser1() == null) partida.setUser1(partidaService.getUserLogged());
@@ -150,6 +163,8 @@ public class PartidaController {
         }
 
         res.addObject("partida", partida);
+        res.addObject("logged", partidaService.getUserLogged().getUsername());
+         
         return res;
     }
  
