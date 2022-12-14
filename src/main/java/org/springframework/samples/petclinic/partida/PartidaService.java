@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
+import org.springframework.samples.petclinic.tablero.TableroService;
 import org.springframework.samples.petclinic.user.Authorities;
 import org.springframework.samples.petclinic.user.AuthoritiesRepository;
 import org.springframework.samples.petclinic.user.User;
@@ -27,14 +28,16 @@ public class PartidaService {
     UserService userService;
     LoggedUserController loggedUser;
     JugadorService jugadorService;
+    TableroService tableroService;
     
     @Autowired
     public PartidaService(PartidaRepository partidaRepository, AuthoritiesRepository authRepo, UserService userService,
-            JugadorService jugadorService) {
+            JugadorService jugadorService, TableroService tableroService) {
         this.partidaRepository = partidaRepository;
         this.authRepo = authRepo;
         this.userService = userService;
         this.jugadorService = jugadorService;
+        this.tableroService = tableroService;
     }
 
     List<Partida> getPartidas(){
@@ -88,6 +91,11 @@ public class PartidaService {
         partida.setUser0(getUserLogged());
 
         partidaRepository.save(partida);
+    }
+
+    public void iniciarPartida(Integer id) {
+        Partida partida = findPartidaById(id);
+        partida.setFaseActual(Fase.PREPARACION);
     }
 
     public User getUserLogged() {
