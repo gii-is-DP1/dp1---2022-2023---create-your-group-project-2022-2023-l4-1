@@ -141,12 +141,13 @@ public class PartidaController {
 
     @Transactional()
     @GetMapping("lobby/{id_sala}")
-    public ModelAndView goToLobby(@PathVariable("id_sala") Integer id_sala, HttpServletResponse response) {
-
+    public String goToLobby(@PathVariable("id_sala") Integer id_sala, Map<String, Object> model, 
+            HttpServletResponse response) {
+        
         // Refresco de página.
         response.addHeader("Refresh", "5");
 
-        ModelAndView res = new ModelAndView(LOBBY_VIEW); // Muestra el lobby de la partida.
+        //ModelAndView res = new ModelAndView(LOBBY_VIEW); // Muestra el lobby de la partida.
         Partida partida = partidaService.findPartidaById(id_sala); // Obtiene la partida que se acaba de crear.
 
         // Para los usuarios que deseen unirse a una partida.
@@ -162,10 +163,17 @@ public class PartidaController {
             } 
         }
 
-        res.addObject("partida", partida);
-        res.addObject("logged", partidaService.getUserLogged().getUsername());
+        model.put("partida", partida);
+        model.put("logged", partidaService.getUserLogged().getUsername());
          
-        return res;
+        return LOBBY_VIEW;
+    }
+
+    @Transactional()
+    @GetMapping(value = "/start/{id}")
+    public String iniciarPartida(@PathVariable int id) {
+        partidaService.iniciarPartida(id);
+        return "redirect:/";
     }
  
 }
