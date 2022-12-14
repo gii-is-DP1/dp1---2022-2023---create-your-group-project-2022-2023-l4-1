@@ -112,7 +112,52 @@ public class PartidaController {
     @Transactional()
     @GetMapping("/leave/{id}")
     public String leaveGame(@PathVariable int id) {
-        partidaService.deleteUserInAGame(id);
+        List<Jugador> jugadoresInGame = partidaService.getPlayersInAGame(id);
+        Partida game = partidaService.findPartidaById(id);
+        if (jugadoresInGame.size() == 1) {
+            for (Jugador j: jugadoresInGame) {
+                jugadorService.deleteJugadorById(j.getId());
+            }
+            partidaService.deletePartidaById(id);
+        } else if (jugadoresInGame.size() == 2) {
+            if (game.getUser0().getUsername() == partidaService.getUserLogged().getUsername()) {
+                User user1 = userService.findUser(game.getUser1().getUsername()).get();
+                game.setUser0(user1);
+                game.setUser1(null);
+                game.setUser2(null);
+                Integer idUser0 = jugadoresInGame.get(0).getId();
+                jugadoresInGame.remove(0);
+                jugadorService.deleteJugadorById(idUser0);
+            } else {
+                game.setUser1(null);
+                Integer idUser1 = jugadoresInGame.get(1).getId();
+                jugadoresInGame.remove(1);
+                jugadorService.deleteJugadorById(idUser1);
+            }
+        } else if (jugadoresInGame.size() == 3) {
+            if (game.getUser0().getUsername() == partidaService.getUserLogged().getUsername()) {
+                User user1 = userService.findUser(game.getUser1().getUsername()).get();
+                User user2 = userService.findUser(game.getUser2().getUsername()).get();
+                game.setUser0(user1);
+                game.setUser1(user2);
+                game.setUser2(null);
+                Integer idUser0 = jugadoresInGame.get(0).getId();
+                jugadoresInGame.remove(0);
+                jugadorService.deleteJugadorById(idUser0);
+            } else if (game.getUser1().getUsername() == partidaService.getUserLogged().getUsername()) {
+                User user2 = userService.findUser(game.getUser2().getUsername()).get();
+                game.setUser1(user2);
+                game.setUser2(null);
+                Integer idUser1 = jugadoresInGame.get(1).getId();
+                jugadoresInGame.remove(1);
+                jugadorService.deleteJugadorById(idUser1);
+            } else {
+                game.setUser2(null);
+                Integer idUser2 = jugadoresInGame.get(2).getId();
+                jugadoresInGame.remove(2);
+                jugadorService.deleteJugadorById(idUser2);
+            }
+        }
         return "redirect:/";
     }
 
