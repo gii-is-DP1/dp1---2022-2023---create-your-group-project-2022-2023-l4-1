@@ -7,15 +7,14 @@ public enum NombreCartaMontana {
     Great_Dragon, 
     Knockers, 
     Forge_Maze, 
-    Gold_Seam, 
-    Iron_Seam, 
+    Seam,
     Dragon, 
     Get_Help, 
     Forge_Diadem, 
     Forge_Helm, 
     Forge_Axe, 
     Forge_Crown, 
-    Sidhe, 
+    Shide, 
     Forge_Dagger, 
     Forge_Armour; 
 }
