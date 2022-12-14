@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -86,14 +88,12 @@ public class User {
 				.append("biografia", this.biografia).toString();
 	}
 
-
 	@ManyToMany(cascade = {CascadeType.PERSIST , CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinTable(name="friends",
 			joinColumns= {@JoinColumn(name="friend_id")},
 			inverseJoinColumns = {@JoinColumn(name="aux_friend_id")})
 	private Set<User> friends = new HashSet<User>();
 
-    @ManyToMany(mappedBy="friends", cascade = {CascadeType.PERSIST , CascadeType.REFRESH, CascadeType.REMOVE})
 	private Set<User> auxFriends = new HashSet<User>();
 
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
