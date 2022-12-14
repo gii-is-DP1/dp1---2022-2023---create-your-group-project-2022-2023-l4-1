@@ -1,11 +1,13 @@
 package org.springframework.samples.petclinic.CartaDeLaMontana;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petclinic.carta.Carta;
 import org.springframework.samples.petclinic.carta.enums.NombreCartaMontana;
 import org.springframework.samples.petclinic.carta.enums.RangoCarta;

@@ -5,6 +5,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petclinic.model.BaseEntity;
 
 import lombok.Getter;
@@ -22,8 +23,7 @@ public class Carta extends BaseEntity {
     private String imagen;
 
     @NotNull
-    @Min(1)
-    @Max(12)
+    @Range(min=0, max=12)
     private Integer posicion;
     
 
