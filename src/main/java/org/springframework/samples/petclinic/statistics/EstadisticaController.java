@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.user.User;
+import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.samples.petclinic.web.LoggedUserController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,6 +25,9 @@ public class EstadisticaController {
     @Autowired
     LoggedUserController currentUser;
 
+    @Autowired
+    UserService userService;
+
 
     @Autowired
     public EstadisticaController(EstadisticaService estadisticaService) {
@@ -31,16 +35,10 @@ public class EstadisticaController {
     }
 
     @InitBinder
-    public void setAllowedFields(WebDataBinder dataBinder) {
-        dataBinder.setDisallowedFields("id");
-    }
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
 
-   /*  @GetMapping(value = "/estadisticas")
-    public String initStatistics(Map<String, Object> model) {
-        model.put("estadisticas", new Estadistica());
-        return "estadisticas/findEstadisticas";
-    }
-*/
     @GetMapping(value = "perfil/estadistica/{username}")
     public ModelAndView getStatistics(@RequestParam("username") String username) {
         ModelAndView mav = new ModelAndView("estadistica");
@@ -59,33 +57,16 @@ public class EstadisticaController {
 				username = userLogged.getUsername();
 			}
 		}
+        
 		ModelAndView mav = new ModelAndView("estadisticas/estadisticasUser");
-		Estadistica estadisticaToShow = this.estadisticaService.findStatisticsByUsername(username).get();
-        if(estadisticaToShow != null){
-            mav.addObject("estadistica", estadisticaToShow);
-        }else{
-            mav.addObject("estadistica", new Estadistica());
-        }
+		Estadistica estadisticaToShow = new Estadistica();
+        if(!this.estadisticaService.findStatisticsByUsername(username).isPresent())
+        estadisticaService.newStatistics(userService.findUser(username).get());
+        
+        estadisticaToShow = this.estadisticaService.findStatisticsByUsername(username).get();
+        mav.addObject("estadistica", estadisticaToShow);
 		return mav;
     }
-  /*   @GetMapping("/estadistica")
-    public ModelAndView showStatistics() {
-
-        Authentication auth =SecurityContextHolder.getContext().getAuthentication();
-        String username = "";
-		if (auth!=null) {
-			if (auth.isAuthenticated() && auth.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
-				org.springframework.security.core.userdetails.User userLogged = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
-				username = userLogged.getUsername();
-			}
-		}
-
-
-        ModelAndView mav = new ModelAndView("/estadistica");
-        Estadistica estadisticasToShow = estadisticaService.findStatisticsByUsername(username).get();
-        mav.addObject("estadistica", estadisticasToShow);
-        return mav;
-    }*/
 
     
 }

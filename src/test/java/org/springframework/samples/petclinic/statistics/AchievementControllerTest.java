@@ -90,7 +90,8 @@ public class AchievementControllerTest {
                             with(csrf()).
                             param("name","Enano Supremo, la Venganza").
                             param("description","Toma tu venganza frente a un antiguo rival").
-                            param("badgeImage", "ejemploDeImagen.png")).
+                            param("badgeImage", "ejemploDeImagen.png").
+                            param("threshold", "10.0")).
                 andExpect(status().isOk()).
                 andExpect(view().name("/achievements/AchievementsListing")).
                 andExpect(model().attributeExists("achievement"));
