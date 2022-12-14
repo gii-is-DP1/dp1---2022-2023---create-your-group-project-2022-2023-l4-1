@@ -39,7 +39,7 @@ public class EstadisticaService {
     @Transactional
     public void newStatistics(User user) throws DataAccessException {
         Estadistica estadisticas = new Estadistica();
-        estadisticas.setTiempoJugado(Duration.ofSeconds(0));
+        estadisticas.setTiempoJugado(Duration.ofSeconds(00));
 		estadisticas.setPartidasJugadas(0);
 		estadisticas.setPartidasGanadas(0);
 		estadisticas.setHierroTotal(0);
