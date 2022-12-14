@@ -16,5 +16,6 @@ public interface PartidaRepository extends CrudRepository<Partida, Integer> {
 
     @Query("SELECT partida FROM Partida partida WHERE partida.id =:id")
 	public Partida findById(@Param("id") int id);
+    
 
 }
