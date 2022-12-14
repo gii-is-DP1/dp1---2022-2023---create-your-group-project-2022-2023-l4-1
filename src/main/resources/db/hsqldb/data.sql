@@ -144,3 +144,6 @@ INSERT INTO Friends(friend_id, aux_friend_id) VALUES('ignwarmur', 'davcorrom');
 INSERT INTO Friends(friend_id, aux_friend_id) VALUES('davcorrom', 'ignwarmur');
 
 INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwarmur', 'gabvacgoy');
+
+
+INSERT INTO tablero(id, background, width, height) VALUES (1, 'resources/images/cueva-juego.png', 800, 800);
