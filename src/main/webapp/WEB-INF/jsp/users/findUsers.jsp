@@ -20,7 +20,7 @@
 
 <petclinic:layout pageName="findUsers">
     <body class="background">
-    <h2 style="color:aliceblue">Find Users</h2>
+    <h2 style="color:aliceblue">Buscar Usuarios</h2>
 
     
     <form:form modelAttribute="user" action="/users" method="get" class="form-horizontal"

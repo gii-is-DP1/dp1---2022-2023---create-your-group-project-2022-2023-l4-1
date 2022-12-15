@@ -44,9 +44,9 @@
 
 				<sec:authorize access="isAuthenticated()">
 					<petclinic:menuItem active="${name eq 'find users'}" url="/users/find"
-						title="find users">
+						title="Buscar Usuario">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						<span>Find users</span>
+						<span>Buscar Usuario</span>
 					</petclinic:menuItem>
 				</sec:authorize>
 
