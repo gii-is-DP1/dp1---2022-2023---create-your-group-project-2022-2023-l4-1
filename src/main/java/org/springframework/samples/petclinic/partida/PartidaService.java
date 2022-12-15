@@ -62,6 +62,7 @@ public class PartidaService {
         partidaRepository.deleteById(id);
     }
 
+    @Transactional()
     public void deleteUserInAGame(Integer id) {
         Partida game = findPartidaById(id);
         String username = getUserLogged().getUsername();
@@ -70,7 +71,8 @@ public class PartidaService {
             for (Jugador j: jugadoresInGame) {
                 if (j.getUser().getUsername() == getUserLogged().getUsername()) jugadorService.deleteJugadorById(j.getId());
             }
-            game.setUser1(null);
+            game.setUser1(game.getUser2());
+            game.setUser2(null);
         }
         else {
             for (Jugador j: jugadoresInGame) {
