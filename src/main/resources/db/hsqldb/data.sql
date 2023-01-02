@@ -29,66 +29,66 @@ INSERT INTO authorities(id,username,authority) VALUES (3, 'ignwarmur', 'player')
 
 
 -- Cartas iniciales.
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (1, 'Iron_Seam', 'Take 3 iron from the supply.', 1, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (2, 'Iron_Seam', 'Take 3 iron from the supply.', 2, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (3, 'Iron_Seam', 'Take 3 iron from the supply.', 3, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (4, 'Iron_Seam', 'Take 3 iron from the supply.', 4, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (5, 'Iron_Seam', 'Take 3 iron from the supply.', 5, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (6, 'Iron_Seam', 'Take 3 iron from the supply.', 6, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (7, 'Gold_Seam', 'Take 1 gold from the supply.', 7, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (8, 'Iron_Seam', 'Take 3 iron from the supply.', 8, 'imagen');
-INSERT INTO cartas_iniciales(id,nombre,descripcion,posicion,imagen) VALUES (9, 'Gold_Seam', 'Take 1 gold from the supply.', 9, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (1, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 1, '/resources/images/cartas/Carta 1.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (2, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 2, '/resources/images/cartas/Carta 2.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (3, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 3, '/resources/images/cartas/Carta 3.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (4, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 4, '/resources/images/cartas/Carta 4.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (5, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 5, '/resources/images/cartas/Carta 5.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (6, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 6, '/resources/images/cartas/Carta 6.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (7, 'Gold_Seam', 'Extraccion', 'Inicial', 'Take 1 gold from the supply.', 7, '/resources/images/cartas/Carta 7.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (8, 'Iron_Seam', 'Extraccion', 'Inicial', 'Take 3 iron from the supply.', 8, '/resources/images/cartas/Carta 8.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (9, 'Gold_Seam', 'Extraccion', 'Inicial', 'Take 1 gold from the supply.', 9, '/resources/images/cartas/Carta 9.png');
 
 -- Cartas de la montaña.
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (1, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 1, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (2, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot take any extraction actions.', 2, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (3, 'Forge_Sword', 'Forja', 'B', 'Return 3 steel to the supply then take 1 item.', 3, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (4, 'Great_Dragon', 'Defensa', 'A', 'If undefended at the end of the round, each player must return all gold they possess to the supply.', 4, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (5, 'Knockers', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 5, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (6, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 6, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (7, 'Forge_Mace', 'Forja', 'A', 'Return 2 steel and 1 gold to the supply then take 1 item.', 7, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (8, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 8, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (9, 'Iron_Seam', 'Extraccion', 'A', 'Take 3 iron from the supply.', 9, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (10, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 1, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (11, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot take any extraction actions.', 2, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (12, 'Forge_Sword', 'Forja', 'B', 'Return 3 steel to the supply then take 1 item.', 3, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (13, 'Great_Dragon', 'Defensa', 'A', 'If undefended at the end of the round, each player must return all gold they possess to the supply.', 4, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (14, 'Knockers', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 5, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (15, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 6, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (16, 'Forge_Mace', 'Forja', 'A', 'Return 2 steel and 1 gold to the supply then take 1 item.', 7, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (17, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 8, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (18, 'Iron_Seam', 'Extraccion', 'A', 'Take 3 iron from the supply.', 9, 'imagen');
 
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (10, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 1, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (11, 'Orc_Raiders', 'Defensa', 'B', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 2, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (12, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 3, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (13, 'Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 4, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (14, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 5, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (15, 'Get_Help', 'Ayuda', 'B', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 6, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (16, 'Forge_Diadem', 'Forja', 'B', 'Return 1 iron, 1 steel and 1 gold to the supply then take 1 item.', 7, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (17, 'Forge_Helm', 'Forja', 'B', 'Return 1 steel and 2 gold to the supply then take 1 item.', 8, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (18, 'Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 9, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (19, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 1, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (20, 'Orc_Raiders', 'Defensa', 'B', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 2, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (21, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 3, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (22, 'Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 4, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (23, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 5, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (24, 'Get_Help', 'Ayuda', 'B', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 6, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (25, 'Forge_Diadem', 'Forja', 'B', 'Return 1 iron, 1 steel and 1 gold to the supply then take 1 item.', 7, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (26, 'Forge_Helm', 'Forja', 'B', 'Return 1 steel and 2 gold to the supply then take 1 item.', 8, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (27, 'Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 9, 'imagen');
 
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (19, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 1, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (20, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 2, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (21, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 3, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (22, 'Forge_Axe', 'Forja', 'A', 'Return 2 steel to the supply then take 1 item.', 4, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (23, 'Get_Help', 'Ayuda', 'A', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 5, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (24, 'Forge_Crown', 'Forja', 'A', 'Return 3 gold to the supply then take 1 item.', 6, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (25, 'Iron_Seam', 'Extraccion', 'B', 'Take 3 iron from the supply.', 7, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (26, 'Dragon', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 8, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (27, 'Iron_Seam', 'Extraccion', 'B', 'Take 3 iron from the supply.', 9, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (28, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 1, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (29, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 2, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (30, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 3, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (31, 'Forge_Axe', 'Forja', 'A', 'Return 2 steel to the supply then take 1 item.', 4, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (32, 'Get_Help', 'Ayuda', 'A', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 5, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (33, 'Forge_Crown', 'Forja', 'A', 'Return 3 gold to the supply then take 1 item.', 6, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (34, 'Iron_Seam', 'Extraccion', 'B', 'Take 3 iron from the supply.', 7, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (35, 'Dragon', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 8, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (36, 'Iron_Seam', 'Extraccion', 'B', 'Take 3 iron from the supply.', 9, 'imagen');
   
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (28, 'Sidhe', 'Defensa', 'A', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 1, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (29, 'Sidhe', 'Defensa', 'A', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 2, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (30, 'Get_Help', 'Ayuda', 'B', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 3, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (31, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 4, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (32, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 5, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (33, 'Knockers', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 6, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (34, 'Knockers', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 7, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (35, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 8, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (36, 'Forge_Dagger', 'Forja', 'A', 'Return 1 iron and 2 steel to the supply then take 1 item.', 9, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (37, 'Sidhe', 'Defensa', 'A', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 1, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (38, 'Sidhe', 'Defensa', 'A', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 2, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (39, 'Get_Help', 'Ayuda', 'B', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 3, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (40, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 4, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (41, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 5, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (42, 'Knockers', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 6, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (43, 'Knockers', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 7, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (44, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 8, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (45, 'Forge_Dagger', 'Forja', 'A', 'Return 1 iron and 2 steel to the supply then take 1 item.', 9, 'imagen');
 
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (37, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 1, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (38, 'Sidhe', 'Defensa', 'B', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 2, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (39, 'Great_Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return all gold they possess to the supply.', 3, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (40, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 4, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (41, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 5, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (42, 'Forge_Armour', 'Forja', 'B', 'Return 2 steel and 1 gold to the supply then take 1 item.', 6, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (43, 'Get_Help', 'Ayuda', 'A', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 7, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (44, 'Knockers', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 8, 'imagen');
-INSERT INTO cartas_de_la_montana(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (45, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 9, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (46, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 1, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (47, 'Sidhe', 'Defensa', 'B', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 2, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (48, 'Great_Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return all gold they possess to the supply.', 3, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (49, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 4, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (50, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 5, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (51, 'Forge_Armour', 'Forja', 'B', 'Return 2 steel and 1 gold to the supply then take 1 item.', 6, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (52, 'Get_Help', 'Ayuda', 'A', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 7, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (53, 'Knockers', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 8, 'imagen');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (54, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 9, 'imagen');
 
 -- Cartas especiales.
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen) VALUES (1, 'Muster_an_Army', 'When resolving actions this round, treat al defend locations as if they are occupied.', 'Iron_Seam', 'Take 3 iron from the supply.', 1, 'imagen');
@@ -147,3 +147,23 @@ INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwar
 
 
 INSERT INTO tablero(id, background, width, height) VALUES (1, 'resources/images/cueva-juego.png', 800, 800);
+
+INSERT INTO celda(id,tablero) VALUES (1, 1);
+INSERT INTO celda(id,tablero) VALUES (2, 1);
+INSERT INTO celda(id,tablero) VALUES (3, 1);
+INSERT INTO celda(id,tablero) VALUES (4, 1);
+INSERT INTO celda(id,tablero) VALUES (5, 1);
+INSERT INTO celda(id,tablero) VALUES (6, 1);
+INSERT INTO celda(id,tablero) VALUES (7, 1);
+INSERT INTO celda(id,tablero) VALUES (8, 1);
+INSERT INTO celda(id,tablero) VALUES (9, 1);
+
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (1, 1);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (2, 2);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (3, 3);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (4, 4);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (5, 5);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (6, 6);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (7, 7);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (8, 8);
+INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (9, 9);

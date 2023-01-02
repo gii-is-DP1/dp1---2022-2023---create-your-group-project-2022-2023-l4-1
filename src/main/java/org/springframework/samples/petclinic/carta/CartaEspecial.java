@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "cartas_especiales")
-public class CartaEspecial extends Carta {
+public class CartaEspecial extends CartaBase {
 
     @NotNull
     @Enumerated(value = EnumType.STRING)
