@@ -10,7 +10,7 @@
 <petclinic:layout pageName="lobby">
     <c:choose>
         <c:when test="${partida.getFaseActual()=='PREPARACION'}">
-            <c:redirect url="/"/>
+            <c:redirect url="/partida/tablero/2"/>
         </c:when>
         <c:otherwise>
             <h2>Lobby</h2>
@@ -38,8 +38,16 @@
                 </tbody>
             </table>
             <c:if test="${partida.user0.username==logged}">
-                <spring:url value="/partida/start/${partida.id}" var="editUrl"></spring:url>
-                    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Iniciar partida</a>
+                <c:choose>
+                    <c:when test="${partida.getUsersOnTheGame().size()==1}">
+                        <p>¡No se puede iniciar la partida con 1 solo jugador!</p>
+                        <br/>
+                    </c:when>
+                    <c:otherwise>
+                        <spring:url value="/partida/tablero/create/${partida.id}" var="editUrl"></spring:url>
+                            <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Iniciar partida</a>
+                    </c:otherwise>
+                </c:choose>
             </c:if>
             <spring:url value="/partida/leave/${partida.id}" var="editUrl"></spring:url>
                 <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Abandonar sala</a>

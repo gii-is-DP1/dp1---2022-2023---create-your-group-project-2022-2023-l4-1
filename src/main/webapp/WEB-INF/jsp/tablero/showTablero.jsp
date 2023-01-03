@@ -21,33 +21,35 @@
 
 <game:layout pageName="home">
 
+    <h2>Sala</h2>
+
     <div class="board">
         <div class="right">
-            <img id= "celda0" width="200" height="285" src="/resources/images/cartas/Carta 1.png" name="${tablero.celdas[0].cartas[0]}">
+            <img id= "celda0" width="200" height="285" src="/resources/images/cartas/Carta 1.png">
         </div>
         <div class="right">
-            <img id= "celda1" width="200" height="285" src="/resources/images/cartas/Carta 2.png" name="${tablero.celdas[1].cartas[0]}">
+            <img id= "celda1" width="200" height="285" src="/resources/images/cartas/Carta 2.png">
         </div>
         <div class="right">
-            <img id= "celda2" width="200" height="285" src="/resources/images/cartas/Carta 3.png" name="${tablero.celdas[2].cartas[0]}">
+            <img id= "celda2" width="200" height="285" src="/resources/images/cartas/Carta 3.png">
         </div>
         <div class="right">
-            <img id= "celda3" width="200" height="285" src="/resources/images/cartas/Carta 4.png" name="${tablero.celdas[3].cartas[0]}">
+            <img id= "celda3" width="200" height="285" src="/resources/images/cartas/Carta 4.png">
         </div>
         <div class="right">
-            <img id= "celda4" width="200" height="285" src="/resources/images/cartas/Carta 5.png" name="${tablero.celdas[4].cartas[0]}">
+            <img id= "celda4" width="200" height="285" src="/resources/images/cartas/Carta 5.png">
         </div>
         <div class="right">
-            <img id= "celda5" width="200" height="285" src="/resources/images/cartas/Carta 6.png" name="${tablero.celdas[5].cartas[0]}">
+            <img id= "celda5" width="200" height="285" src="/resources/images/cartas/Carta 6.png">
         </div>
         <div class="right">
-            <img id= "celda6" width="200" height="285" src="/resources/images/cartas/Carta 7.png" name="${tablero.celdas[6].cartas[0]}">
+            <img id= "celda6" width="200" height="285" src="/resources/images/cartas/Carta 7.png">
         </div>
         <div class="right">
-            <img id= "celda7" width="200" height="285" src="/resources/images/cartas/Carta 8.png" name="${tablero.celdas[7].cartas[0]}">
+            <img id= "celda7" width="200" height="285" src="/resources/images/cartas/Carta 8.png">
         </div>
         <div class="right">
-            <img id= "celda8" width="200" height="285" src="/resources/images/cartas/Carta 9.png" name="${tablero.celdas[8].cartas[0]}">
+            <img id= "celda8" width="200" height="285" src="/resources/images/cartas/Carta 9.png">
         </div>
     </div>
 

@@ -146,24 +146,24 @@ INSERT INTO Friends(friend_id, aux_friend_id) VALUES('davcorrom', 'ignwarmur');
 INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwarmur', 'gabvacgoy');
 
 
-INSERT INTO tablero(id, background, width, height) VALUES (1, 'resources/images/cueva-juego.png', 800, 800);
+INSERT INTO tablero(id, background, width, height, partida) VALUES (1, 'resources/images/cueva-juego.png', 800, 800, 1);
 
-INSERT INTO celda(id,tablero) VALUES (1, 1);
-INSERT INTO celda(id,tablero) VALUES (2, 1);
-INSERT INTO celda(id,tablero) VALUES (3, 1);
-INSERT INTO celda(id,tablero) VALUES (4, 1);
-INSERT INTO celda(id,tablero) VALUES (5, 1);
-INSERT INTO celda(id,tablero) VALUES (6, 1);
-INSERT INTO celda(id,tablero) VALUES (7, 1);
-INSERT INTO celda(id,tablero) VALUES (8, 1);
-INSERT INTO celda(id,tablero) VALUES (9, 1);
+--INSERT INTO celda(id,tablero) VALUES (1, 1);
+--INSERT INTO celda(id,tablero) VALUES (2, 1);
+--INSERT INTO celda(id,tablero) VALUES (3, 1);
+--INSERT INTO celda(id,tablero) VALUES (4, 1);
+--INSERT INTO celda(id,tablero) VALUES (5, 1);
+--INSERT INTO celda(id,tablero) VALUES (6, 1);
+--INSERT INTO celda(id,tablero) VALUES (7, 1);
+--INSERT INTO celda(id,tablero) VALUES (8, 1);
+--INSERT INTO celda(id,tablero) VALUES (9, 1);
 
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (1, 1);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (2, 2);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (3, 3);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (4, 4);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (5, 5);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (6, 6);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (7, 7);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (8, 8);
-INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (9, 9);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (1, 1);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (2, 2);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (3, 3);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (4, 4);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (5, 5);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (6, 6);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (7, 7);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (8, 8);
+--INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (9, 9);
