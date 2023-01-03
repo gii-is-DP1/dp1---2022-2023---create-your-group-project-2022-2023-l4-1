@@ -3,8 +3,8 @@ package org.springframework.samples.petclinic.CartaDeLaMontana.Acciones;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.CartaDeLaMontana.CartaDeLaMontana;
-import org.springframework.samples.petclinic.carta.enums.NombreCartaMontana;
+import org.springframework.samples.petclinic.carta.Carta;
+import org.springframework.samples.petclinic.carta.enums.NombreCarta;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.partida.Partida;
 import org.springframework.samples.petclinic.partida.PartidaService;
@@ -22,8 +22,8 @@ public class Shide implements Accion{
     }
 
     @Override
-	public NombreCartaMontana getName() {
-		return NombreCartaMontana.Shide;
+	public NombreCarta getName() {
+		return NombreCarta.Shide;
 	}
 
     /* 

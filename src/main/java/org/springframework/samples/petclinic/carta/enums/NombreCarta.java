@@ -1,13 +1,14 @@
 package org.springframework.samples.petclinic.carta.enums;
 
-public enum NombreCartaMontana {
+public enum NombreCarta {
     Alloy_Steel, 
     Orc_Raiders, 
     Forge_Sword, 
     Great_Dragon, 
     Knockers, 
     Forge_Maze, 
-    Seam,
+    Iron_Seam,
+    Gold_Seam,
     Dragon, 
     Get_Help, 
     Forge_Diadem, 

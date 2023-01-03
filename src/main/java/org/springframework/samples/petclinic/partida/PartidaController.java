@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -13,6 +14,8 @@ import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
+import org.springframework.samples.petclinic.tablero.Tablero;
+import org.springframework.samples.petclinic.tablero.TableroService;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.samples.petclinic.web.LoggedUserController;
@@ -32,21 +35,25 @@ public class PartidaController {
     PartidaService partidaService;
     UserService userService;
     JugadorService jugadorService;
+    TableroService tableroService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
     private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
     private final String LOBBY_VIEW = "partidas/Lobby";
+    private final String VIEWS_TABLERO = "tablero/showTablero";
 
     @Autowired
     LoggedUserController currentUser;
 
     @Autowired
-    public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService) {
+    public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService,
+            TableroService tableroService) {
         this.partidaService = partidaService;
         this.userService = userService;
         this.jugadorService = jugadorService;
+        this.tableroService = tableroService;
     }
 
     @GetMapping("/partidas")
@@ -215,10 +222,24 @@ public class PartidaController {
     }
 
     @Transactional()
-    @GetMapping(value = "/start/{id}")
-    public String iniciarPartida(@PathVariable int id) {
+    @GetMapping(value = "tablero/create/{id}")
+    public String iniciarPartida(@PathVariable int id, Map<String, Object> model) {
+        Partida partida = partidaService.findPartidaById(id);
+        tableroService.save(partida);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         partidaService.iniciarPartida(id);
-        return "redirect:/";
+        return "redirect:/partida/tablero/" + tablero.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/{id}")
+    public String juego(@PathVariable int id, Map<String,Object> model) {
+        Tablero tablero = tableroService.findById(id).get();
+        Partida partida = partidaService.findPartidaById(tablero.getPartida().getId());
+        model.put("partida", partida);
+        model.put("tablero", tablero);
+        //model.put("imagen", tablero.getCeldas().get(1).getCartas().get(1).getImagen());
+        return VIEWS_TABLERO;
     }
  
 }
