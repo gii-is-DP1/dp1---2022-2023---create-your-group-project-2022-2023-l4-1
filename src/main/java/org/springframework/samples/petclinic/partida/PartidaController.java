@@ -238,6 +238,7 @@ public class PartidaController {
         model.put("partida", partida);
         model.put("tablero", tablero);
         //model.put("imagen", tablero.getCeldas().get(1).getCartas().get(1).getImagen());
+        System.out.println(tablero.getCeldas().get(0).getCartas().get(0).getImagen());
         return VIEWS_TABLERO;
     }
  
