@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.tablero;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

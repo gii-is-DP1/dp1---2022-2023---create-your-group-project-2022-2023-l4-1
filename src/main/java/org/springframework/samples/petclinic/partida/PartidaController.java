@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -237,8 +236,6 @@ public class PartidaController {
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         model.put("partida", partida);
         model.put("tablero", tablero);
-        //model.put("imagen", tablero.getCeldas().get(1).getCartas().get(1).getImagen());
-        System.out.println(tablero.getCeldas().get(0).getCartas().get(0).getImagen());
         return VIEWS_TABLERO;
     }
  
