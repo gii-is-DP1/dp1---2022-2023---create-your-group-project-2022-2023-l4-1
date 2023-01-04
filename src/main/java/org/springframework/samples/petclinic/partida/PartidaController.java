@@ -226,16 +226,15 @@ public class PartidaController {
     public String iniciarPartida(@PathVariable int id, Map<String, Object> model) {
         Partida partida = partidaService.findPartidaById(id);
         tableroService.save(partida);
-        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         partidaService.iniciarPartida(id);
-        return "redirect:/partida/tablero/" + tablero.getId();
+        return "redirect:/partida/tablero/" + partida.getId();
     }
 
     @Transactional()
     @GetMapping(value = "tablero/{id}")
     public String juego(@PathVariable int id, Map<String,Object> model) {
-        Tablero tablero = tableroService.findById(id).get();
-        Partida partida = partidaService.findPartidaById(tablero.getPartida().getId());
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         model.put("partida", partida);
         model.put("tablero", tablero);
         //model.put("imagen", tablero.getCeldas().get(1).getCartas().get(1).getImagen());
