@@ -14,43 +14,49 @@
     position: relative;
     float: left;
     width: 30%;
-    border: rgb(0, 0, 0) solid 1px;
+    border: rgb(255, 255, 255) solid 1px;
     height: auto;
+  }
+  .background{
+	background-image: url("${tablero.getBackground()}");
+	background-repeat:repeat;
+	background-size: 100%;
   }
 </style>
 
 <game:layout pageName="home">
+    <body class="background">
 
-    <h2>Sala</h2>
+        <h2 style="color:rgb(255, 255, 255)">Sala ${partida.getNombreSala()}</h2>
 
-    <div class="board">
-        <div class="right">
-            <img id= "celda0" width="200" height="285" src="/resources/images/cartas/Carta 1.png">
+        <div class="board">
+            <div class="right">
+                <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(0).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda1" width="200" height="285" src="${tablero.getCeldas().get(1).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda2" width="200" height="285" src="${tablero.getCeldas().get(2).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda3" width="200" height="285" src="${tablero.getCeldas().get(3).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda4" width="200" height="285" src="${tablero.getCeldas().get(4).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda5" width="200" height="285" src="${tablero.getCeldas().get(5).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda6" width="200" height="285" src="${tablero.getCeldas().get(6).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda7" width="200" height="285" src="${tablero.getCeldas().get(7).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="right">
+                <img id= "celda8" width="200" height="285" src="${tablero.getCeldas().get(8).getCartas().get(0).getImagen()}">
+            </div>
         </div>
-        <div class="right">
-            <img id= "celda1" width="200" height="285" src="/resources/images/cartas/Carta 2.png">
-        </div>
-        <div class="right">
-            <img id= "celda2" width="200" height="285" src="/resources/images/cartas/Carta 3.png">
-        </div>
-        <div class="right">
-            <img id= "celda3" width="200" height="285" src="/resources/images/cartas/Carta 4.png">
-        </div>
-        <div class="right">
-            <img id= "celda4" width="200" height="285" src="/resources/images/cartas/Carta 5.png">
-        </div>
-        <div class="right">
-            <img id= "celda5" width="200" height="285" src="/resources/images/cartas/Carta 6.png">
-        </div>
-        <div class="right">
-            <img id= "celda6" width="200" height="285" src="/resources/images/cartas/Carta 7.png">
-        </div>
-        <div class="right">
-            <img id= "celda7" width="200" height="285" src="/resources/images/cartas/Carta 8.png">
-        </div>
-        <div class="right">
-            <img id= "celda8" width="200" height="285" src="/resources/images/cartas/Carta 9.png">
-        </div>
-    </div>
-
+    </body>
 </game:layout>

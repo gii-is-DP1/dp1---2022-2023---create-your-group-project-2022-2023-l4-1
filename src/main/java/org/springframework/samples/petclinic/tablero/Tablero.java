@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,14 +43,14 @@ public class Tablero extends BaseEntity {
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "tablero", fetch = FetchType.EAGER)
     //List<Pieza> piezas;
 
-    @OneToMany
-    List<Celda> celdas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tablero")
+    private List<Celda> celdas;
 
     @OneToOne
     @JoinColumn(name = "partida", referencedColumnName = "id", unique = true)
     private Partida partida;
 
-    @ElementCollection
-    private Set<Carta> montana;
+    //@ElementCollection
+    //private Set<Carta> montana;
     
 }

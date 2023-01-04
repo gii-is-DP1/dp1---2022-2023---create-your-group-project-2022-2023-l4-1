@@ -2,13 +2,15 @@ package org.springframework.samples.petclinic.celda;
 
 import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.springframework.samples.petclinic.carta.Carta;
+import org.springframework.samples.petclinic.celda.enums.Posicion;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.tablero.Tablero;
 
@@ -20,8 +22,11 @@ import lombok.Setter;
 @Setter
 public class Celda extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "tablero", referencedColumnName = "id")
+    @Enumerated(value = EnumType.STRING)
+    private Posicion posicion;
+
+    @ManyToOne(optional = false)
+    //@JoinColumn(name = "tablero", referencedColumnName = "id")
 	private Tablero tablero;
 
     @ManyToMany
