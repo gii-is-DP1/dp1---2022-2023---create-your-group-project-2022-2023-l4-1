@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -26,7 +25,6 @@ public class Celda extends BaseEntity {
     private Posicion posicion;
 
     @ManyToOne(optional = false)
-    //@JoinColumn(name = "tablero", referencedColumnName = "id")
 	private Tablero tablero;
 
     @ManyToMany
