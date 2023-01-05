@@ -1,9 +1,14 @@
 package org.springframework.samples.petclinic.tablero;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.carta.Carta;
+import org.springframework.samples.petclinic.carta.CartaEspecial;
+import org.springframework.samples.petclinic.carta.CartaService;
 import org.springframework.samples.petclinic.celda.Celda;
 import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.celda.enums.Posicion;
@@ -15,11 +20,13 @@ public class TableroService {
 
     private TableroRepository tableroRepository;
     private CeldaService celdaService;
+    private CartaService cartaService;
 
     @Autowired
-	public TableroService(TableroRepository tableroRepository, CeldaService celdaService) {
+	public TableroService(TableroRepository tableroRepository, CeldaService celdaService, CartaService cartaService) {
 		this.tableroRepository = tableroRepository;
         this.celdaService = celdaService;
+        this.cartaService = cartaService;
 	}
 
     public Optional<Tablero> findById(Integer id) {
@@ -49,6 +56,34 @@ public class TableroService {
         Celda celda7 = new Celda(); celda7.setPosicion(Posicion.POS7); celdaService.save(celda7, tablero);
         Celda celda8 = new Celda(); celda8.setPosicion(Posicion.POS8); celdaService.save(celda8, tablero);
         Celda celda9 = new Celda(); celda9.setPosicion(Posicion.POS9); celdaService.save(celda9, tablero);
+
+        // Inicializamos el mazo de la montaña de forma aleatoria.
+        List<Carta> montana = new ArrayList<Carta>();
+
+        for (int i = 10; i <= 54; i++) {
+            Carta carta = cartaService.findById(i);
+            montana.add(carta);
+        }
+
+        Collections.shuffle(montana);
+        tablero.setMontana(montana);
+
+        // Inicializamos los tres montones de cartas especiales de forma aleatoria.
+        List<CartaEspecial> cartasEspeciales = new ArrayList<CartaEspecial>();
+        
+        for (int i = 1; i <= 9; i++) {
+            CartaEspecial cartaEspecial = cartaService.findCartaEspecialById(i);
+            cartasEspeciales.add(cartaEspecial);
+        }
+
+        Collections.shuffle(cartasEspeciales);
+
+        List<CartaEspecial> cartasEspeciales1 = cartasEspeciales.subList(0, 3);
+        List<CartaEspecial> cartasEspeciales2 = cartasEspeciales.subList(3, 6);
+        List<CartaEspecial> cartasEspeciales3 = cartasEspeciales.subList(6, 9);
+        tablero.setCartasEspeciales1(cartasEspeciales1);
+        tablero.setCartasEspeciales2(cartasEspeciales2);
+        tablero.setCartasEspeciales3(cartasEspeciales3);
 
     }
     
