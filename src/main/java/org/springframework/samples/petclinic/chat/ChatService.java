@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.chat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,19 @@ public class ChatService {
         return chatRepository.save(c);
 
     }
+
+    @Transactional
+    public Chat getByPartidaId(Integer id){
+        return chatRepository.findByPartidaId(id);
+    }
     
+    @Transactional
+    public void edit(Chat c) throws DataAccessException{
+        Chat toUpdate = chatRepository.findById(c.getId()).get();
+        toUpdate.setId(c.getId());
+        toUpdate.setMensajes(c.getMensajes());
+        toUpdate.setPartida(c.getPartida());
+        chatRepository.save(toUpdate);
+    }
 }
 

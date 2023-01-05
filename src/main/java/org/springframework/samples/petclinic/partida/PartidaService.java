@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.partida;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
@@ -119,6 +120,12 @@ public class PartidaService {
             if (j.getPartida().getId() == idPartida) jugadores.add(j);
         }
         return jugadores;
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Partida> getPartidaById(Integer id) {
+        Optional<Partida> result = partidaRepository.findById(id);
+        return result;
     }
 
     
