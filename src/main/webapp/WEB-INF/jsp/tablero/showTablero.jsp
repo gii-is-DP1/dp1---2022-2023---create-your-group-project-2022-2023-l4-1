@@ -17,6 +17,16 @@
     border: rgb(255, 255, 255) solid 1px;
     height: auto;
   }
+  .center {
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-left: 10px;
+    position: relative;
+    float: left;
+    width: auto;
+    border: rgb(255, 242, 0) solid 1px;
+    height: auto;
+  }
   .background{
 	background-image: url("${tablero.getBackground()}");
 	background-repeat:repeat;
@@ -56,6 +66,9 @@
             </div>
             <div class="right">
                 <img id= "celda8" width="200" height="285" src="${tablero.getCeldas().get(8).getCartas().get(0).getImagen()}">
+            </div>
+            <div class="center">
+                <img id= "celda9" width="200" height="285" src="/resources/images/cartas/carta_trasera.png">
             </div>
         </div>
     </body>
