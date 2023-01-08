@@ -50,49 +50,49 @@
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(1).getCartas().get(0).getImagen()}">
+                        <img id= "celda1" width="200" height="285" src="${tablero.getCeldas().get(1).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(2).getCartas().get(0).getImagen()}">
+                        <img id= "celda2" width="200" height="285" src="${tablero.getCeldas().get(2).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(3).getCartas().get(0).getImagen()}">
+                        <img id= "celda3" width="200" height="285" src="${tablero.getCeldas().get(3).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(4).getCartas().get(0).getImagen()}">
+                        <img id= "celda4" width="200" height="285" src="${tablero.getCeldas().get(4).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(5).getCartas().get(0).getImagen()}">
+                        <img id= "celda5" width="200" height="285" src="${tablero.getCeldas().get(5).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(6).getCartas().get(0).getImagen()}">
+                        <img id= "celda6" width="200" height="285" src="${tablero.getCeldas().get(6).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(7).getCartas().get(0).getImagen()}">
+                        <img id= "celda7" width="200" height="285" src="${tablero.getCeldas().get(7).getCartas().get(0).getImagen()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(8).getCartas().get(0).getImagen()}">
+                        <img id= "celda8" width="200" height="285" src="${tablero.getCeldas().get(8).getCartas().get(0).getImagen()}">
                     </a>
             </div>
 
@@ -107,19 +107,19 @@
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCartasEspeciales1().get(0).getImagenEspecial()}">
+                        <img id= "celda9" width="200" height="285" src="${tablero.getCeldasEspeciales().get(0).getCartas().get(0).getImagenEspecial()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCartasEspeciales2().get(0).getImagenEspecial()}">
+                        <img id= "celda10" width="200" height="285" src="${tablero.getCeldasEspeciales().get(1).getCartas().get(0).getImagenEspecial()}">
                     </a>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="${tablero.getCartasEspeciales3().get(0).getImagenEspecial()}">
+                        <img id= "celda11" width="200" height="285" src="${tablero.getCeldasEspeciales().get(2).getCartas().get(0).getImagenEspecial()}">
                     </a>
             </div>
 
@@ -134,7 +134,7 @@
             <div class="center">
                 <spring:url value="/" var="editUrl"></spring:url>
                     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda0" width="200" height="285" src="/resources/images/cartas/carta_trasera.png">
+                        <img id= "celda12" width="200" height="285" src="/resources/images/cartas/carta_trasera.png">
                     </a>
             </div>
         </div>
