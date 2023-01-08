@@ -38,6 +38,7 @@ public class CeldaService {
         else if (celda.getPosicion() == Posicion.POS7) celda.setCartas(List.of(cartaService.findById(7)));
         else if (celda.getPosicion() == Posicion.POS8) celda.setCartas(List.of(cartaService.findById(8)));
         else if (celda.getPosicion() == Posicion.POS9) celda.setCartas(List.of(cartaService.findById(9)));
+        celda.setOcupado(false);
         celda.setTablero(tablero);
         celdaRepository.save(celda);
     }
