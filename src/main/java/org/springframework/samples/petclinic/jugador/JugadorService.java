@@ -29,6 +29,10 @@ public class JugadorService {
 		return jugadorRepository.findAll();
 	}
 
+	public Jugador findJugadorInAGame(String username, Partida partida) {
+		return jugadorRepository.findJugadorInAGame(username, partida);
+	}
+
 	@Transactional(readOnly = true)
 	public Collection<Jugador> findOwnerByLastName(String lastName) throws DataAccessException {
 		return jugadorRepository.findByLastName(lastName);

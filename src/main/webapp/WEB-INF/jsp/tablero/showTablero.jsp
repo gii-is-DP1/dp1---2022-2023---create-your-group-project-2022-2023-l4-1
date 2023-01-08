@@ -39,6 +39,9 @@
     <body class="background">
 
         <h2 style="color:rgb(255, 255, 255)">Sala ${partida.getNombreSala()}</h2>
+        <h2 style="color:rgb(255, 255, 255)">Jugador1 ${jugador1.getUser().getUsername()}</h2>
+        <h2 style="color:rgb(255, 255, 255)">Jugador2 ${jugador2.getUser().getUsername()}</h2>
+        <c:if test = "${partida.getUser2()!=null}"><h2 style="color:rgb(255, 255, 255)">Jugador3 ${jugador3.getUser().getUsername()}</h2></c:if>
 
         <div class="board">
             <div class="celda">
