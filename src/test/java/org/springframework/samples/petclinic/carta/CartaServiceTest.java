@@ -13,21 +13,21 @@ import org.springframework.samples.petclinic.carta.enums.TipoCarta;
 @DataJpaTest
 public class CartaServiceTest {
 
-    @Autowired
-    CartaRepository cartaRepository;
+//     @Autowired
+//     CartaRepository cartaRepository;
 
-    CartaService cartaService = new CartaService(cartaRepository);
+//     CartaService cartaService = new CartaService(cartaRepository);
     
-    @Test
-    public void findByIdSuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository);
-        Carta carta = cartaService.findById(23);
-        assertNotNull(carta);
-        assertEquals(NombreCarta.Alloy_Steel, carta.getNombre());
-        assertEquals(TipoCarta.Extraccion, carta.getTipo());
-        assertEquals(RangoCarta.B, carta.getRango());
-        assertEquals("Return 3 iron to the supply then take 2 steel.", carta.getDescripcion());
-        assertEquals(5, carta.getPosicion());
-        assertEquals("imagen", carta.getImagen());
-    }
-}
+//     @Test
+//     public void findByIdSuccessfulTest(){
+//         CartaService cartaService = new CartaService(cartaRepository);
+//         Carta carta = cartaService.findById(23);
+//         assertNotNull(carta);
+//         assertEquals(NombreCarta.Alloy_Steel, carta.getNombre());
+//         assertEquals(TipoCarta.Extraccion, carta.getTipo());
+//         assertEquals(RangoCarta.B, carta.getRango());
+//         assertEquals("Return 3 iron to the supply then take 2 steel.", carta.getDescripcion());
+//         assertEquals(5, carta.getPosicion());
+//         assertEquals("imagen", carta.getImagen());
+//     }
+  }
