@@ -231,7 +231,10 @@ public class PartidaController {
 
     @Transactional()
     @GetMapping(value = "tablero/{id}")
-    public String juego(@PathVariable int id, Map<String,Object> model) {
+    public String juego(@PathVariable int id, Map<String,Object> model, HttpServletResponse response) {
+
+        response.addHeader("Refresh", "5");
+
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
 
@@ -248,6 +251,25 @@ public class PartidaController {
         model.put("partida", partida);
         model.put("tablero", tablero);
         return VIEWS_TABLERO;
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda1/{id}")
+    public String celda1(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        if (partida.getUser0().getUsername() == username) {
+            tablero.getCeldas().get(0).setFicha("/resources/images/fichas/meeple azul.png");
+            tablero.getCeldas().get(0).setOcupado(true);
+        } else if (partida.getUser1().getUsername() == username) {
+            tablero.getCeldas().get(0).setFicha("/resources/images/meeple rojo.png");
+            tablero.getCeldas().get(0).setOcupado(true);
+        } else if (partida.getUser2() != null && partida.getUser2().getUsername() == username) {
+            tablero.getCeldas().get(0).setFicha("/resources/images/meeple verde.png");
+            tablero.getCeldas().get(0).setOcupado(true);
+        }
+        return "redirect:/partida/tablero/" + partida.getId();
     }
  
 }
