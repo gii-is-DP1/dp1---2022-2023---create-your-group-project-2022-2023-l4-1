@@ -45,10 +45,18 @@
 
         <div class="board">
             <div class="celda">
-                <spring:url value="/" var="editUrl"></spring:url>
-                    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
+                <c:choose>
+                    <c:when test="${tablero.getCeldas().get(0).getOcupado()==false}">
+                        <spring:url value="/partida/tablero/celda1/${partida.id}" var="editUrl"></spring:url>
+                            <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
+                                <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(0).getCartas().get(0).getImagen()}">
+                            </a>
+                    </c:when>
+                    <c:otherwise>
                         <img id= "celda0" width="200" height="285" src="${tablero.getCeldas().get(0).getCartas().get(0).getImagen()}">
-                    </a>
+                        <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(0).getFicha()}">
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="celda">
                 <spring:url value="/" var="editUrl"></spring:url>
