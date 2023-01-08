@@ -178,7 +178,7 @@ public class PartidaController {
 
     @Transactional()
 	@PostMapping(value = "/create")
-	public String processCreationForm(@Valid Partida partida, BindingResult result, Map<String, Object> model) {
+	public String processCreationForm(@Valid Partida partida, BindingResult result, Map<String, Object> model) throws Exception{
 		if (result.hasErrors()) {
 			return PARTIDAS_FORM;
 		}
@@ -193,7 +193,7 @@ public class PartidaController {
     @Transactional()
     @GetMapping("lobby/{id_sala}")
     public String goToLobby(@PathVariable("id_sala") Integer id_sala, Map<String, Object> model, 
-            HttpServletResponse response) {
+            HttpServletResponse response) throws Exception{
         
         // Refresco de página.
         response.addHeader("Refresh", "5");
