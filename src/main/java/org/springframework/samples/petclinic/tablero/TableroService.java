@@ -10,6 +10,8 @@ import org.springframework.samples.petclinic.carta.Carta;
 import org.springframework.samples.petclinic.carta.CartaEspecial;
 import org.springframework.samples.petclinic.carta.CartaService;
 import org.springframework.samples.petclinic.celda.Celda;
+import org.springframework.samples.petclinic.celda.CeldaEspecial;
+import org.springframework.samples.petclinic.celda.CeldaEspecialService;
 import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.celda.enums.Posicion;
 import org.springframework.samples.petclinic.partida.Partida;
@@ -21,12 +23,15 @@ public class TableroService {
     private TableroRepository tableroRepository;
     private CeldaService celdaService;
     private CartaService cartaService;
+    private CeldaEspecialService celdaEspecialService;
 
     @Autowired
-	public TableroService(TableroRepository tableroRepository, CeldaService celdaService, CartaService cartaService) {
+	public TableroService(TableroRepository tableroRepository, CeldaService celdaService, CartaService cartaService,
+            CeldaEspecialService celdaEspecialService) {
 		this.tableroRepository = tableroRepository;
         this.celdaService = celdaService;
         this.cartaService = cartaService;
+        this.celdaEspecialService = celdaEspecialService;
 	}
 
     public Optional<Tablero> findById(Integer id) {
@@ -81,9 +86,10 @@ public class TableroService {
         List<CartaEspecial> cartasEspeciales1 = cartasEspeciales.subList(0, 3);
         List<CartaEspecial> cartasEspeciales2 = cartasEspeciales.subList(3, 6);
         List<CartaEspecial> cartasEspeciales3 = cartasEspeciales.subList(6, 9);
-        tablero.setCartasEspeciales1(cartasEspeciales1);
-        tablero.setCartasEspeciales2(cartasEspeciales2);
-        tablero.setCartasEspeciales3(cartasEspeciales3);
+
+        CeldaEspecial celdaEspecial1 = new CeldaEspecial(); celdaEspecial1.setCartas(cartasEspeciales1); celdaEspecialService.save(celdaEspecial1, tablero);
+        CeldaEspecial celdaEspecial2 = new CeldaEspecial(); celdaEspecial2.setCartas(cartasEspeciales2); celdaEspecialService.save(celdaEspecial2, tablero);
+        CeldaEspecial celdaEspecial3 = new CeldaEspecial(); celdaEspecial3.setCartas(cartasEspeciales3); celdaEspecialService.save(celdaEspecial3, tablero);
 
     }
     

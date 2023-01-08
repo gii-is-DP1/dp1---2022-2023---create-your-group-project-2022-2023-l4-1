@@ -11,8 +11,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Positive;
 
 import org.springframework.samples.petclinic.carta.Carta;
-import org.springframework.samples.petclinic.carta.CartaEspecial;
 import org.springframework.samples.petclinic.celda.Celda;
+import org.springframework.samples.petclinic.celda.CeldaEspecial;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.partida.Partida;
 
@@ -32,11 +32,11 @@ public class Tablero extends BaseEntity {
     @Positive
     private Integer height;
 
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "tablero", fetch = FetchType.EAGER)
-    //List<Pieza> piezas;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tablero")
     private List<Celda> celdas;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tablero")
+    private List<CeldaEspecial> celdasEspeciales;
 
     @OneToOne
     @JoinColumn(name = "partida", referencedColumnName = "id", unique = true)
@@ -44,14 +44,5 @@ public class Tablero extends BaseEntity {
 
     @ManyToMany
     private List<Carta> montana;
-
-    @ManyToMany
-    private List<CartaEspecial> cartasEspeciales1;
-
-    @ManyToMany
-    private List<CartaEspecial> cartasEspeciales2;
-
-    @ManyToMany
-    private List<CartaEspecial> cartasEspeciales3;
     
 }
