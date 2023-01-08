@@ -31,5 +31,8 @@ public class CartaEspecial extends CartaBase {
     @NotNull
     @Column(name = "descripcion_trasera")
     private String descripcionTrasera;
+
+    @NotNull
+    private String imagenEspecial;
     
 }

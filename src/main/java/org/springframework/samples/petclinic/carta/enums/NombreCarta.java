@@ -6,7 +6,7 @@ public enum NombreCarta {
     Forge_Sword, 
     Great_Dragon, 
     Knockers, 
-    Forge_Maze, 
+    Forge_Mace, 
     Iron_Seam,
     Gold_Seam,
     Dragon, 
@@ -15,7 +15,7 @@ public enum NombreCarta {
     Forge_Helm, 
     Forge_Axe, 
     Forge_Crown, 
-    Shide, 
+    Sidhe, 
     Forge_Dagger, 
     Forge_Armour; 
 }

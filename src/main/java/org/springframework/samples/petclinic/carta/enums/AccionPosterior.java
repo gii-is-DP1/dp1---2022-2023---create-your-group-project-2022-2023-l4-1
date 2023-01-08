@@ -1,5 +1,5 @@
 package org.springframework.samples.petclinic.carta.enums;
 
 public enum AccionPosterior {
-    Seam;
+    Iron_Seam, Gold_Seam;
 }

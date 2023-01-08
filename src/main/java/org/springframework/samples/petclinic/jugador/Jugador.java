@@ -1,11 +1,16 @@
 package org.springframework.samples.petclinic.jugador;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.partida.Partida;
 import org.springframework.samples.petclinic.user.User;
@@ -36,6 +41,5 @@ public class Jugador extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "partida", referencedColumnName = "id")
     private Partida partida;
-
     
 }

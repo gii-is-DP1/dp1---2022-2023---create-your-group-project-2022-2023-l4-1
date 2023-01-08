@@ -234,6 +234,17 @@ public class PartidaController {
     public String juego(@PathVariable int id, Map<String,Object> model) {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+
+        Jugador jugador1 = jugadorService.findJugadorInAGame(partida.getUser0().getUsername(), partida);
+        model.put("jugador1", jugador1);
+        Jugador jugador2 = jugadorService.findJugadorInAGame(partida.getUser1().getUsername(), partida);
+        model.put("jugador2", jugador2);
+
+        if (partida.getUser2() != null) {
+            Jugador jugador3 = jugadorService.findJugadorInAGame(partida.getUser2().getUsername(), partida);
+            model.put("jugador3", jugador3);
+        }
+
         model.put("partida", partida);
         model.put("tablero", tablero);
         return VIEWS_TABLERO;
