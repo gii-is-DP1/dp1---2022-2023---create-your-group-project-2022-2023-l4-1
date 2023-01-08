@@ -58,6 +58,11 @@
 
                 </div>
             </div>
+            <tr> 
+                <td>
+                    <a class="btn btn-default" href="/chat/creaChat/${partida.id}">Chat</a>
+                </td>  
+            </tr>
         </c:otherwise>
     </c:choose>
 </petclinic:layout>

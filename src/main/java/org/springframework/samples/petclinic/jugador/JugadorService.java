@@ -55,4 +55,8 @@ public class JugadorService {
 		jugadorRepository.save(jugador);
 	}
     
+	@Transactional(readOnly = true)
+    public Jugador getJugadorByUsername(String username){
+        return jugadorRepository.findJugadorByUsername(username);
+}
 }
