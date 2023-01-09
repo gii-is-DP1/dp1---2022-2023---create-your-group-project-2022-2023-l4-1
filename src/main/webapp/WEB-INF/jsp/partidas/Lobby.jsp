@@ -9,7 +9,7 @@
 
 <petclinic:layout pageName="lobby">
     <c:choose>
-        <c:when test="${partida.getFaseActual()=='PREPARACION'}">
+        <c:when test="${partida.getFaseActual()=='EXTRACCION'}">
             <c:redirect url="/partida/tablero/${partida.id}"/>
         </c:when>
         <c:otherwise>

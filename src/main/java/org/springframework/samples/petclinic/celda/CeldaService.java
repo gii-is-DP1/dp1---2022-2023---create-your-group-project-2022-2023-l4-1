@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.carta.CartaService;
 import org.springframework.samples.petclinic.celda.enums.Posicion;
+import org.springframework.samples.petclinic.partida.Partida;
 import org.springframework.samples.petclinic.tablero.Tablero;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,19 @@ public class CeldaService {
         celda.setOcupado(false);
         celda.setTablero(tablero);
         celdaRepository.save(celda);
+    }
+
+    public void colocarFicha(Partida partida, Tablero tablero, String username, Integer numCelda) {
+        if (partida.getUser0().getUsername() == username) {
+            tablero.getCeldas().get(numCelda).setFicha("/resources/images/fichas/meeple azul.png");
+            tablero.getCeldas().get(numCelda).setOcupado(true);
+        } else if (partida.getUser1().getUsername() == username) {
+            tablero.getCeldas().get(numCelda).setFicha("/resources/images/fichas/meeple rojo.png");
+            tablero.getCeldas().get(numCelda).setOcupado(true);
+        } else if (partida.getUser2() != null && partida.getUser2().getUsername() == username) {
+            tablero.getCeldas().get(numCelda).setFicha("/resources/images/fichas/meeple verde.png");
+            tablero.getCeldas().get(numCelda).setOcupado(true);
+        }
     }
     
 }

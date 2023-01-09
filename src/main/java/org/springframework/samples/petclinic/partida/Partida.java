@@ -42,11 +42,9 @@ public class Partida extends BaseEntity {
     @Range(min=0,max=60)
     private Integer tiempoRestRonda;
     
-    @Range(min=0,max=2)
-    private Integer jugadorActivo;
+    private String jugadorActivo;
 
-    @Range(min=0,max=2)
-    private Integer siguienteJugador;
+    private String siguienteJugador;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "fase_actual")

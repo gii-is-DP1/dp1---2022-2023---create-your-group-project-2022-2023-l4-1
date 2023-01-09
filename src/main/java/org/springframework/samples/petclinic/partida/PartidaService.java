@@ -1,7 +1,9 @@
 package org.springframework.samples.petclinic.partida;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.jugador.Jugador;
@@ -86,9 +88,7 @@ public class PartidaService {
 
         partida.setDuracion(0);
         partida.setFaseActual(Fase.INICIANDO);
-        partida.setJugadorActivo(1);
         partida.setNumRonda(0);
-        partida.setSiguienteJugador(2);
         partida.setTiempoRestRonda(60);
         partida.setUser0(getUserLogged());
 
@@ -97,7 +97,17 @@ public class PartidaService {
 
     public void iniciarPartida(Integer id) {
         Partida partida = findPartidaById(id);
-        partida.setFaseActual(Fase.PREPARACION);
+        partida.setFaseActual(Fase.EXTRACCION);
+
+        // Obtenemos el jugador que comenzará la partida y el siguiente jugador dependiendo del que haya sido el inicial.
+        List<String> usersOnTheGame = partida.getUsersOnTheGame().stream().map(x -> x.getUsername()).collect(Collectors.toList());
+        Collections.shuffle(usersOnTheGame);
+        partida.setJugadorActivo(usersOnTheGame.get(0));
+
+        if (partida.getUser0().getUsername() == partida.getJugadorActivo()) partida.setSiguienteJugador(partida.getUser1().getUsername());
+        else if (partida.getUser1().getUsername() == partida.getJugadorActivo() && partida.getUser2() != null) partida.setSiguienteJugador(partida.getUser2().getUsername());
+        else if (partida.getUser1().getUsername() == partida.getJugadorActivo() && partida.getUser2() == null) partida.setSiguienteJugador(partida.getUser0().getUsername());
+        else if (partida.getUser2().getUsername() == partida.getJugadorActivo()) partida.setSiguienteJugador(partida.getUser0().getUsername());
     }
 
     public User getUserLogged() {
@@ -119,6 +129,19 @@ public class PartidaService {
             if (j.getPartida().getId() == idPartida) jugadores.add(j);
         }
         return jugadores;
+    }
+
+    public void actualizarTurno(Partida partida) {
+        partida.setJugadorActivo(partida.getSiguienteJugador());
+
+        if (partida.getUsersOnTheGame().size() == 2) {
+            if (partida.getUser0().getUsername() == partida.getSiguienteJugador()) partida.setSiguienteJugador(partida.getUser1().getUsername());
+            else partida.setSiguienteJugador(partida.getUser0().getUsername());
+        } else {
+            if (partida.getUser0().getUsername() == partida.getSiguienteJugador()) partida.setSiguienteJugador(partida.getUser1().getUsername());
+            else if (partida.getUser1().getUsername() == partida.getSiguienteJugador()) partida.setSiguienteJugador(partida.getUser2().getUsername());
+            else partida.setSiguienteJugador(partida.getUser0().getUsername());
+        }
     }
 
     
