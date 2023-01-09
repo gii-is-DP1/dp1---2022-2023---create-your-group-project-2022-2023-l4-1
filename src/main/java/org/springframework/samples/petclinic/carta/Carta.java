@@ -1,31 +1,34 @@
 package org.springframework.samples.petclinic.carta;
 
-import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Range;
-import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.carta.enums.NombreCarta;
+import org.springframework.samples.petclinic.carta.enums.RangoCarta;
+import org.springframework.samples.petclinic.carta.enums.TipoCarta;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@MappedSuperclass
-public class Carta extends BaseEntity {
+@Entity
+@Table(name = "cartas")
+public class Carta extends CartaBase {
 
     @NotNull
-    private String descripcion;
+    @Enumerated(value = EnumType.STRING)
+    private NombreCarta nombre;
 
     @NotNull
-    private String imagen;
+    @Enumerated(value = EnumType.STRING)
+    private TipoCarta tipo;
 
     @NotNull
-    @Range(min=0, max=12)
-    private Integer posicion;
+    @Enumerated(value = EnumType.STRING)
+    private RangoCarta rango;
     
-
-
 }

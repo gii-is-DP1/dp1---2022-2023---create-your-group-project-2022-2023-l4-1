@@ -8,10 +8,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.samples.petclinic.carta.Carta;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CartaDeLaMontanaRepository extends CrudRepository<CartaDeLaMontana, Integer>{
+public interface CartaDeLaMontanaRepository extends CrudRepository<Carta, Integer>{
     
     
 /* 

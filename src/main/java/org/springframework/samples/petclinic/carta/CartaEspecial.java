@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "cartas_especiales")
-public class CartaEspecial extends Carta {
+public class CartaEspecial extends CartaBase {
 
     @NotNull
     @Enumerated(value = EnumType.STRING)
@@ -31,5 +31,8 @@ public class CartaEspecial extends Carta {
     @NotNull
     @Column(name = "descripcion_trasera")
     private String descripcionTrasera;
+
+    @NotNull
+    private String imagenEspecial;
     
 }

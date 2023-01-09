@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.statistics;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -36,5 +37,18 @@ public class AchievementServiceTest {
         AchievementService achievementService = new AchievementService(achievementRepository);
 
         assertThrows(Exception.class, () -> achievementService.save(achievement2));
+    }
+
+    @Test
+    public void saveSuccessfulTest(){
+        Achievement achievement3 = new Achievement();
+        achievement3.setName("Prueba de achievement");
+        achievement3.setDescription("Prueba de descripcion");
+        AchievementService achievementService = new AchievementService(achievementRepository);
+        try{
+            achievementService.save(achievement3);
+        } catch(Exception e){
+            fail("Esta excepcion no debería ser lanzada");
+        }
     }
 }

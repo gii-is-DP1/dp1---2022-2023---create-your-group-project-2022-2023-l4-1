@@ -13,6 +13,8 @@ import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
+import org.springframework.samples.petclinic.tablero.Tablero;
+import org.springframework.samples.petclinic.tablero.TableroService;
 import org.springframework.samples.petclinic.user.User;
 import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.samples.petclinic.web.LoggedUserController;
@@ -32,21 +34,25 @@ public class PartidaController {
     PartidaService partidaService;
     UserService userService;
     JugadorService jugadorService;
+    TableroService tableroService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
     private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
     private final String LOBBY_VIEW = "partidas/Lobby";
+    private final String VIEWS_TABLERO = "tablero/showTablero";
 
     @Autowired
     LoggedUserController currentUser;
 
     @Autowired
-    public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService) {
+    public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService,
+            TableroService tableroService) {
         this.partidaService = partidaService;
         this.userService = userService;
         this.jugadorService = jugadorService;
+        this.tableroService = tableroService;
     }
 
     @GetMapping("/partidas")
@@ -172,7 +178,7 @@ public class PartidaController {
 
     @Transactional()
 	@PostMapping(value = "/create")
-	public String processCreationForm(@Valid Partida partida, BindingResult result, Map<String, Object> model) {
+	public String processCreationForm(@Valid Partida partida, BindingResult result, Map<String, Object> model) throws Exception{
 		if (result.hasErrors()) {
 			return PARTIDAS_FORM;
 		}
@@ -187,7 +193,7 @@ public class PartidaController {
     @Transactional()
     @GetMapping("lobby/{id_sala}")
     public String goToLobby(@PathVariable("id_sala") Integer id_sala, Map<String, Object> model, 
-            HttpServletResponse response) {
+            HttpServletResponse response) throws Exception{
         
         // Refresco de página.
         response.addHeader("Refresh", "5");
@@ -215,10 +221,55 @@ public class PartidaController {
     }
 
     @Transactional()
-    @GetMapping(value = "/start/{id}")
-    public String iniciarPartida(@PathVariable int id) {
+    @GetMapping(value = "tablero/create/{id}")
+    public String iniciarPartida(@PathVariable int id, Map<String, Object> model) {
+        Partida partida = partidaService.findPartidaById(id);
+        tableroService.save(partida);
         partidaService.iniciarPartida(id);
-        return "redirect:/";
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/{id}")
+    public String juego(@PathVariable int id, Map<String,Object> model, HttpServletResponse response) {
+
+        response.addHeader("Refresh", "5");
+
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+
+        Jugador jugador1 = jugadorService.findJugadorInAGame(partida.getUser0().getUsername(), partida);
+        model.put("jugador1", jugador1);
+        Jugador jugador2 = jugadorService.findJugadorInAGame(partida.getUser1().getUsername(), partida);
+        model.put("jugador2", jugador2);
+
+        if (partida.getUser2() != null) {
+            Jugador jugador3 = jugadorService.findJugadorInAGame(partida.getUser2().getUsername(), partida);
+            model.put("jugador3", jugador3);
+        }
+
+        model.put("partida", partida);
+        model.put("tablero", tablero);
+        return VIEWS_TABLERO;
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda1/{id}")
+    public String celda1(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        if (partida.getUser0().getUsername() == username) {
+            tablero.getCeldas().get(0).setFicha("/resources/images/fichas/meeple azul.png");
+            tablero.getCeldas().get(0).setOcupado(true);
+        } else if (partida.getUser1().getUsername() == username) {
+            tablero.getCeldas().get(0).setFicha("/resources/images/meeple rojo.png");
+            tablero.getCeldas().get(0).setOcupado(true);
+        } else if (partida.getUser2() != null && partida.getUser2().getUsername() == username) {
+            tablero.getCeldas().get(0).setFicha("/resources/images/meeple verde.png");
+            tablero.getCeldas().get(0).setOcupado(true);
+        }
+        return "redirect:/partida/tablero/" + partida.getId();
     }
  
 }

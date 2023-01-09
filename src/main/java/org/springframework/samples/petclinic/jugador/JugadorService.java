@@ -29,6 +29,10 @@ public class JugadorService {
 		return jugadorRepository.findAll();
 	}
 
+	public Jugador findJugadorInAGame(String username, Partida partida) {
+		return jugadorRepository.findJugadorInAGame(username, partida);
+	}
+
 	@Transactional(readOnly = true)
 	public Collection<Jugador> findOwnerByLastName(String lastName) throws DataAccessException {
 		return jugadorRepository.findByLastName(lastName);
@@ -38,7 +42,7 @@ public class JugadorService {
         jugadorRepository.deleteById(id);
     }
 
-	public void save(User user, Partida partida) {
+	public void save(User user, Partida partida) throws Exception{
 
 		Jugador jugador = new Jugador();
 		jugador.setEsJugadorInicial(false);
@@ -51,6 +55,13 @@ public class JugadorService {
 		jugador.setCantidadMedallas(0);
 		jugador.setUser(user);
 		jugador.setPartida(partida);
+
+		if(jugador.getPartida().getNombreSala().equals(null) || jugador.getPartida().getRondas().equals(null)){
+			throw new Exception();
+		} else if(jugador.getUser().getUsername().equals(null) || jugador.getUser().getPassword().equals(null) || 
+					jugador.getUser().getEmail().equals(null) || jugador.getUser().getNombre().isEmpty() || jugador.getUser().getApellidos().isEmpty()){
+			throw new Exception();
+		}
 
 		jugadorRepository.save(jugador);
 	}
