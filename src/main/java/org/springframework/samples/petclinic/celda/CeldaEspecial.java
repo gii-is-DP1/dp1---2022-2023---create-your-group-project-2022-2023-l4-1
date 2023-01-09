@@ -24,6 +24,7 @@ public class CeldaEspecial extends BaseEntity{
     @ManyToMany
     private List<CartaEspecial> cartas;
 
-    private String ocupacion;
+    private Boolean ocupado;
+    private String ficha;
     
 }
