@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.celda.CeldaEspecialService;
+import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.Fase;
@@ -35,6 +37,8 @@ public class PartidaController {
     UserService userService;
     JugadorService jugadorService;
     TableroService tableroService;
+    CeldaService celdaService;
+    CeldaEspecialService celdaEspecialService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
@@ -48,11 +52,13 @@ public class PartidaController {
 
     @Autowired
     public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService,
-            TableroService tableroService) {
+            TableroService tableroService, CeldaService celdaService, CeldaEspecialService celdaEspecialService) {
         this.partidaService = partidaService;
         this.userService = userService;
         this.jugadorService = jugadorService;
         this.tableroService = tableroService;
+        this.celdaService = celdaService;
+        this.celdaEspecialService = celdaEspecialService;
     }
 
     @GetMapping("/partidas")
@@ -250,6 +256,7 @@ public class PartidaController {
 
         model.put("partida", partida);
         model.put("tablero", tablero);
+        model.put("actual", partidaService.getUserLogged().getUsername());
         return VIEWS_TABLERO;
     }
 
@@ -259,16 +266,178 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        if (partida.getUser0().getUsername() == username) {
-            tablero.getCeldas().get(0).setFicha("/resources/images/fichas/meeple azul.png");
-            tablero.getCeldas().get(0).setOcupado(true);
-        } else if (partida.getUser1().getUsername() == username) {
-            tablero.getCeldas().get(0).setFicha("/resources/images/meeple rojo.png");
-            tablero.getCeldas().get(0).setOcupado(true);
-        } else if (partida.getUser2() != null && partida.getUser2().getUsername() == username) {
-            tablero.getCeldas().get(0).setFicha("/resources/images/meeple verde.png");
-            tablero.getCeldas().get(0).setOcupado(true);
-        }
+        
+        // Colocar ficha en la celda 1.
+        celdaService.colocarFicha(partida, tablero, username, 0);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda2/{id}")
+    public String celda2(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 2.
+        celdaService.colocarFicha(partida, tablero, username, 1);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda3/{id}")
+    public String celda3(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 3.
+        celdaService.colocarFicha(partida, tablero, username, 2);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda4/{id}")
+    public String celda4(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 4.
+        celdaService.colocarFicha(partida, tablero, username, 3);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda5/{id}")
+    public String celda5(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 5.
+        celdaService.colocarFicha(partida, tablero, username, 4);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda6/{id}")
+    public String celda6(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 6.
+        celdaService.colocarFicha(partida, tablero, username, 5);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda7/{id}")
+    public String celda7(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 7.
+        celdaService.colocarFicha(partida, tablero, username, 6);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda8/{id}")
+    public String celda8(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 8.
+        celdaService.colocarFicha(partida, tablero, username, 7);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda9/{id}")
+    public String celda9(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 9.
+        celdaService.colocarFicha(partida, tablero, username, 8);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda_especial1/{id}")
+    public String celdaEspecial1(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 9.
+        celdaEspecialService.colocarFicha(partida, tablero, username, 0);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda_especial2/{id}")
+    public String celdaEspecial2(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 9.
+        celdaEspecialService.colocarFicha(partida, tablero, username, 1);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda_especial3/{id}")
+    public String celdaEspecial3(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        String username = partidaService.getUserLogged().getUsername();
+        
+        // Colocar ficha en la celda 9.
+        celdaEspecialService.colocarFicha(partida, tablero, username, 2);
+        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
+        partidaService.actualizarTurno(partida);
+
         return "redirect:/partida/tablero/" + partida.getId();
     }
  
