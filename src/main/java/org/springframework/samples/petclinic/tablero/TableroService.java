@@ -92,5 +92,13 @@ public class TableroService {
         CeldaEspecial celdaEspecial3 = new CeldaEspecial(); celdaEspecial3.setCartas(cartasEspeciales3); celdaEspecialService.save(celdaEspecial3, tablero);
 
     }
+
+    public void comprobarSiDosCartasSonIguales(Tablero tablero, Partida partida) {
+        Carta cartaAColocar1 = tablero.getMontana().get(0);
+        Carta cartaAColocar2 = tablero.getMontana().get(1);
+
+        // Si ambas cartas son iguales, el jugador tendrá que colocar una tercera carta, si no son iguales solo se colocan 2.
+        if (cartaAColocar1.getPosicion() == cartaAColocar2.getPosicion()) partida.setCartasIguales(true);
+    }
     
 }
