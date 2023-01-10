@@ -41,7 +41,10 @@ public class Partida extends BaseEntity {
 
     @Range(min=0,max=60)
     private Integer tiempoRestRonda;
-    
+
+    private Integer cartasColocadas; // Atributo que controla el número de cartas de la montaña que el jugador que tenga el turno activo debe colocar en la rejilla de 3x3 durante la fase de extracción.
+    private Boolean cartasIguales; // Atributo que controla si las dos cartas que debe tomar el jugador son iguales o no de forma que se tenga que lanzar una u otra acción.
+
     private String jugadorActivo;
 
     private String siguienteJugador;

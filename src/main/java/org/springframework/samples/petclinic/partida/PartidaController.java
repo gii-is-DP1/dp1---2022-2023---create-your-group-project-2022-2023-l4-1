@@ -231,7 +231,8 @@ public class PartidaController {
     public String iniciarPartida(@PathVariable int id, Map<String, Object> model) {
         Partida partida = partidaService.findPartidaById(id);
         tableroService.save(partida);
-        partidaService.iniciarPartida(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        partidaService.iniciarPartida(id, tablero);
         return "redirect:/partida/tablero/" + partida.getId();
     }
 
@@ -257,6 +258,9 @@ public class PartidaController {
         model.put("partida", partida);
         model.put("tablero", tablero);
         model.put("actual", partidaService.getUserLogged().getUsername());
+        model.put("fase1", Fase.EXTRACCION);
+        model.put("fase2", Fase.SELECCION);
+        model.put("fase3", Fase.RESOLUCION);
         return VIEWS_TABLERO;
     }
 
@@ -437,6 +441,18 @@ public class PartidaController {
         celdaEspecialService.colocarFicha(partida, tablero, username, 2);
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+
+        return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional()
+    @GetMapping(value = "tablero/celda_montana/{id}")
+    public String celdaMontana(@PathVariable int id) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        
+        // El jugador que tiene el turno toma una carta de la montaña y esta se coloca automáticamente en la rejilla de 3x3.
+        partidaService.faseExtraccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
