@@ -62,7 +62,7 @@ public class User {
 
 
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Achievement> achievements;
 
 	private boolean enabled;
