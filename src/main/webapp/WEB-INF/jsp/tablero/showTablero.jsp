@@ -47,7 +47,7 @@
         <div class="board">
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(0).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(0).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda1/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda0" width="190" height="266" src="${tablero.getCeldas().get(0).getCartas().get(0).getImagen()}">
@@ -63,7 +63,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(1).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(1).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda2/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda1" width="190" height="266" src="${tablero.getCeldas().get(1).getCartas().get(0).getImagen()}">
@@ -79,7 +79,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(2).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(2).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda3/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda2" width="190" height="266" src="${tablero.getCeldas().get(2).getCartas().get(0).getImagen()}">
@@ -95,7 +95,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(3).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(3).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda4/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda3" width="190" height="266" src="${tablero.getCeldas().get(3).getCartas().get(0).getImagen()}">
@@ -111,7 +111,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(4).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(4).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda5/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda4" width="190" height="266" src="${tablero.getCeldas().get(4).getCartas().get(0).getImagen()}">
@@ -127,7 +127,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(5).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(5).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda6/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda5" width="190" height="266" src="${tablero.getCeldas().get(5).getCartas().get(0).getImagen()}">
@@ -143,7 +143,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(6).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(6).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda7/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda6" width="190" height="266" src="${tablero.getCeldas().get(6).getCartas().get(0).getImagen()}">
@@ -159,7 +159,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(7).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(7).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda8/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda7" width="190" height="266" src="${tablero.getCeldas().get(7).getCartas().get(0).getImagen()}">
@@ -175,7 +175,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldas().get(8).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldas().get(8).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda9/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda8" width="190" height="266" src="${tablero.getCeldas().get(8).getCartas().get(0).getImagen()}">
@@ -200,7 +200,7 @@
 
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldasEspeciales().get(0).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldasEspeciales().get(0).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda_especial1/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda_especial0" width="190" height="266" src="${tablero.getCeldasEspeciales().get(0).getCartas().get(0).getImagenEspecial()}">
@@ -216,7 +216,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldasEspeciales().get(1).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldasEspeciales().get(1).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda_especial2/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda_especial1" width="190" height="266" src="${tablero.getCeldasEspeciales().get(1).getCartas().get(0).getImagenEspecial()}">
@@ -232,7 +232,7 @@
             </div>
             <div class="celda">
                 <c:choose>
-                    <c:when test="${tablero.getCeldasEspeciales().get(2).getOcupado()==false && actual==partida.getJugadorActivo()}">
+                    <c:when test="${tablero.getCeldasEspeciales().get(2).getOcupado()==false && actual==partida.getJugadorActivo() && partida.getFaseActual()==fase2}">
                         <spring:url value="/partida/tablero/celda_especial3/${partida.id}" var="editUrl"></spring:url>
                             <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
                                 <img id= "celda_especial2" width="190" height="266" src="${tablero.getCeldasEspeciales().get(2).getCartas().get(0).getImagenEspecial()}">
@@ -256,10 +256,23 @@
 
 
             <div class="center">
-                <spring:url value="/" var="editUrl"></spring:url>
-                    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
-                        <img id= "celda12" width="190" height="266" src="/resources/images/cartas/carta_trasera.png">
-                    </a>
+                <c:choose>
+                    <c:when test="${actual==partida.getJugadorActivo() && partida.getCartasIguales() && partida.getCartasColocadas()!=3 && partida.getFaseActual()==fase1}">
+                        <spring:url value="/partida/tablero/celda_montana/${partida.id}" var="editUrl"></spring:url>
+                            <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
+                                <img id= "celda_montana" width="190" height="266" src="/resources/images/cartas/carta_trasera.png">
+                            </a>
+                    </c:when>
+                    <c:when test="${actual==partida.getJugadorActivo() && !partida.getCartasIguales() && partida.getCartasColocadas()!=2 && partida.getFaseActual()==fase1}">
+                        <spring:url value="/partida/tablero/celda_montana/${partida.id}" var="editUrl"></spring:url>
+                            <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">
+                                <img id= "celda_montana" width="190" height="266" src="/resources/images/cartas/carta_trasera.png">
+                            </a>
+                    </c:when>
+                    <c:otherwise>
+                        <img id= "celda_montana" width="202" height="282" src="/resources/images/cartas/carta_trasera.png">
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </body>
