@@ -104,10 +104,10 @@ public class PartidaService {
         Collections.shuffle(usersOnTheGame);
         partida.setJugadorActivo(usersOnTheGame.get(0));
 
-        if (partida.getUser0().getUsername() == partida.getJugadorActivo()) partida.setSiguienteJugador(partida.getUser1().getUsername());
-        else if (partida.getUser1().getUsername() == partida.getJugadorActivo() && partida.getUser2() != null) partida.setSiguienteJugador(partida.getUser2().getUsername());
-        else if (partida.getUser1().getUsername() == partida.getJugadorActivo() && partida.getUser2() == null) partida.setSiguienteJugador(partida.getUser0().getUsername());
-        else if (partida.getUser2().getUsername() == partida.getJugadorActivo()) partida.setSiguienteJugador(partida.getUser0().getUsername());
+        if (partida.getUser0().getUsername().equals(partida.getJugadorActivo())) partida.setSiguienteJugador(partida.getUser1().getUsername());
+        else if (partida.getUser1().getUsername().equals(partida.getJugadorActivo()) && partida.getUser2() != null) partida.setSiguienteJugador(partida.getUser2().getUsername());
+        else if (partida.getUser1().getUsername().equals(partida.getJugadorActivo()) && partida.getUser2() == null) partida.setSiguienteJugador(partida.getUser0().getUsername());
+        else if (partida.getUser2().getUsername().equals(partida.getJugadorActivo())) partida.setSiguienteJugador(partida.getUser0().getUsername());
     }
 
     public User getUserLogged() {
@@ -134,14 +134,10 @@ public class PartidaService {
     public void actualizarTurno(Partida partida) {
         partida.setJugadorActivo(partida.getSiguienteJugador());
 
-        if (partida.getUsersOnTheGame().size() == 2) {
-            if (partida.getUser0().getUsername() == partida.getSiguienteJugador()) partida.setSiguienteJugador(partida.getUser1().getUsername());
-            else partida.setSiguienteJugador(partida.getUser0().getUsername());
-        } else {
-            if (partida.getUser0().getUsername() == partida.getSiguienteJugador()) partida.setSiguienteJugador(partida.getUser1().getUsername());
-            else if (partida.getUser1().getUsername() == partida.getSiguienteJugador()) partida.setSiguienteJugador(partida.getUser2().getUsername());
-            else partida.setSiguienteJugador(partida.getUser0().getUsername());
-        }
+        if (partida.getUser0().getUsername().equals(partida.getSiguienteJugador())) partida.setSiguienteJugador(partida.getUser1().getUsername());
+        else if (partida.getUser1().getUsername().equals(partida.getSiguienteJugador()) && partida.getUser2() != null) partida.setSiguienteJugador(partida.getUser2().getUsername());
+        else if (partida.getUser1().getUsername().equals(partida.getSiguienteJugador()) && partida.getUser2() == null) partida.setSiguienteJugador(partida.getUser0().getUsername());
+        else if (partida.getUser2().getUsername().equals(partida.getSiguienteJugador())) partida.setSiguienteJugador(partida.getUser0().getUsername());
     }
 
     
