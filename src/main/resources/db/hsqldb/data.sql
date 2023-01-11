@@ -119,8 +119,8 @@ INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (10,'E
 
 -- Partidas de ejemplo.
 
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, user0, user1, user2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 20, 3, 2, 1, 2, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'LIMITADAS', 'FINALIZADA');
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, jugador_activo, siguiente_jugador, user0, user1, user2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 20, 3, 2, 1, 2, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'ILIMITADAS', 'FINALIZADA');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, user0, user1, user2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 20, 3, 2, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'LIMITADAS', 'FINALIZADA');
+INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, user0, user1, user2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 20, 3, 2, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'ILIMITADAS', 'FINALIZADA');
 
 
 -- Juadores de ejemplo.
