@@ -2,9 +2,8 @@ package org.springframework.samples.petclinic.recursos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +35,30 @@ public class RecursosServiceTest {
     }
 
     @Test
+    public void saveUnsuccessfulTest(){
+        Recursos recurso = new Recursos();
+        RecursosService recursosService = new RecursosService(recursosRepository);
+        assertThrows(Exception.class, () -> recursosService.saveResources(recurso));
+    }
+
+
+
+    @Test
     public void recursosCountTest(){
         RecursosService recursosService = new RecursosService(recursosRepository);
         assertNotNull(recursosService.RecursosCount());
         assertEquals(0, recursosService.RecursosCount());
     }
 
+
+
     @Test
     public void findAllTest(){
         RecursosService recursosService = new RecursosService(recursosRepository);
         assertNotNull(recursosService.findAll());
     }
+
+
 
     // @Test
     // public void findByResourcesId(){
