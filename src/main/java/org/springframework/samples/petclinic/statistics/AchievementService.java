@@ -36,4 +36,8 @@ public class AchievementService {
         }
         repo.save(achievement);
     }
+
+    public void save2(Achievement achievement){
+        repo.save(achievement);
+    }
 }
