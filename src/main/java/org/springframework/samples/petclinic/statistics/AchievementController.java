@@ -13,6 +13,7 @@ import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.samples.petclinic.web.LoggedUserController;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,25 +69,23 @@ public class AchievementController {
 
     @Transactional(readOnly = true)
     @GetMapping("/{id}/edit")
-    public ModelAndView editAchievement(@PathVariable int id){
-        Achievement achievement=service.getById(id);        
-        ModelAndView result=new ModelAndView(ACHIEVEMENTS_FORM);
-        result.addObject("achievement", achievement);
-        return result;
+    public String editAchievement(@PathVariable("id") int achievementId, ModelMap model){
+        Achievement achievement=service.getById(achievementId);        
+        model.addAttribute(achievement);
+        return ACHIEVEMENTS_FORM;
     }
  
     @Transactional
     @PostMapping("/{id}/edit")
-    public ModelAndView saveAchievement(@PathVariable int id,@Valid Achievement achievement, BindingResult br) throws Exception{
+    public ModelAndView saveAchievement(@PathVariable("id") int achievementId,@Valid Achievement achievement, BindingResult br, ModelMap model) {
         if(br.hasErrors()){
             return new ModelAndView(ACHIEVEMENTS_FORM,br.getModel());            
         }
-        Achievement achievementToBeUpdated=service.getById(id);
+        Achievement achievementToBeUpdated=service.getById(achievementId);
         BeanUtils.copyProperties(achievement,achievementToBeUpdated,"id");
-        service.save(achievementToBeUpdated);
-        ModelAndView result=showAchievements();
-        result.addObject("message", "The achievement was updated successfully");
-        return result;        
+        service.save2(achievementToBeUpdated);
+        model.put("message", "The achievement was updated successfully");
+        return showAchievements();        
     }
 
     @Transactional(readOnly = true)
