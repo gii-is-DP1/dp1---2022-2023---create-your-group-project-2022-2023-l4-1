@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.statistics;
 
 import java.time.Duration;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -23,7 +24,7 @@ public class EstadisticaService {
     
     @Transactional
 
-    public Iterable<Estadistica> findAll() {
+    public Collection<Estadistica> findAll() {
         return estadisticaRepository.findAll();
     }
     
