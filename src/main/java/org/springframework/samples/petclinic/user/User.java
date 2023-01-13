@@ -108,10 +108,10 @@ public class User {
 			if(friend.getUsername().equals(username))
 				return false;
 		for(Invitation sended : sendedInvitations) 
-			if(sended.esDelUsuario(username))
+			if(sended.correspondencia(username))
 				return false;
 		for(Invitation receiver : receivedInvitations) 
-			if(receiver.esDelUsuario(username))
+			if(receiver.correspondencia(username))
 				return false;
 		return true;
 	}

@@ -38,7 +38,7 @@ public class Invitation extends BaseEntity {
 		receiver.getAuxFriends().add(sender);
 	}
 	
-	public void unlink() {
+	public void reject() {
 		sender.getSendedInvitations().remove(this);
 		receiver.getReceivedInvitations().remove(this);
 		
@@ -46,7 +46,7 @@ public class Invitation extends BaseEntity {
 		sender = null;
 	}
 
-	public boolean esDelUsuario(String username) {
+	public boolean correspondencia(String username) {
 		return sender.getUsername().equals(username) || receiver.getUsername().equals(username);
 	}
     
