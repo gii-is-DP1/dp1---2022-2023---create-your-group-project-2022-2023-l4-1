@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.partida.enums.EspecialActivada;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
 import org.springframework.samples.petclinic.user.User;
@@ -45,6 +47,10 @@ public class Partida extends BaseEntity {
 
     private Integer cartasColocadas; // Atributo que controla el número de cartas de la montaña que el jugador que tenga el turno activo debe colocar en la rejilla de 3x3 durante la fase de extracción.
     private Boolean cartasIguales; // Atributo que controla si las dos cartas que debe tomar el jugador son iguales o no de forma que se tenga que lanzar una u otra acción.
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "especial_activada")
+    private EspecialActivada especialActivada; // Atributo que controla si una carta especial está o no en uso.
 
     private String jugadorActivo;
 
@@ -91,4 +97,6 @@ public class Partida extends BaseEntity {
 		return this.nombreSala == null;
 	}
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partida")
+    private List<Chat> chat;
 }
