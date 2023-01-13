@@ -57,8 +57,8 @@ public class InvitationController {
 	}
 
     @Transactional
-	@GetMapping(value = "/users/{username}/cancelInvite/{id}")
-    public String cancelInvitation(@PathVariable("username") String username, @PathVariable("id") Integer id){
+	@GetMapping(value = "/users/{username}/rejectInvite/{id}")
+    public String rejectInvitation(@PathVariable("username") String username, @PathVariable("id") Integer id){
         invitationService.deleteInvitationById(id);        
         return "redirect:/users/"+username+"/invitations";
     }

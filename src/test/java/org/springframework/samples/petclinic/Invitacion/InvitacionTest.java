@@ -18,7 +18,7 @@ public class InvitacionTest {
         invitacion.setReceiver(user1);
         invitacion.setSender(user2);
 
-        boolean actualResult = true == invitacion.esDelUsuario("Prueba1");
+        boolean actualResult = true == invitacion.correspondencia("Prueba1");
 
         assertTrue(actualResult);
     }
@@ -34,7 +34,7 @@ public class InvitacionTest {
         invitacion.setReceiver(user1);
         invitacion.setSender(user2);
 
-        boolean actualResult = false == invitacion.esDelUsuario("NoExiste");
+        boolean actualResult = false == invitacion.correspondencia("NoExiste");
 
         assertTrue(actualResult);
     }
