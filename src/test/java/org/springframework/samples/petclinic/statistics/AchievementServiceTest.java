@@ -13,12 +13,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.samples.petclinic.jugador.JugadorRepository;
+import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.user.UserRepository;
+import org.springframework.samples.petclinic.user.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class AchievementServiceTest {
     
     @Mock
     AchievementRepository achievementRepository;
+
+    @Mock
+    JugadorRepository jugadorRepository;
+
+    @Mock
+    UserRepository userRepository;
 
     @BeforeEach
     public void config(){
@@ -33,8 +43,9 @@ public class AchievementServiceTest {
     public void saveUnsuccessfulTest(){
         Achievement achievement2 = new Achievement();
         achievement2.setName("Acaparador");
-
-        AchievementService achievementService = new AchievementService(achievementRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        UserService userService = new UserService(userRepository);
+        AchievementService achievementService = new AchievementService(achievementRepository, jugadorService, userService);
 
         assertThrows(Exception.class, () -> achievementService.save(achievement2));
     }
@@ -44,7 +55,9 @@ public class AchievementServiceTest {
         Achievement achievement3 = new Achievement();
         achievement3.setName("Prueba de achievement");
         achievement3.setDescription("Prueba de descripcion");
-        AchievementService achievementService = new AchievementService(achievementRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        UserService userService = new UserService(userRepository);
+        AchievementService achievementService = new AchievementService(achievementRepository, jugadorService, userService);
         try{
             achievementService.save(achievement3);
         } catch(Exception e){
