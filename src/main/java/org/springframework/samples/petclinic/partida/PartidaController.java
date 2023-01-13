@@ -39,6 +39,7 @@ public class PartidaController {
     TableroService tableroService;
     CeldaService celdaService;
     CeldaEspecialService celdaEspecialService;
+    ChatService chatService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
@@ -52,13 +53,15 @@ public class PartidaController {
 
     @Autowired
     public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService,
-            TableroService tableroService, CeldaService celdaService, CeldaEspecialService celdaEspecialService) {
+            TableroService tableroService, CeldaService celdaService, CeldaEspecialService celdaEspecialService,
+            ChatService chatService) {
         this.partidaService = partidaService;
         this.userService = userService;
         this.jugadorService = jugadorService;
         this.tableroService = tableroService;
         this.celdaService = celdaService;
         this.celdaEspecialService = celdaEspecialService;
+        this.chatService = chatService;
     }
 
     @GetMapping("/partidas")
@@ -258,6 +261,7 @@ public class PartidaController {
         model.put("partida", partida);
         model.put("tablero", tablero);
         model.put("actual", partidaService.getUserLogged().getUsername());
+        model.put("chat", partida.getChat());
         model.put("fase1", Fase.EXTRACCION);
         model.put("fase2", Fase.SELECCION);
         model.put("fase3", Fase.RESOLUCION);
@@ -457,4 +461,22 @@ public class PartidaController {
         return "redirect:/partida/tablero/" + partida.getId();
     }
  
+
+    @Transactional
+    @PostMapping("tablero/{id}/chat")
+    public String processChat(@PathVariable("id") Integer id, Chat chat,BindingResult result) {
+        Partida partida = partidaService.findPartidaById(id);
+        if (result.hasErrors()) {
+            System.out.println("#".repeat(200));
+            return "redirect:/partida/tablero/" + partida.getId();
+        } else {
+            String username = partidaService.getUserLogged().getUsername();
+            chat.setId(999);
+            chat.setUsername(username);
+            chat.setPartida(partida);
+            chatService.saveChat(chat);
+            return "redirect:/partida/tablero/" + partida.getId();
+        }
+    }
+
 }

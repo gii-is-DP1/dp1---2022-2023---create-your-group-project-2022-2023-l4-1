@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -91,4 +92,6 @@ public class Partida extends BaseEntity {
 		return this.nombreSala == null;
 	}
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partida")
+    private List<Chat> chat;
 }
