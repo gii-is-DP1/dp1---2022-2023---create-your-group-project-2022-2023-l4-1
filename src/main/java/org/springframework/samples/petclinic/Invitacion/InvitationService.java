@@ -12,11 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class InvitationService {
     
-    @Autowired
 	private InvitationRepository invitationRepository;
 	
-	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	public InvitationService(InvitationRepository invitationRepository, UserRepository userRepository){
+		this.invitationRepository = invitationRepository;
+		this.userRepository = userRepository;
+	}
 
     public List<Invitation> getInvitationsOf(String username) {
 		return invitationRepository.getInvitationsOf(username);

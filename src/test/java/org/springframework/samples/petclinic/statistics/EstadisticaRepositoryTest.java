@@ -4,11 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.Duration;
 import java.util.Collection;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +49,8 @@ public class EstadisticaRepositoryTest {
         assertTrue(estadistica.getId().equals(1));
     }
 
-    // @Test
-    // public void findByUsernameUnsuccesfulTest(){
-    //     Estadistica estadistica = estadisticaRepository.findByUsername("usuarioFalso").get();
-    //     assertNull(estadistica);
-    // }
+    @Test
+    public void findByUsernameUnsuccesfulTest(){
+        assertThrows(Exception.class, () -> estadisticaRepository.findByUsername("usuarioFalso").get());
+    }
 }

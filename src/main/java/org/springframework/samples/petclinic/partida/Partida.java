@@ -3,11 +3,13 @@ package org.springframework.samples.petclinic.partida;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -58,15 +60,15 @@ public class Partida extends BaseEntity {
     @Column(name = "fase_actual")
     private Fase faseActual;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user0", referencedColumnName = "username")
     private User user0;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user1", referencedColumnName = "username")
     private User user1;
    
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user2", referencedColumnName = "username")
     private User user2;
 
@@ -95,4 +97,6 @@ public class Partida extends BaseEntity {
 		return this.nombreSala == null;
 	}
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partida")
+    private List<Chat> chat;
 }

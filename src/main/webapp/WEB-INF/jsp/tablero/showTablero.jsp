@@ -1,6 +1,7 @@
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="game" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -47,6 +48,12 @@
         <c:if test = "${partida.getFaseActual()==fase1}"><h2 style="color:rgb(255, 255, 255)">Coja las cartas que se le permita del mazo para colocarlas en la mina.</h2></c:if>
         <c:if test = "${partida.getFaseActual()==fase2}"><h2 style="color:rgb(255, 255, 255)">Coloque sus enanos respetando los turnos.</h2></c:if>
 
+        <tr> 
+            <td>
+                <a class="btn btn-default" href="/partida/tablero/${partida.id}/chat">Chat online</a>
+            </td>  
+        </tr>
+
         <div class="board">
             <div class="celda">
                 <c:choose>
@@ -65,7 +72,7 @@
                     <c:otherwise>
                         <img id= "celda0" width="202" height="282" src="${tablero.getCeldas().get(0).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(0).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(0).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(0).getFicha()}" style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -87,7 +94,7 @@
                     <c:otherwise>
                         <img id= "celda1" width="202" height="282" src="${tablero.getCeldas().get(1).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(1).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(1).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(1).getFicha()}" style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -109,7 +116,7 @@
                     <c:otherwise>
                         <img id= "celda2" width="202" height="282" src="${tablero.getCeldas().get(2).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(2).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(2).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(2).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -131,7 +138,7 @@
                     <c:otherwise>
                         <img id= "celda3" width="202" height="282" src="${tablero.getCeldas().get(3).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(3).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(3).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(3).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -153,7 +160,7 @@
                     <c:otherwise>
                         <img id= "celda4" width="202" height="282" src="${tablero.getCeldas().get(4).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(4).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(4).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(4).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -175,7 +182,7 @@
                     <c:otherwise>
                         <img id= "celda5" width="202" height="282" src="${tablero.getCeldas().get(5).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(5).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(5).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(5).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -197,7 +204,7 @@
                     <c:otherwise>
                         <img id= "celda6" width="202" height="282" src="${tablero.getCeldas().get(6).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(6).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(6).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(6).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -219,7 +226,7 @@
                     <c:otherwise>
                         <img id= "celda7" width="202" height="282" src="${tablero.getCeldas().get(7).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(7).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(7).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(7).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -241,7 +248,7 @@
                     <c:otherwise>
                         <img id= "celda8" width="202" height="282" src="${tablero.getCeldas().get(8).getCartas().get(0).getImagen()}">
                         <c:if test="${tablero.getCeldas().get(8).getOcupado()==true}">
-                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(8).getFicha()}">
+                            <img id= "ficha0" width="100" height="150" src="${tablero.getCeldas().get(8).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -269,7 +276,7 @@
                     <c:otherwise>
                         <img id= "celda_especial0" width="202" height="282" src="${tablero.getCeldasEspeciales().get(0).getCartas().get(0).getImagenEspecial()}">
                         <c:if test="${tablero.getCeldasEspeciales().get(0).getOcupado()==true}">
-                            <img id= "ficha_especial0" width="100" height="150" src="${tablero.getCeldasEspeciales().get(0).getFicha()}">
+                            <img id= "ficha_especial0" width="100" height="150" src="${tablero.getCeldasEspeciales().get(0).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -288,7 +295,7 @@
                     <c:otherwise>
                         <img id= "celda_especial1" width="202" height="282" src="${tablero.getCeldasEspeciales().get(1).getCartas().get(0).getImagenEspecial()}">
                         <c:if test="${tablero.getCeldasEspeciales().get(1).getOcupado()==true}">
-                            <img id= "ficha_especial1" width="100" height="150" src="${tablero.getCeldasEspeciales().get(1).getFicha()}">
+                            <img id= "ficha_especial1" width="100" height="150" src="${tablero.getCeldasEspeciales().get(1).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -307,7 +314,7 @@
                     <c:otherwise>
                         <img id= "celda_especial2" width="202" height="282" src="${tablero.getCeldasEspeciales().get(2).getCartas().get(0).getImagenEspecial()}">
                         <c:if test="${tablero.getCeldasEspeciales().get(2).getOcupado()==true}">
-                            <img id= "ficha_especial2" width="100" height="150" src="${tablero.getCeldasEspeciales().get(2).getFicha()}">
+                            <img id= "ficha_especial2" width="100" height="150" src="${tablero.getCeldasEspeciales().get(2).getFicha()}"style = "position: absolute; right: 180;top: 40;">
                         </c:if>
                     </c:otherwise>
                 </c:choose>
@@ -342,4 +349,6 @@
             </div>
         </div>
     </body>
-</game:layout>
+    </game:layout>
+
+

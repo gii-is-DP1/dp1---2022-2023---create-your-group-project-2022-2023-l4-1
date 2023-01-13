@@ -2,9 +2,8 @@ package org.springframework.samples.petclinic.recursos;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +35,22 @@ public class RecursosServiceTest {
     }
 
     @Test
+    public void saveUnsuccessfulTest(){
+        Recursos recurso = new Recursos();
+        RecursosService recursosService = new RecursosService(recursosRepository);
+        assertThrows(Exception.class, () -> recursosService.saveResources(recurso));
+    }
+
+
+
+    @Test
     public void recursosCountTest(){
         RecursosService recursosService = new RecursosService(recursosRepository);
         assertNotNull(recursosService.RecursosCount());
         assertEquals(0, recursosService.RecursosCount());
     }
+
+
 
     @Test
     public void findAllTest(){
@@ -48,9 +58,24 @@ public class RecursosServiceTest {
         assertNotNull(recursosService.findAll());
     }
 
+
+
     // @Test
-    // public void findByResourcesId(){
+    // public void findByResourcesIdSuccessfulTest(){
     //     RecursosService recursosService = new RecursosService(recursosRepository);
-    //     Optional<Recursos> recursos = recursosService.findByResourcesId(1);
+    //     Recursos recurso = new Recursos();
+    //     recurso.setNombre(TipoRecurso.Oro);
+    //     recurso.setCantidadBase(63158);
+    //     recursosService.saveResources(recurso);
+    //     Recursos test = recursosService.findByResourcesId(1).get();
+
+    //     assertNotNull(test);
+    //     assertEquals(63158, test.getCantidadBase());
+    // }
+
+    // @Test
+    // public void findByResourcesIdUnsuccessfulTest(){
+    //     RecursosService recursosService = new RecursosService(recursosRepository);
+    //     assertThrows(Exception.class, () -> recursosService.findByResourcesId(45).get());
     // }
 }

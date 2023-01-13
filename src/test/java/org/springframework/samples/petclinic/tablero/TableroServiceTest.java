@@ -1,7 +1,12 @@
-package org.springframework.samples.petclinic.celda;
+package org.springframework.samples.petclinic.tablero;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,36 +14,30 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.samples.petclinic.carta.CartaEspecialRepository;
 import org.springframework.samples.petclinic.carta.CartaRepository;
 import org.springframework.samples.petclinic.carta.CartaService;
+import org.springframework.samples.petclinic.celda.CeldaEspecialRepository;
+import org.springframework.samples.petclinic.celda.CeldaEspecialService;
+import org.springframework.samples.petclinic.celda.CeldaRepository;
+import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.partida.Partida;
-import org.springframework.samples.petclinic.partida.PartidaRepository;
-import org.springframework.samples.petclinic.tablero.Tablero;
-import org.springframework.samples.petclinic.tablero.TableroRepository;
-import org.springframework.samples.petclinic.tablero.TableroService;
-import org.springframework.samples.petclinic.user.AuthoritiesRepository;
 
 @DataJpaTest
-public class CeldaServiceTest {
+public class TableroServiceTest {
+    
+    @Autowired
+    TableroRepository tableroRepository;
 
     @Autowired
     CeldaRepository celdaRepository;
 
     @Autowired
-    TableroRepository tableroRepository;
-
-    @Autowired
     CartaRepository cartaRepository;
-
-    @Autowired
-    CartaEspecialRepository cartaEspecialRepository;
 
     @Autowired
     CeldaEspecialRepository celdaEspecialRepository;
 
     @Autowired
-    PartidaRepository partidaRepository;
+    CartaEspecialRepository cartaEspecialRepository;
 
-    @Autowired
-    AuthoritiesRepository authoritiesRepository;
 
 
     @Test
@@ -47,59 +46,52 @@ public class CeldaServiceTest {
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
-        tableroService.save(new Partida());
-
-        Tablero tablero2 = tableroService.findById(2).get();
-        Celda celda2 = new Celda();
+        Partida partida = new Partida();
 
         try{
-            celdaService.save(celda2, tablero2);
+            tableroService.save(partida);
         } catch(Exception e){
             fail("Esta excepcion no deberia salir");
         }
     }
 
-    @Test
-    public void saveUnsuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-
-        Celda celda = new Celda();
-        Tablero tablero = new Tablero();
-
-        assertThrows(Exception.class, () -> celdaService.save(celda, tablero));
-    }
-
 
 
     @Test
-    public void colocarFichaSuccessfulTest(){
+    public void findByIdSuccessfulTest(){
         CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
-
         Tablero tablero = tableroService.findById(1).get();
-        Partida partida = tablero.getPartida();
-        Integer numCelda = 0;
 
-        try{
-            celdaService.colocarFicha(partida, tablero, "pabmarval", numCelda);
-        } catch(Exception e){
-            fail(e);
-        }
+        assertNotNull(tablero);
+        assertEquals("resources/images/cueva-juego.png", tablero.getBackground());
+        assertEquals(800, tablero.getHeight());
+    }
+
+    @Test
+    public void findByIdUnsuccessfulTest(){
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+    
+        assertThrows(Exception.class, () -> tableroService.findById(1325457).get());
     }
 
 
+
     @Test
-    public void colocarFichaUnsuccessfulTest(){
+    public void findAllTest(){
         CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-                
-        Tablero tablero = new Tablero();
-        Partida partida = new Partida();
-        Integer numCelda = 1;
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+        List<Tablero> tableros = tableroService.findAll();
 
-        assertThrows(Exception.class, () -> celdaService.colocarFicha(partida, tablero, "davcorrom", numCelda));
+        assertNotNull(tableros);
+        assertFalse(tableros.isEmpty());
+        assertEquals(1, tableros.size());
     }
 }
