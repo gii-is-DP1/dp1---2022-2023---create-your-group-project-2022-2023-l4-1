@@ -50,7 +50,7 @@ public class CeldaServiceTest {
     public void saveSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -70,7 +70,7 @@ public class CeldaServiceTest {
     public void saveUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
 
         Celda celda = new Celda();
@@ -85,7 +85,7 @@ public class CeldaServiceTest {
     public void colocarFichaSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -106,7 +106,7 @@ public class CeldaServiceTest {
     public void colocarFichaUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
                 
         Tablero tablero = new Tablero();
@@ -122,7 +122,7 @@ public class CeldaServiceTest {
     public void comprobarSiTodasCeldasOcupadasSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
 
         Celda celda0 = new Celda();
@@ -170,7 +170,7 @@ public class CeldaServiceTest {
     public void comprobarSiTodasCeldasOcupadasUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
 
         assertThrows(Exception.class, () -> celdaService.comprobarSiTodasCeldasOcupadas(new Tablero()));

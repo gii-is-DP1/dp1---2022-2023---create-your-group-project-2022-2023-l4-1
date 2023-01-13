@@ -60,7 +60,8 @@ public class CartaServiceTest {
     @Test
     public void findByIdSuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      JugadorService jugadorService = new JugadorService(jugadorRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
 
       Carta carta = cartaService.findById(23);
 
@@ -76,7 +77,8 @@ public class CartaServiceTest {
     @Test
     public void findByIdUnsuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      JugadorService jugadorService = new JugadorService(jugadorRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
 
       assertThrows(Exception.class, () -> cartaService.findById(80));
     }
@@ -86,9 +88,10 @@ public class CartaServiceTest {
     @Test
     public void findCartaEspecialByIdSuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
-      CartaService cartasService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      JugadorService jugadorService = new JugadorService(jugadorRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
 
-      CartaEspecial cartaEspecial = cartasService.findCartaEspecialById(3);
+      CartaEspecial cartaEspecial = cartaService.findCartaEspecialById(3);
 
       assertNotNull(cartaEspecial);
       assertEquals(AccionEspecial.Sell_an_Item, cartaEspecial.getNombre());
@@ -100,7 +103,8 @@ public class CartaServiceTest {
     @Test
     public void findCartaEspecialByIdUnsuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      JugadorService jugadorService = new JugadorService(jugadorRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
 
       assertThrows(Exception.class, () -> cartaService.findCartaEspecialById(20));
     }
@@ -111,7 +115,7 @@ public class CartaServiceTest {
     public void ejecutarCartaEspecialSuccessfulTest(){
       JugadorService jugadorService = new JugadorService(jugadorRepository);
       ObjetoService objetoService = new ObjetoService(objetoRepository);
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
       CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
       CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
       TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -135,7 +139,7 @@ public class CartaServiceTest {
     public void ejecutarCartaEspecialUnsuccessfulTest(){
       JugadorService jugadorService = new JugadorService(jugadorRepository);
       ObjetoService objetoService = new ObjetoService(objetoRepository);
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
       CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
       CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
       TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);

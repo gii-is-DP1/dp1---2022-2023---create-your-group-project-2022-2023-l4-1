@@ -47,7 +47,7 @@ public class CeldaEspecialServiceTest {
     public void saveSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -66,7 +66,7 @@ public class CeldaEspecialServiceTest {
     public void saveUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
 
         Tablero tablero = new Tablero();

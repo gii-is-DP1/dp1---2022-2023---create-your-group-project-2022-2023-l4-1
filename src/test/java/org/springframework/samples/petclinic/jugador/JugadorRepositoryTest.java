@@ -27,21 +27,6 @@ public class JugadorRepositoryTest {
         assertEquals(6, jugadores.size());
     }
 
-    // @Test
-    // public void findByLastNameSuccessfulTest(){
-    //     Collection<Jugador> jugadores = jugadorRepository.findByLastName("Martínez Valladares");
-    //     assertNotNull(jugadores);
-    //     assertFalse(jugadores.isEmpty());
-    //     assertEquals(2, jugadores.size());
-    // }
-
-    // @Test
-    // public void findByLastNameUnsuccessfulTest(){
-    //     Collection<Jugador> jugadores = jugadorRepository.findByLastName("Palacios Pineda");
-    //     assertNotNull(jugadores);
-    //     assertTrue(jugadores.isEmpty());
-    // }
-
     @Test
     public void findByIdSuccessfulTest(){
         Jugador jugador = jugadorRepository.findById(1);
