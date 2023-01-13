@@ -52,7 +52,8 @@ public class JugadorService {
 		jugador.setCantidadHierro(0);
 		jugador.setCantidadAcero(0);
 		jugador.setCantidadOro(0);
-		jugador.setCantidadMedallas(4);
+		jugador.setCantidadMedallas(0);
+		jugador.setPuedeObtenerObjeto(false);
 		jugador.setUser(user);
 		jugador.setPartida(partida);
 
