@@ -95,16 +95,10 @@ public class User {
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
 	private Set<Invitation> receivedInvitations = new HashSet<Invitation>();
 
-	@ManyToMany(mappedBy="friends", cascade = {CascadeType.PERSIST , CascadeType.REFRESH, CascadeType.REMOVE})
-	private Set<User> auxFriends = new HashSet<User>();
-
 	public boolean canInvite(String username) {
 		if(getUsername().equals(username))
 			return false;
 		for(User friend : friends) 
-			if(friend.getUsername().equals(username))
-				return false;
-		for(User friend : auxFriends) 
 			if(friend.getUsername().equals(username))
 				return false;
 		for(Invitation sended : sendedInvitations) 

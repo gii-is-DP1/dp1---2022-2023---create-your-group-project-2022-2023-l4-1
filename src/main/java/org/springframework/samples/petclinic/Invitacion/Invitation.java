@@ -34,8 +34,7 @@ public class Invitation extends BaseEntity {
     public void accept() {
 		sender.getFriends().add(receiver);
 		receiver.getFriends().add(sender);
-		sender.getAuxFriends().add(receiver);
-		receiver.getAuxFriends().add(sender);
+
 	}
 	
 	public void reject() {
