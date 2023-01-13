@@ -7,46 +7,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<petclinic:layout pageName="partidasActivas">
-    <h2>Partidas Activas</h2>
+<petclinic:layout pageName="lobby">
     <c:choose>
-        <c:when test="${partidas.size()==0}">
-            <p>No hay partidas disponibles en las que poder unirte. En cualquier caso, ¡siempre puedes crear tu propia partida!</p>
-            <br/>
-            <spring:url value="/partida/create/" var="editUrl"></spring:url>
-                <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Crear partida</a>
+        <c:when test="${partida.getFaseActual()=='EXTRACCION'}">
+            <c:redirect url="/partida/tablero/${partida.id}"/>
         </c:when>
         <c:otherwise>
-            <table id="partidaTable" class="table table-striped">
+            <h2>Lobby</h2>
+            <table id="lobby" class="table table-striped">
                 <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Jugadores</th>
-                    <th></th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${partidas}" var="partida">
                     <tr>
                         <td>
                             <c:out value="${partida.nombreSala}"/>
                         </td>
                         <td>
-                            <c:forEach items="${partida.usersOnTheGame}" var="entry">
-                                <c:out value="${entry.username}"/>
-                                <p></p>
-                            </c:forEach>
-                        </td>
-                        <td>
-                            <a href="/partida/lobby/${partida.id}">
-                                <button type="button" class="btn btn-success">Unirme</button>
-                            </a>
+                            <c:out value="${partida.user0.username}"/>
+                            <c:out value=" (Administrador de la partida)"/>
+                            <p></p>
+                            <c:out value="${partida.user1.username}"/>
+                            <p></p>
+                            <c:out value="${partida.user2.username}"/>
                         </td>
                     </tr>
-                </c:forEach>
                 </tbody>
             </table>
+            <c:if test="${partida.user0.username==logged}">
+                <c:choose>
+                    <c:when test="${partida.getUsersOnTheGame().size()==1}">
+                        <p>¡No se puede iniciar la partida con 1 solo jugador!</p>
+                        <br/>
+                    </c:when>
+                </c:choose>
+            </c:if>
+            <spring:url value="/partida/leave/${partida.id}" var="editUrl"></spring:url>
+            
+                <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Abandonar sala</a>
+               
             <div class="row">
                 <div class="col-md-12">
                     <spring:url value="/resources/images/meme-shaggy.gif" htmlEscape="true" var="dwarfGif"/>
@@ -56,4 +58,5 @@
             </div>
         </c:otherwise>
     </c:choose>
+   
 </petclinic:layout>

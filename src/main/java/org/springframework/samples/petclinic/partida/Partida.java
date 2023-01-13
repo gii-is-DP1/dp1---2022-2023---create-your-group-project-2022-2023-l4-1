@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
@@ -71,6 +72,9 @@ public class Partida extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user2", referencedColumnName = "username")
     private User user2;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<User> espectadores;
 
     public List<User> getUsersOnTheGame() {
 
