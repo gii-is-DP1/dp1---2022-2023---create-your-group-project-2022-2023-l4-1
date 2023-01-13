@@ -51,6 +51,7 @@ public class PartidaController {
     private final String LOBBY_VIEW = "partidas/Lobby";
     private final String VIEWS_TABLERO = "tablero/showTablero";
     private final String CHAT_VIEW = "tablero/chat";
+    private final String FINALIZADA = "/partidas/finalPartida";
 
 
     @Autowired
@@ -271,10 +272,21 @@ public class PartidaController {
         model.put("fase1", Fase.EXTRACCION);
         model.put("fase2", Fase.SELECCION);
         model.put("fase3", Fase.RESOLUCION);
+        model.put("fin", Fase.FINALIZADA);
         model.put("desactivada", EspecialActivada.DESACTIVADA);
         model.put("especial7", EspecialActivada.ESPECIAL7);
         model.put("jugador_actual", jugadorService.findJugadorInAGame(partidaService.getUserLogged().getUsername(), partida));
         return VIEWS_TABLERO;
+    }
+
+    @Transactional(readOnly = true)
+    @GetMapping(value = "tablero/fin/{id}")
+    public String finalPartida(@PathVariable int id, Map<String, Object> model) {
+        Partida partida = partidaService.findPartidaById(id);
+        Jugador ganador = jugadorService.findJugadorInAGame(partida.getGanador().getUsername(), partida);
+        model.put("partida", partida);
+        model.put("ganador", ganador);
+        return FINALIZADA;
     }
 
     @Transactional()
@@ -302,6 +314,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -331,6 +353,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -360,6 +392,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -389,6 +431,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -418,6 +470,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -447,6 +509,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -476,6 +548,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
         
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -506,6 +588,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -535,6 +627,16 @@ public class PartidaController {
         if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
         // Comprobamos si podemos avanzar a la siguiente fase.
         partidaService.faseSeleccion(partida, tablero);
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -563,6 +665,16 @@ public class PartidaController {
             // Comprobamos si podemos avanzar a la siguiente fase.
             partidaService.faseSeleccion(partida, tablero);
         }
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -591,6 +703,16 @@ public class PartidaController {
             // Comprobamos si podemos avanzar a la siguiente fase.
             partidaService.faseSeleccion(partida, tablero);
         }
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -619,6 +741,16 @@ public class PartidaController {
             // Comprobamos si podemos avanzar a la siguiente fase.
             partidaService.faseSeleccion(partida, tablero);
         }
+        // Ejecutamos siguiente fase.
+        if (partida.getFaseActual() == Fase.RESOLUCION) {
+            partidaService.faseResolucionParte1(partida, tablero);
+            if (partidaService.getNumTotalFichasPico(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero))
+                partidaService.faseResolucionParte2(partida, tablero);
+        }
+
+        partidaService.actualizarRonda(partida, tablero);
+
+        if (partida.getFaseActual() == Fase.FINALIZADA) return "redirect:/partida/tablero/fin/" + partida.getId();
 
         return "redirect:/partida/tablero/" + partida.getId();
     }

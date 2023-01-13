@@ -7,11 +7,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.carta.Carta;
+import org.springframework.samples.petclinic.carta.CartaService;
+import org.springframework.samples.petclinic.celda.Celda;
 import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.EspecialActivada;
 import org.springframework.samples.petclinic.partida.enums.Fase;
+import org.springframework.samples.petclinic.partida.enums.NumRondas;
 import org.springframework.samples.petclinic.tablero.Tablero;
 import org.springframework.samples.petclinic.tablero.TableroService;
 import org.springframework.samples.petclinic.user.Authorities;
@@ -36,16 +39,18 @@ public class PartidaService {
     JugadorService jugadorService;
     TableroService tableroService;
     CeldaService celdaService;
+    CartaService cartaService;
     
     @Autowired
     public PartidaService(PartidaRepository partidaRepository, AuthoritiesRepository authRepo, UserService userService,
-            JugadorService jugadorService, TableroService tableroService, CeldaService celdaService) {
+            JugadorService jugadorService, TableroService tableroService, CeldaService celdaService, CartaService cartaService) {
         this.partidaRepository = partidaRepository;
         this.authRepo = authRepo;
         this.userService = userService;
         this.jugadorService = jugadorService;
         this.tableroService = tableroService;
         this.celdaService = celdaService;
+        this.cartaService = cartaService;
     }
 
     List<Partida> getPartidas(){
@@ -92,10 +97,8 @@ public class PartidaService {
 
     public void save(Partida partida) {
 
-        partida.setDuracion(0);
         partida.setFaseActual(Fase.INICIANDO);
-        partida.setNumRonda(0);
-        partida.setTiempoRestRonda(60);
+        partida.setNumRonda(1);
         partida.setCartasColocadas(0);
         partida.setCartasIguales(false);
         partida.setEspecialActivada(EspecialActivada.DESACTIVADA);
@@ -141,7 +144,7 @@ public class PartidaService {
         return jugadores;
     }
 
-    public Integer getNumTotalFichas(Partida partida) {
+    public Integer getNumTotalFichasMazo(Partida partida) {
         Integer numTotalFichas = 0;
 
         Jugador jugador1 = jugadorService.findJugadorInAGame(partida.getUser0().getUsername(), partida);
@@ -153,6 +156,87 @@ public class PartidaService {
             numTotalFichas += jugador3.getNumEnanosMazo();
         }
         return numTotalFichas;
+    }
+
+    public Integer getNumTotalFichasPico(Partida partida) {
+        Integer numTotalFichas = 0;
+
+        Jugador jugador1 = jugadorService.findJugadorInAGame(partida.getUser0().getUsername(), partida);
+        numTotalFichas += jugador1.getNumEnanosPico();
+        Jugador jugador2 = jugadorService.findJugadorInAGame(partida.getUser1().getUsername(), partida);
+        numTotalFichas += jugador2.getNumEnanosPico();
+        if (partida.getUser2() != null) {
+            Jugador jugador3 = jugadorService.findJugadorInAGame(partida.getUser2().getUsername(), partida);
+            numTotalFichas += jugador3.getNumEnanosPico();
+        }
+        return numTotalFichas;
+    }
+
+    public Boolean comprobarSiConseguidosTodosObjetos(Partida partida) {
+        Boolean hayGanador = false;
+        for (User u: partida.getUsersOnTheGame()) {
+            Jugador jugador = jugadorService.findJugadorInAGame(u.getUsername(), partida);
+            if (jugador.getObjetos().size() == 8) {
+                hayGanador = true;
+                partida.setGanador(u);
+                break;
+            }
+        }
+        return hayGanador;
+    }
+
+    public void establecerGanador(Partida partida) {
+        Integer puntos1 = 0;
+        Integer puntos2 = 0;
+        Integer puntos3 = 0;
+        Jugador jugador1 = jugadorService.findJugadorInAGame(partida.getUser0().getUsername(), partida);
+        Jugador jugador2 = jugadorService.findJugadorInAGame(partida.getUser1().getUsername(), partida);
+
+        if (partida.getUser2() != null) {
+            Jugador jugador3 = jugadorService.findJugadorInAGame(partida.getUser2().getUsername(), partida);
+            if (jugador1.getCantidadAcero() > jugador2.getCantidadAcero() && jugador1.getCantidadAcero() > jugador3.getCantidadAcero()) puntos1++;
+            else if (jugador2.getCantidadAcero() > jugador1.getCantidadAcero() && jugador2.getCantidadAcero() > jugador3.getCantidadAcero()) puntos2++;
+            else if (jugador3.getCantidadAcero() > jugador1.getCantidadAcero() && jugador3.getCantidadAcero() > jugador2.getCantidadAcero()) puntos3++;
+
+            if (jugador1.getCantidadOro() > jugador2.getCantidadOro() && jugador1.getCantidadOro() > jugador3.getCantidadOro()) puntos1++;
+            else if (jugador2.getCantidadOro() > jugador1.getCantidadOro() && jugador2.getCantidadOro() > jugador3.getCantidadOro()) puntos2++;
+            else if (jugador3.getCantidadOro() > jugador1.getCantidadOro() && jugador3.getCantidadOro() > jugador2.getCantidadOro()) puntos3++;
+
+            if (jugador1.getObjetos().size() > jugador2.getObjetos().size() && jugador1.getObjetos().size() > jugador3.getObjetos().size()) puntos1++;
+            else if (jugador2.getObjetos().size() > jugador1.getObjetos().size() && jugador2.getObjetos().size() > jugador3.getObjetos().size()) puntos2++;
+            else if (jugador3.getObjetos().size() > jugador1.getObjetos().size() && jugador3.getObjetos().size() > jugador2.getObjetos().size()) puntos3++;
+
+            if (jugador1.getCantidadMedallas() > jugador2.getCantidadMedallas() && jugador1.getCantidadMedallas() > jugador3.getCantidadMedallas()) puntos1++;
+            else if (jugador2.getCantidadMedallas() > jugador1.getCantidadMedallas() && jugador2.getCantidadMedallas() > jugador3.getCantidadMedallas()) puntos2++;
+            else if (jugador3.getCantidadMedallas() > jugador1.getCantidadMedallas() && jugador3.getCantidadMedallas() > jugador2.getCantidadMedallas()) puntos3++;
+
+            if (jugador1.getCantidadHierro() > jugador2.getCantidadHierro() && jugador1.getCantidadHierro() > jugador3.getCantidadHierro()) puntos1++;
+            else if (jugador2.getCantidadHierro() > jugador1.getCantidadHierro() && jugador2.getCantidadHierro() > jugador3.getCantidadHierro()) puntos2++;
+            else if (jugador3.getCantidadHierro() > jugador1.getCantidadHierro() && jugador3.getCantidadHierro() > jugador2.getCantidadHierro()) puntos3++;
+
+            if (puntos1 > puntos2 && puntos1 > puntos3) partida.setGanador(partida.getUser0());
+            else if (puntos2 > puntos1 && puntos2 > puntos3) partida.setGanador(partida.getUser1());
+            else if (puntos3 > puntos1 && puntos3 > puntos2) partida.setGanador(partida.getUser2());
+        } else {
+            if (jugador1.getCantidadAcero() > jugador2.getCantidadAcero()) puntos1 += 1;
+            else if (jugador1.getCantidadAcero() < jugador2.getCantidadAcero()) puntos2 += 1;
+
+            if (jugador1.getCantidadOro() > jugador2.getCantidadOro()) puntos1 += 1;
+            else if (jugador1.getCantidadOro() < jugador2.getCantidadOro()) puntos2 += 1;
+
+            if (jugador1.getObjetos().size() > jugador2.getObjetos().size()) puntos1 += 1;
+            else if (jugador1.getObjetos().size() < jugador2.getObjetos().size()) puntos2 += 1;
+
+            if (jugador1.getCantidadMedallas() > jugador2.getCantidadMedallas()) puntos1 += 1;
+            else if (jugador1.getCantidadMedallas() < jugador2.getCantidadMedallas()) puntos2 += 1;
+
+            if (jugador1.getCantidadHierro() > jugador2.getCantidadHierro()) puntos1 += 1;
+            else if (jugador1.getCantidadHierro() < jugador2.getCantidadHierro()) puntos2 += 1;
+
+            if (puntos1 > puntos2) partida.setGanador(partida.getUser0());
+            else if (puntos1 < puntos2) partida.setGanador(partida.getUser1());
+        }
+        
     }
 
     public void actualizarTurno(Partida partida) {
@@ -186,7 +270,49 @@ public class PartidaService {
     }
 
     public void faseSeleccion(Partida partida, Tablero tablero) {
-        if (this.getNumTotalFichas(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero)) partida.setFaseActual(Fase.RESOLUCION);
+        if (this.getNumTotalFichasMazo(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero)) partida.setFaseActual(Fase.RESOLUCION);
+    }
+
+    public void faseResolucionParte1(Partida partida, Tablero tablero) {
+        cartaService.ejecutarAyuda(tablero, partida);
+    }
+
+    public void faseResolucionParte2(Partida partida, Tablero tablero) {
+        cartaService.ejecutarDefensa(tablero, partida);
+        cartaService.ejecutarExtraccion(tablero, partida);
+        cartaService.ejecutarForja(tablero, partida);
+
+        partida.setNumRonda(partida.getNumRonda() + 1);
+
+        partida.setFaseActual(Fase.EXTRACCION);
+        partida.setCartasColocadas(0);
+        partida.setCartasIguales(false);
+        for (User u: partida.getUsersOnTheGame()) {
+            Jugador jugador = jugadorService.findJugadorInAGame(u.getUsername(), partida);
+            jugador.setNumEnanosMazo(2);
+            jugador.setNumEnanosPico(0);
+        }
+        for (Integer i = 0; i <= 8; i++) {
+            Celda celda = tablero.getCeldas().get(i);
+            celda.setOcupadaPor(null);
+            celda.setFicha(null);
+            celda.setOcupado(false);
+        }
+    }
+
+    public void actualizarRonda(Partida partida, Tablero tablero) {
+        if (partida.getNumRonda() == 7 && partida.getRondas() == NumRondas.LIMITADAS) {
+            partida.setFaseActual(Fase.FINALIZADA);
+            this.establecerGanador(partida);
+        }
+        if (tablero.getMontana().size() == 0) {
+            partida.setFaseActual(Fase.FINALIZADA);
+            this.establecerGanador(partida);
+        }
+        if (this.comprobarSiConseguidosTodosObjetos(partida)) {
+            partida.setFaseActual(Fase.FINALIZADA);
+            this.establecerGanador(partida);
+        }
     }
 
 }
