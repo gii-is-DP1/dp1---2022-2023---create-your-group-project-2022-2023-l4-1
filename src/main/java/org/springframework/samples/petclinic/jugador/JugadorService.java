@@ -29,6 +29,10 @@ public class JugadorService {
 		return jugadorRepository.findAll();
 	}
 
+	public List<Jugador> getJugadoresPorUsername(String username) {
+		return jugadorRepository.findByUsername(username);
+	}
+
 	public Jugador findJugadorInAGame(String username, Partida partida) {
 		return jugadorRepository.findJugadorInAGame(username, partida);
 	}

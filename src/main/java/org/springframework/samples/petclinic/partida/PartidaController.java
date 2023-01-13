@@ -17,6 +17,7 @@ import org.springframework.samples.petclinic.jugador.JugadorService;
 import org.springframework.samples.petclinic.partida.enums.EspecialActivada;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
+import org.springframework.samples.petclinic.statistics.AchievementService;
 import org.springframework.samples.petclinic.tablero.Tablero;
 import org.springframework.samples.petclinic.tablero.TableroService;
 import org.springframework.samples.petclinic.user.User;
@@ -43,13 +44,13 @@ public class PartidaController {
     CeldaEspecialService celdaEspecialService;
     CartaService cartaService;
     ChatService chatService;
+    AchievementService achievementService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
     private final String PARTIDAS_LISTING_VIEW = "/partidas/PartidasListing";
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
     private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
     private final String LOBBY_VIEW = "partidas/Lobby";
-    private final String LOBBY_ESPECTADOR_VIEW = "partidas/lobbyEspectador";
     private final String VIEWS_TABLERO = "tablero/showTablero";
     private final String CHAT_VIEW = "tablero/chat";
     private final String FINALIZADA = "/partidas/finalPartida";
@@ -61,7 +62,7 @@ public class PartidaController {
     @Autowired
     public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService,
             TableroService tableroService, CeldaService celdaService, CeldaEspecialService celdaEspecialService,
-            CartaService cartaService, ChatService chatService) {
+            CartaService cartaService, ChatService chatService, AchievementService achievementService) {
         this.partidaService = partidaService;
         this.userService = userService;
         this.jugadorService = jugadorService;
@@ -70,6 +71,7 @@ public class PartidaController {
         this.celdaEspecialService = celdaEspecialService;
         this.cartaService = cartaService;
         this.chatService = chatService;
+        this.achievementService = achievementService;
     }
 
     @GetMapping("/partidas")
@@ -294,11 +296,12 @@ public class PartidaController {
         return VIEWS_TABLERO;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional()
     @GetMapping(value = "tablero/fin/{id}")
     public String finalPartida(@PathVariable int id, Map<String, Object> model) {
         Partida partida = partidaService.findPartidaById(id);
         Jugador ganador = jugadorService.findJugadorInAGame(partida.getGanador().getUsername(), partida);
+        achievementService.evaluarLogros(ganador.getUser().getUsername());
         model.put("partida", partida);
         model.put("ganador", ganador);
         return FINALIZADA;
