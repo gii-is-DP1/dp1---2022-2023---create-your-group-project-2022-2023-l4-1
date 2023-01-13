@@ -37,7 +37,9 @@ public class RecursosServiceTest {
     @Test
     public void saveUnsuccessfulTest(){
         Recursos recurso = new Recursos();
+
         RecursosService recursosService = new RecursosService(recursosRepository);
+        
         assertThrows(Exception.class, () -> recursosService.saveResources(recurso));
     }
 
@@ -46,6 +48,7 @@ public class RecursosServiceTest {
     @Test
     public void recursosCountTest(){
         RecursosService recursosService = new RecursosService(recursosRepository);
+
         assertNotNull(recursosService.RecursosCount());
         assertEquals(0, recursosService.RecursosCount());
     }
@@ -55,27 +58,7 @@ public class RecursosServiceTest {
     @Test
     public void findAllTest(){
         RecursosService recursosService = new RecursosService(recursosRepository);
+
         assertNotNull(recursosService.findAll());
     }
-
-
-
-    // @Test
-    // public void findByResourcesIdSuccessfulTest(){
-    //     RecursosService recursosService = new RecursosService(recursosRepository);
-    //     Recursos recurso = new Recursos();
-    //     recurso.setNombre(TipoRecurso.Oro);
-    //     recurso.setCantidadBase(63158);
-    //     recursosService.saveResources(recurso);
-    //     Recursos test = recursosService.findByResourcesId(1).get();
-
-    //     assertNotNull(test);
-    //     assertEquals(63158, test.getCantidadBase());
-    // }
-
-    // @Test
-    // public void findByResourcesIdUnsuccessfulTest(){
-    //     RecursosService recursosService = new RecursosService(recursosRepository);
-    //     assertThrows(Exception.class, () -> recursosService.findByResourcesId(45).get());
-    // }
 }

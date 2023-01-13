@@ -3,6 +3,10 @@ package org.springframework.samples.petclinic.carta;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +16,20 @@ import org.springframework.samples.petclinic.carta.enums.AccionPosterior;
 import org.springframework.samples.petclinic.carta.enums.NombreCarta;
 import org.springframework.samples.petclinic.carta.enums.RangoCarta;
 import org.springframework.samples.petclinic.carta.enums.TipoCarta;
+import org.springframework.samples.petclinic.celda.CeldaEspecialRepository;
+import org.springframework.samples.petclinic.celda.CeldaEspecialService;
+import org.springframework.samples.petclinic.celda.CeldaRepository;
+import org.springframework.samples.petclinic.celda.CeldaService;
+import org.springframework.samples.petclinic.jugador.Jugador;
+import org.springframework.samples.petclinic.jugador.JugadorRepository;
+import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.objetos.Objeto;
 import org.springframework.samples.petclinic.objetos.ObjetoRepository;
 import org.springframework.samples.petclinic.objetos.ObjetoService;
+import org.springframework.samples.petclinic.partida.Partida;
+import org.springframework.samples.petclinic.tablero.Tablero;
+import org.springframework.samples.petclinic.tablero.TableroRepository;
+import org.springframework.samples.petclinic.tablero.TableroService;
 
 @DataJpaTest
 public class CartaServiceTest {
@@ -26,6 +42,18 @@ public class CartaServiceTest {
 
     @Autowired
     ObjetoRepository objetoRepository;
+
+    @Autowired
+    TableroRepository tableroRepository;
+
+    @Autowired
+    CeldaRepository celdaRepository;
+
+    @Autowired
+    JugadorRepository jugadorRepository;
+
+    @Autowired
+    CeldaEspecialRepository celdaEspecialRepository;
     
 
     
@@ -33,7 +61,9 @@ public class CartaServiceTest {
     public void findByIdSuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
       CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+
       Carta carta = cartaService.findById(23);
+
       assertNotNull(carta);
       assertEquals(NombreCarta.Alloy_Steel, carta.getNombre());
       assertEquals(TipoCarta.Extraccion, carta.getTipo());
@@ -47,8 +77,8 @@ public class CartaServiceTest {
     public void findByIdUnsuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
       CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+
       assertThrows(Exception.class, () -> cartaService.findById(80));
-      
     }
 
 
@@ -57,7 +87,9 @@ public class CartaServiceTest {
     public void findCartaEspecialByIdSuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
       CartaService cartasService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+
       CartaEspecial cartaEspecial = cartasService.findCartaEspecialById(3);
+
       assertNotNull(cartaEspecial);
       assertEquals(AccionEspecial.Sell_an_Item, cartaEspecial.getNombre());
       assertEquals(AccionPosterior.Iron_Seam, cartaEspecial.getAccionPosterior());
@@ -69,7 +101,49 @@ public class CartaServiceTest {
     public void findCartaEspecialByIdUnsuccessfulTest(){
       ObjetoService objetoService = new ObjetoService(objetoRepository);
       CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+
       assertThrows(Exception.class, () -> cartaService.findCartaEspecialById(20));
-      
+    }
+
+
+
+    @Test
+    public void ejecutarCartaEspecialSuccessfulTest(){
+      JugadorService jugadorService = new JugadorService(jugadorRepository);
+      ObjetoService objetoService = new ObjetoService(objetoRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+      CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
+      TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+
+      Tablero tablero = tableroService.findById(1).get();
+      Partida partida = tablero.getPartida();
+      Jugador jugador = jugadorService.findJugadorInAGame("pabmarval", partida);
+      Objeto objeto = new Objeto();
+      List<Objeto> objetos = new ArrayList<Objeto>();
+      objetos.add(objeto);
+      jugador.setObjetos(objetos);
+
+      try{
+        cartaService.ejecutarCartaEspecial(tablero, partida, 3, jugador);
+      } catch(Exception e){
+        fail(e);
+      }
+    }
+
+    @Test
+    public void ejecutarCartaEspecialUnsuccessfulTest(){
+      JugadorService jugadorService = new JugadorService(jugadorRepository);
+      ObjetoService objetoService = new ObjetoService(objetoRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+      CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
+      TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+
+      Tablero tablero = tableroService.findById(1).get();
+      Partida partida = tablero.getPartida();
+      Jugador jugador = jugadorService.findJugadorInAGame("pabmarval", partida);
+
+      assertThrows(Exception.class, () -> cartaService.ejecutarCartaEspecial(tablero, partida, 3, jugador));
     }
   }
