@@ -54,7 +54,7 @@ public class TableroServiceTest {
     public void saveSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -74,7 +74,7 @@ public class TableroServiceTest {
     public void findByIdSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -90,7 +90,7 @@ public class TableroServiceTest {
     public void findByIdUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
@@ -104,7 +104,7 @@ public class TableroServiceTest {
     public void findAllTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);

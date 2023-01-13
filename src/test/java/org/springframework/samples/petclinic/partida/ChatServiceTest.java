@@ -54,7 +54,7 @@ public class ChatServiceTest {
         ChatService chatService = new ChatService(chatRepository);
         JugadorService jugadorService = new JugadorService(jugadorRepository);
         ObjetoService objetoService = new ObjetoService(objetoRepository);
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService, jugadorService);
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
