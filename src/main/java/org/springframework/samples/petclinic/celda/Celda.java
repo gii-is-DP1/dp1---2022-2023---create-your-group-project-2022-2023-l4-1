@@ -31,6 +31,7 @@ public class Celda extends BaseEntity {
     private List<Carta> cartas;
 
     private Boolean ocupado;
+    private String ocupadaPor;
     private String ficha;
     
 }

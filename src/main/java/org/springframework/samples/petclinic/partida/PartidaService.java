@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.carta.Carta;
+import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.partida.enums.EspecialActivada;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.tablero.Tablero;
 import org.springframework.samples.petclinic.tablero.TableroService;
@@ -33,15 +35,17 @@ public class PartidaService {
     LoggedUserController loggedUser;
     JugadorService jugadorService;
     TableroService tableroService;
+    CeldaService celdaService;
     
     @Autowired
     public PartidaService(PartidaRepository partidaRepository, AuthoritiesRepository authRepo, UserService userService,
-            JugadorService jugadorService, TableroService tableroService) {
+            JugadorService jugadorService, TableroService tableroService, CeldaService celdaService) {
         this.partidaRepository = partidaRepository;
         this.authRepo = authRepo;
         this.userService = userService;
         this.jugadorService = jugadorService;
         this.tableroService = tableroService;
+        this.celdaService = celdaService;
     }
 
     List<Partida> getPartidas(){
@@ -94,6 +98,7 @@ public class PartidaService {
         partida.setTiempoRestRonda(60);
         partida.setCartasColocadas(0);
         partida.setCartasIguales(false);
+        partida.setEspecialActivada(EspecialActivada.DESACTIVADA);
         partida.setUser0(getUserLogged());
 
         partidaRepository.save(partida);
@@ -136,6 +141,20 @@ public class PartidaService {
         return jugadores;
     }
 
+    public Integer getNumTotalFichas(Partida partida) {
+        Integer numTotalFichas = 0;
+
+        Jugador jugador1 = jugadorService.findJugadorInAGame(partida.getUser0().getUsername(), partida);
+        numTotalFichas += jugador1.getNumEnanosMazo();
+        Jugador jugador2 = jugadorService.findJugadorInAGame(partida.getUser1().getUsername(), partida);
+        numTotalFichas += jugador2.getNumEnanosMazo();
+        if (partida.getUser2() != null) {
+            Jugador jugador3 = jugadorService.findJugadorInAGame(partida.getUser2().getUsername(), partida);
+            numTotalFichas += jugador3.getNumEnanosMazo();
+        }
+        return numTotalFichas;
+    }
+
     public void actualizarTurno(Partida partida) {
         partida.setJugadorActivo(partida.getSiguienteJugador());
 
@@ -143,6 +162,8 @@ public class PartidaService {
         else if (partida.getUser1().getUsername().equals(partida.getSiguienteJugador()) && partida.getUser2() != null) partida.setSiguienteJugador(partida.getUser2().getUsername());
         else if (partida.getUser1().getUsername().equals(partida.getSiguienteJugador()) && partida.getUser2() == null) partida.setSiguienteJugador(partida.getUser0().getUsername());
         else if (partida.getUser2().getUsername().equals(partida.getSiguienteJugador())) partida.setSiguienteJugador(partida.getUser0().getUsername());
+
+        partida.setEspecialActivada(EspecialActivada.DESACTIVADA);
     }
 
     public void faseExtraccion(Partida partida, Tablero tablero) {
@@ -162,6 +183,10 @@ public class PartidaService {
             partida.setCartasColocadas(0);
             partida.setCartasIguales(false);
         }
+    }
+
+    public void faseSeleccion(Partida partida, Tablero tablero) {
+        if (this.getNumTotalFichas(partida) == 0 || celdaService.comprobarSiTodasCeldasOcupadas(tablero)) partida.setFaseActual(Fase.RESOLUCION);
     }
 
 }

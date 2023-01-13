@@ -90,6 +90,16 @@ INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (52,
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (53, 'Knockers', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 8, '/resources/images/cartas/Carta 53.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (54, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 9, '/resources/images/cartas/Carta 54.png');
 
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (55, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 1, '/resources/images/cartas_especiales/Trasera 1.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (56, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 2, '/resources/images/cartas_especiales/Trasera 2.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (57, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 3, '/resources/images/cartas_especiales/Trasera 3.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (58, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 4, '/resources/images/cartas_especiales/Trasera 4.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (59, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 5, '/resources/images/cartas_especiales/Trasera 5.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (60, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 6, '/resources/images/cartas_especiales/Trasera 6.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (61, 'Gold_Seam', 'Extraccion', 'Especial', 'Take 1 gold from the supply.', 7, '/resources/images/cartas_especiales/Trasera 7.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (62, 'Iron_Seam', 'Extraccion', 'Especial', 'Take 3 iron from the supply.', 8, '/resources/images/cartas_especiales/Trasera 8.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (63, 'Gold_Seam', 'Extraccion', 'Especial', 'Take 1 gold from the supply.', 9, '/resources/images/cartas_especiales/Trasera 9.png');
+
 -- Cartas especiales.
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (1, 'Muster_an_Army', 'When resolving actions this round, treat al defend locations as if they are occupied.', 'Iron_Seam', 'Take 3 iron from the supply.', 1, '/resources/images/cartas_especiales/Trasera 1.png', '/resources/images/cartas_especiales/Especial 1.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (2, 'Hold_a_Council', 'Remove the top card from each location (leaving at least one card) and shuffle them back into The Mountain.', 'Iron_Seam', 'Take 3 iron from the supply.', 2, '/resources/images/cartas_especiales/Trasera 2.png', '/resources/images/cartas_especiales/Especial 2.png');
@@ -101,7 +111,16 @@ INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (8, 'Collapse_the_Shafts', 'Remove the top card from each location and place it on the bottom of that stack.', 'Iron_Seam', 'Take 3 iron from the supply.', 8, '/resources/images/cartas_especiales/Trasera 8.png', '/resources/images/cartas_especiales/Especial 8.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (9, 'Run_Amok', 'Collect all of the cards from each location, in turn, shuffle them and return them to that location.', 'Gold_Seam', 'Take 1 gold from the supply.', 9, '/resources/images/cartas_especiales/Trasera 9.png', '/resources/images/cartas_especiales/Especial 9.png');
 
+-- Objetos.
 
+INSERT INTO objeto(id, nombre) VALUES (1, 'Espada');
+INSERT INTO objeto(id, nombre) VALUES (2, 'Mazo');
+INSERT INTO objeto(id, nombre) VALUES (3, 'Diadema');
+INSERT INTO objeto(id, nombre) VALUES (4, 'Timon');
+INSERT INTO objeto(id, nombre) VALUES (5, 'Hacha');
+INSERT INTO objeto(id, nombre) VALUES (6, 'Corona');
+INSERT INTO objeto(id, nombre) VALUES (7, 'Daga');
+INSERT INTO objeto(id, nombre) VALUES (8, 'Armadura');
 
 -- Logros.
 
