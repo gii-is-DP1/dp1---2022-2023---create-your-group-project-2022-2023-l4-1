@@ -20,7 +20,7 @@
                 </td> 
                 <td style="text-align:right">
                     <a class="btn btn-default" href="/users/${invitation.receiver.username}/accept/${invitation.id}">Aceptar</a>
-                    <a class="btn btn-default" href="/users/${invitation.receiver.username}/cancelInvite/${invitation.id}">Rechazar</a>
+                    <a class="btn btn-default" href="/users/${invitation.receiver.username}/rejectInvite/${invitation.id}">Rechazar</a>
                 </td> 
             </tr>
         </c:forEach>

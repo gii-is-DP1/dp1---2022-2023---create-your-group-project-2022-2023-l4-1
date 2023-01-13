@@ -3,6 +3,9 @@ package org.springframework.samples.petclinic.celda;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -51,8 +54,8 @@ public class CeldaServiceTest {
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+        
         tableroService.save(new Partida());
-
         Tablero tablero2 = tableroService.findById(2).get();
         Celda celda2 = new Celda();
 
@@ -89,7 +92,7 @@ public class CeldaServiceTest {
 
         Tablero tablero = tableroService.findById(1).get();
         Partida partida = tablero.getPartida();
-        Integer numCelda = 0;
+        Integer numCelda = 3;
 
         try{
             celdaService.colocarFicha(partida, tablero, "pabmarval", numCelda);
@@ -111,5 +114,65 @@ public class CeldaServiceTest {
         Integer numCelda = 1;
 
         assertThrows(Exception.class, () -> celdaService.colocarFicha(partida, tablero, "davcorrom", numCelda));
+    }
+
+
+
+    @Test
+    public void comprobarSiTodasCeldasOcupadasSuccessfulTest(){
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+
+        Celda celda0 = new Celda();
+        Celda celda1 = new Celda();
+        Celda celda2 = new Celda();
+        Celda celda3 = new Celda();
+        Celda celda4 = new Celda();
+        Celda celda5 = new Celda();
+        Celda celda6 = new Celda();
+        Celda celda7 = new Celda();
+        Celda celda8 = new Celda();
+
+        celda0.setOcupado(true);
+        celda1.setOcupado(true);
+        celda2.setOcupado(true);
+        celda3.setOcupado(true);
+        celda4.setOcupado(true);
+        celda5.setOcupado(true);
+        celda6.setOcupado(true);
+        celda7.setOcupado(true);
+        celda8.setOcupado(true);
+
+        List<Celda> celdas = new ArrayList<Celda>();
+        celdas.add(celda0);
+        celdas.add(celda1);
+        celdas.add(celda2);
+        celdas.add(celda3);
+        celdas.add(celda4);
+        celdas.add(celda5);
+        celdas.add(celda6);
+        celdas.add(celda7);
+        celdas.add(celda8);
+
+        Tablero tablero = new Tablero();
+        tablero.setCeldas(celdas);
+
+        try{
+            celdaService.comprobarSiTodasCeldasOcupadas(tablero);
+        } catch(Exception e){
+            fail(e);
+        }
+    }
+    
+    @Test
+    public void comprobarSiTodasCeldasOcupadasUnsuccessfulTest(){
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+
+        assertThrows(Exception.class, () -> celdaService.comprobarSiTodasCeldasOcupadas(new Tablero()));
     }
 }
