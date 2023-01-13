@@ -47,6 +47,8 @@ public class PartidaController {
     private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
     private final String LOBBY_VIEW = "partidas/Lobby";
     private final String VIEWS_TABLERO = "tablero/showTablero";
+    private final String CHAT_VIEW = "tablero/chat";
+
 
     @Autowired
     LoggedUserController currentUser;
@@ -462,20 +464,31 @@ public class PartidaController {
     }
  
 
+    @Transactional()
+    @GetMapping(value = "tablero/{id}/chat")
+    public String juego(@PathVariable int id, Map<String,Object> model) {
+        Partida partida = partidaService.findPartidaById(id);
+        Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
+        model.put("tablero",tablero);
+        model.put("partida", partida);
+        model.put("chat", partida.getChat());
+        return CHAT_VIEW;
+    }
+
     @Transactional
     @PostMapping("tablero/{id}/chat")
     public String processChat(@PathVariable("id") Integer id, Chat chat,BindingResult result) {
         Partida partida = partidaService.findPartidaById(id);
         if (result.hasErrors()) {
             System.out.println("#".repeat(200));
-            return "redirect:/partida/tablero/" + partida.getId();
+            return "redirect:/partida/tablero/" + partida.getId() + "/chat";
         } else {
             String username = partidaService.getUserLogged().getUsername();
             chat.setId(999);
             chat.setUsername(username);
             chat.setPartida(partida);
             chatService.saveChat(chat);
-            return "redirect:/partida/tablero/" + partida.getId();
+            return "redirect:/partida/tablero/" + partida.getId()+ "/chat";
         }
     }
 

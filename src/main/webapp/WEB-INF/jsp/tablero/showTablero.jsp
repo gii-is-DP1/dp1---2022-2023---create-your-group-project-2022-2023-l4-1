@@ -34,35 +34,6 @@
 	background-repeat:repeat;
 	background-size: 100%;
   }
-  .chat_container {
-            position: absolute;
-            top: 750px;
-            right: 20px;
-            width: 400px;
-            min-height: 200px;
-            background-color: #34302d;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            border-radius: 5px;
-            gap: 10px;
-            padding: 20px 0;
-        }
-        .chat_container>div {
-            width: 90%;
-            overflow-y: scroll;
-            height: 300px;
-        }
-        .chat_container label {
-            display: none;
-        }
-        .chat_container h2 {
-            color: white;
-        }
-        .chat_container p {
-            color: white;
-        }
 </style>
 
 <game:layout pageName="home">
@@ -73,7 +44,11 @@
         <h2 style="color:rgb(255, 255, 255)">Jugador2 ${jugador2.getUser().getUsername()} Color rojo.</h2>
         <c:if test = "${partida.getUser2()!=null}"><h2 style="color:rgb(255, 255, 255)">Jugador3 ${jugador3.getUser().getUsername()} Color verde.</h2></c:if>
         <h2 style="color:rgb(255, 255, 255)">El turno lo tiene ${partida.getJugadorActivo()}. El siguiente jugador sera ${partida.getSiguienteJugador()}.</h2>
-
+        <tr> 
+            <td>
+                <a class="btn btn-default" href="/partida/tablero/${partida.id}/chat">Chat online</a>
+            </td>  
+        </tr>
         <div class="board">
             <div class="celda">
                 <c:choose>
@@ -306,27 +281,6 @@
             </div>
         </div>
     </body>
-</game:layout>
-</div>
-    <div class="chat_container">
-        <h2>CHAT</h2>
-        <div id="chat_id">
-            <c:forEach items="${chat}" var="chat">
-                <p>(${chat.username}): ${chat.mensaje}</p>
-            </c:forEach>
-        </div>
-        <form:form modelAttribute="chat" action="/partida/tablero/${partida.id}/chat" class="form-horizontal" id="add-owner-form" >
-            <div class="form-group has-feedback">
-                <input name = "mensaje" path = "mensaje">
-            </div>
-            <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-default" type="submit">Enviar</button>
-            </div>
-        </form:form>
-    </div>
-</div>
-<script>
-    var objDiv = document.getElementById("chat_id");
-    objDiv.scrollTop = objDiv.scrollHeight;
-</script>
+    </game:layout>
+
 
