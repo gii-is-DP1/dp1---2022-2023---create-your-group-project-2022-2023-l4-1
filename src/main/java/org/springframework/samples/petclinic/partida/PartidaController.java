@@ -49,6 +49,7 @@ public class PartidaController {
     private final String PARTIDAS_FORM = "/partidas/createOrUpdatePartidaForm";
     private final String PARTIDAS_ACTIVAS_VIEW = "partidas/partidasActivasListing";
     private final String LOBBY_VIEW = "partidas/Lobby";
+    private final String LOBBY_ESPECTADOR_VIEW = "partidas/lobbyEspectador";
     private final String VIEWS_TABLERO = "tablero/showTablero";
     private final String CHAT_VIEW = "tablero/chat";
 
@@ -243,6 +244,20 @@ public class PartidaController {
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         partidaService.iniciarPartida(id, tablero);
         return "redirect:/partida/tablero/" + partida.getId();
+    }
+
+    @Transactional
+    @GetMapping("tableroEspectador/{id}")
+    public String verComoEspectador(@PathVariable int id, Map<String,Object> model, HttpServletResponse response){
+
+        response.addHeader("Refresh", "5");
+        Partida partida = partidaService.findPartidaById(id);
+        if (!partida.getEspectadores().contains(partidaService.getUserLogged())) {
+            partida.getEspectadores().add(partidaService.getUserLogged());
+        }
+        
+        return "redirect:/partida/tablero/" + partida.getId();
+
     }
 
     @Transactional()

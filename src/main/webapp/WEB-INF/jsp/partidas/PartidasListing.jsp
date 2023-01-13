@@ -15,6 +15,7 @@
             <th>Ganador</th>
             <th>Jugadores</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -34,8 +35,17 @@
                  </td>
                  <td> 
                     <a href="/partida/${partida.id}/delete"> 
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>                            
-                    </a>       
+                        <sec:authorize access="hasAuthority('admin')">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </sec:authorize>                            
+                    </a>     
+                </td>
+                <td> 
+                    <c:if test="${partida.ganador==null}">
+                        <a href="/partida/tableroEspectador/${partida.id}">
+                            <button type="button" class="btn btn-success">Unirme como espectador</button>
+                        </a>
+                    </c:if> 
                 </td>
             </tr>
         </c:forEach>
