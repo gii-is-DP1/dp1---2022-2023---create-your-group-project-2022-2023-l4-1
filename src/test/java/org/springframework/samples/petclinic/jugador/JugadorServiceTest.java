@@ -56,9 +56,12 @@ public class JugadorServiceTest {
     @Test
     public void saveUnsuccessfulTest(){
         User user2 = new User();
+
         Partida partida2 = new Partida();
         partida2.setNombreSala(null);
+
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+        
         assertThrows(Exception.class, () -> jugadorService.save(user2, partida2));
     }
 
@@ -67,7 +70,9 @@ public class JugadorServiceTest {
     @Test
     public void findJugadorByIdSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         Jugador jugador = jugadorService.findJugadorById(1);
+
         assertNotNull(jugador);
         assertEquals("pabmarval", jugador.getUser().getUsername());
         assertEquals(1, jugador.getPartida().getId());
@@ -76,7 +81,9 @@ public class JugadorServiceTest {
     @Test
     public void findJugadorByIdUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         Jugador jugador = jugadorService.findJugadorById(1304);
+
         assertNull(jugador);
     }
 
@@ -85,7 +92,9 @@ public class JugadorServiceTest {
     @Test
     public void getJugadoresSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         List<Jugador> jugadores = jugadorService.getJugadores();
+
         assertNotNull(jugadores);
         assertFalse(jugadores.isEmpty());
         assertEquals(6, jugadores.size());
@@ -94,7 +103,9 @@ public class JugadorServiceTest {
     @Test
     public void getJugadoresUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         List<Jugador> jugadores = jugadorService.getJugadores();
+
         assertNotNull(jugadores);
         assertFalse(jugadores.isEmpty());
         assertNotEquals(1254, jugadores.size());
@@ -105,7 +116,9 @@ public class JugadorServiceTest {
     @Test
     public void findOwnerByLastNameSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         Collection<Jugador> jugadores = jugadorService.findOwnerByLastName("Cortabarra Romero");
+
         assertNotNull(jugadores);
         assertFalse(jugadores.isEmpty());
         assertEquals(2, jugadores.size());
@@ -114,7 +127,9 @@ public class JugadorServiceTest {
     @Test
     public void findOwnerByLastNameUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         Collection<Jugador> jugadores = jugadorService.findOwnerByLastName("Palacios Pineda");
+
         assertNotNull(jugadores);
         assertTrue(jugadores.isEmpty());
     }
@@ -124,7 +139,9 @@ public class JugadorServiceTest {
     @Test
     public void deleteByIdSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         jugadorService.deleteJugadorById(1);
+
         assertNull(jugadorService.findJugadorById(1));
         assertEquals(5, jugadorService.getJugadores().size());
     }
@@ -132,6 +149,7 @@ public class JugadorServiceTest {
     @Test
     public void deleteByIdUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         assertThrows(Exception.class, () -> jugadorService.deleteJugadorById(35));
     }
 
@@ -140,8 +158,10 @@ public class JugadorServiceTest {
     @Test
     public void findJugadorInAGameSuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         Partida partida = partidaRepository.findById(1);
         Jugador jugador = jugadorService.findJugadorInAGame("pabmarval", partida);
+
         assertNotNull(jugador);
         assertEquals(15, jugador.getCantidadHierro());
         assertEquals(1, jugador.getId());
@@ -150,8 +170,10 @@ public class JugadorServiceTest {
     @Test
     public void findJugadorInAGameUnsuccessfulTest(){
         JugadorService jugadorService = new JugadorService(jugadorRepository);
+
         Partida partida = partidaRepository.findById(1);
         Jugador jugador = jugadorService.findJugadorInAGame("Manpalpin02", partida);
+
         assertNull(jugador);
     }
     

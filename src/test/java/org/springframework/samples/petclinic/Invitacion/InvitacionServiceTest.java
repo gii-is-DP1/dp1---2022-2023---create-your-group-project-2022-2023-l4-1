@@ -36,10 +36,10 @@ public class InvitacionServiceTest {
 
 
 
-    
     @Test
     public void sendInvitationSuccessfulTest(){
         InvitationService invitationService = new InvitationService(invitationRepository, userRepository);
+
         String username1 = "Manpalpin02";
         String username2 = "pabmarval";
 
@@ -53,6 +53,7 @@ public class InvitacionServiceTest {
     @Test
     public void sendInvitationUnsuccesfulTest(){
         InvitationService invitationService = new InvitationService(invitationRepository, userRepository);
+
         String username1 = "prueba1";
         String username2 = "prueba2";
 
@@ -64,6 +65,7 @@ public class InvitacionServiceTest {
     @Test
     public void acceptInvitationSuccessfulTest(){
         InvitationService invitationService = new InvitationService(invitationRepository, userRepository);
+
         String username = "ignwarmur";
 
         try{
@@ -76,6 +78,7 @@ public class InvitacionServiceTest {
     @Test
     public void acceptInvitationUnsuccessfulTest(){
         InvitationService invitationService = new InvitationService(invitationRepository, userRepository);
+
         String username = "prueba";
 
         assertThrows(Exception.class, () -> invitationService.acceptInvitation(username, 143));
@@ -106,7 +109,9 @@ public class InvitacionServiceTest {
     @Test
     public void getAvailableUsersSuccessfulTest(){
         InvitationService invitationService = new InvitationService(invitationRepository, userRepository);
+
         List<User> usuarios = invitationService.getAvailableUsers("Manpalpin02");
+
         assertNotNull(usuarios);
         assertFalse(usuarios.isEmpty());
         assertEquals(6, usuarios.size());
@@ -115,6 +120,7 @@ public class InvitacionServiceTest {
     @Test
     public void getAvailableUsersUnsuccessfulTest(){
         InvitationService invitationService = new InvitationService(invitationRepository, userRepository);
+        
         assertThrows(Exception.class, () -> invitationService.getAvailableUsers("prueba"));
     }
 }

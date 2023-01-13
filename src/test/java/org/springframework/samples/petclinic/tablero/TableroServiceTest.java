@@ -58,6 +58,7 @@ public class TableroServiceTest {
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+        
         Partida partida = new Partida();
 
         try{
@@ -77,6 +78,7 @@ public class TableroServiceTest {
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+
         Tablero tablero = tableroService.findById(1).get();
 
         assertNotNull(tablero);
@@ -106,6 +108,7 @@ public class TableroServiceTest {
         CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
         CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
+
         List<Tablero> tableros = tableroService.findAll();
 
         assertNotNull(tableros);
