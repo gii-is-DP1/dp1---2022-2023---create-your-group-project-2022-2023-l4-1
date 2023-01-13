@@ -62,8 +62,4 @@
             </div>
         </c:otherwise>
     </c:choose>
-    <spring:url value="/users/${partida.user0.username}/friends" var="editUrl"></spring:url>
-            
-    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Invitar amigos</a>
-   
 </petclinic:layout>
