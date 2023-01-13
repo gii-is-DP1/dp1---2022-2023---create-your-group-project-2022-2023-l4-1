@@ -50,7 +50,9 @@
                 </c:choose>
             </c:if>
             <spring:url value="/partida/leave/${partida.id}" var="editUrl"></spring:url>
+            
                 <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Abandonar sala</a>
+               
             <div class="row">
                 <div class="col-md-12">
                     <spring:url value="/resources/images/meme-shaggy.gif" htmlEscape="true" var="dwarfGif"/>
@@ -60,4 +62,8 @@
             </div>
         </c:otherwise>
     </c:choose>
+    <spring:url value="/users/${partida.user0.username}/friends" var="editUrl"></spring:url>
+            
+    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Invitar amigos</a>
+   
 </petclinic:layout>

@@ -50,13 +50,12 @@
 					</petclinic:menuItem>
 				</sec:authorize>
 
-				<sec:authorize access="hasAuthority('admin')">
-					<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas"
+
+				<petclinic:menuItem active="${name eq 'partidas'}" url="/partida/partidas"
 						title="Partidas">
 						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 						<span>Partidas</span>
-					</petclinic:menuItem>
-				</sec:authorize>	
+				</petclinic:menuItem>	
 				
 				<sec:authorize access="hasAuthority('player')">
 					<petclinic:menuItem active="${name eq 'mis partidas'}" url="/partida/misPartidas"
