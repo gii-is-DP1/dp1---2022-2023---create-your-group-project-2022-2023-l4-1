@@ -45,14 +45,21 @@
             <body class="background">
 
                 <h2 style="color:rgb(255, 255, 255)">Sala ${partida.getNombreSala()}</h2>
-                <h2 style="color:rgb(255, 255, 255)">Jugador1 ${jugador1.getUser().getUsername()} Color azul.</h2>
-                <h2 style="color:rgb(255, 255, 255)">Jugador2 ${jugador2.getUser().getUsername()} Color rojo.</h2>
-                <c:if test = "${partida.getUser2()!=null}"><h2 style="color:rgb(255, 255, 255)">Jugador3 ${jugador3.getUser().getUsername()} Color verde.</h2></c:if>
-                <h2 style="color:rgb(255, 255, 255)">El turno lo tiene ${partida.getJugadorActivo()}. El siguiente jugador sera ${partida.getSiguienteJugador()}.</h2>
                 <h2 style="color:rgb(255, 255, 255)">FASE DE ${partida.getFaseActual()}.</h2>
+                <h2 style="color:rgb(255, 255, 255)">Jugador 1 ${jugador1.getUser().getUsername()} Color azul.</h2>
+                <p style="color:rgb(255, 255, 255)">Hierro: ${jugador1.getCantidadHierro()} Oro: ${jugador1.getCantidadOro()} Acero: ${jugador1.getCantidadAcero()} Medallas: ${jugador1.getCantidadMedallas()} Objetos: ${jugador1.getObjetos().size()}</p>
+                <h2 style="color:rgb(255, 255, 255)">Jugador 2 ${jugador2.getUser().getUsername()} Color rojo.</h2>
+                <p style="color:rgb(255, 255, 255)">Hierro: ${jugador2.getCantidadHierro()} Oro: ${jugador2.getCantidadOro()} Acero: ${jugador2.getCantidadAcero()} Medallas: ${jugador2.getCantidadMedallas()} Objetos: ${jugador2.getObjetos().size()}</p>
+                <c:if test = "${partida.getUser2()!=null}"><h2 style="color:rgb(255, 255, 255)">Jugador3 ${jugador3.getUser().getUsername()} Color verde.</h2></c:if>
+                <c:if test = "${partida.getUser2()!=null}"><h2 style="color:rgb(255, 255, 255)"><p>Hierro: ${jugador3.getCantidadHierro()} Oro: ${jugador3.getCantidadOro()} Acero: ${jugador3.getCantidadAcero()} Medallas: ${jugador3.getCantidadMedallas()} Objetos: ${jugador3.getObjetos().size()}</p></c:if>
+                &nbsp;
+                <h2 style="color:rgb(255, 255, 255)">El turno lo tiene ${partida.getJugadorActivo()}.</h2>
+                &nbsp;
                 <c:if test = "${partida.getFaseActual()==fase1}"><h2 style="color:rgb(255, 255, 255)">Coja las cartas que se le permita del mazo para colocarlas en la mina.</h2></c:if>
                 <c:if test = "${partida.getFaseActual()==fase2}"><h2 style="color:rgb(255, 255, 255)">Coloque sus enanos respetando los turnos.</h2></c:if>
-        
+                <c:if test = "${partida.getFaseActual()==fase3}"><h2 style="color:rgb(255, 255, 255)">Coloque tantos enanos como sea posible.</h2></c:if>
+
+
                 <tr> 
                     <td>
                         <a class="btn btn-default" href="/partida/tablero/${partida.id}/chat">Chat online</a>

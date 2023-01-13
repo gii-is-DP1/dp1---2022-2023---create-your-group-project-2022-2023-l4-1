@@ -22,5 +22,6 @@
     <body class="background">
         <h2 style="color:rgb(255, 255, 255)">PARTIDA FINALIZADA</h2>
         <h2 style="color:rgb(255, 255, 255)">GANADOR: ${ganador.getUser().getUsername()}</h2>
+        <p style="color:rgb(255, 255, 255)">Hierro: ${ganador.getCantidadHierro()} Oro: ${ganador.getCantidadOro()} Acero: ${ganador.getCantidadAcero()} Medallas: ${ganador.getCantidadMedallas()} Objetos: ${ganador.getObjetos().size()}</p>
     </body>
 </petclinic:layout>
