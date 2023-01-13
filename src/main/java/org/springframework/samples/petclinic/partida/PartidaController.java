@@ -638,7 +638,8 @@ public class PartidaController {
 
     @Transactional()
     @GetMapping(value = "tablero/{id}/chat")
-    public String juego(@PathVariable int id, Map<String,Object> model) {
+    public String chat(@PathVariable int id, Map<String,Object> model, HttpServletResponse response) {
+        response.addHeader("Refresh", "10");
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         model.put("tablero",tablero);
@@ -649,7 +650,8 @@ public class PartidaController {
 
     @Transactional
     @PostMapping("tablero/{id}/chat")
-    public String processChat(@PathVariable("id") Integer id, Chat chat,BindingResult result) {
+    public String processChat(@PathVariable("id") Integer id, Chat chat, BindingResult result) {
+
         Partida partida = partidaService.findPartidaById(id);
         if (result.hasErrors()) {
             System.out.println("#".repeat(200));
