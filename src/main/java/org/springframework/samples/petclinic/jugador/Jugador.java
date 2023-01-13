@@ -31,6 +31,7 @@ public class Jugador extends BaseEntity {
     private Integer cantidadAcero;
     private Integer cantidadOro;
     private Integer cantidadMedallas;
+    private Boolean puedeObtenerObjeto;
 
     @ManyToMany
     private List<Objeto> objetos;
