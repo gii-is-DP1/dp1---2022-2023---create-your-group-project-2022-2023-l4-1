@@ -214,9 +214,16 @@ public class PartidaService {
             else if (jugador2.getCantidadHierro() > jugador1.getCantidadHierro() && jugador2.getCantidadHierro() > jugador3.getCantidadHierro()) puntos2++;
             else if (jugador3.getCantidadHierro() > jugador1.getCantidadHierro() && jugador3.getCantidadHierro() > jugador2.getCantidadHierro()) puntos3++;
 
-            if (puntos1 > puntos2 && puntos1 > puntos3) partida.setGanador(partida.getUser0());
-            else if (puntos2 > puntos1 && puntos2 > puntos3) partida.setGanador(partida.getUser1());
-            else if (puntos3 > puntos1 && puntos3 > puntos2) partida.setGanador(partida.getUser2());
+            if (puntos1 > puntos2 && puntos1 > puntos3) {
+                partida.setGanador(partida.getUser0());
+                jugador1.setEsGanador(true);
+            } else if (puntos2 > puntos1 && puntos2 > puntos3) {
+                partida.setGanador(partida.getUser1());
+                jugador2.setEsGanador(true);
+            } else if (puntos3 > puntos1 && puntos3 > puntos2) {
+                partida.setGanador(partida.getUser2());
+                jugador3.setEsGanador(true);
+            }
         } else {
             if (jugador1.getCantidadAcero() > jugador2.getCantidadAcero()) puntos1 += 1;
             else if (jugador1.getCantidadAcero() < jugador2.getCantidadAcero()) puntos2 += 1;
@@ -233,8 +240,13 @@ public class PartidaService {
             if (jugador1.getCantidadHierro() > jugador2.getCantidadHierro()) puntos1 += 1;
             else if (jugador1.getCantidadHierro() < jugador2.getCantidadHierro()) puntos2 += 1;
 
-            if (puntos1 > puntos2) partida.setGanador(partida.getUser0());
-            else if (puntos1 < puntos2) partida.setGanador(partida.getUser1());
+            if (puntos1 > puntos2) {
+                partida.setGanador(partida.getUser0());
+                jugador1.setEsGanador(true);
+            } else if (puntos1 < puntos2) {
+                partida.setGanador(partida.getUser1());
+                jugador2.setEsGanador(true);
+            }
         }
         
     }

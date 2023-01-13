@@ -22,7 +22,7 @@ public interface JugadorRepository extends CrudRepository<Jugador, Integer> {
 	public Jugador findById(@Param("id") int id);
 	
 	@Query("SELECT jugador FROM Jugador jugador WHERE jugador.user.username =:username")
-	public Collection<Jugador> findByUsername(@Param("username") String username);
+	public List<Jugador> findByUsername(@Param("username") String username);
 
 	@Query("SELECT jugador FROM Jugador jugador WHERE jugador.user.username =:username AND jugador.partida =:partida")
 	public Jugador findJugadorInAGame(@Param("username") String username, @Param("partida") Partida Partida);
