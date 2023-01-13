@@ -9,12 +9,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.samples.petclinic.carta.CartaEspecialRepository;
 import org.springframework.samples.petclinic.carta.CartaRepository;
 import org.springframework.samples.petclinic.carta.CartaService;
+import org.springframework.samples.petclinic.jugador.JugadorRepository;
+import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.objetos.ObjetoRepository;
+import org.springframework.samples.petclinic.objetos.ObjetoService;
 import org.springframework.samples.petclinic.partida.Partida;
-import org.springframework.samples.petclinic.partida.PartidaRepository;
 import org.springframework.samples.petclinic.tablero.Tablero;
 import org.springframework.samples.petclinic.tablero.TableroRepository;
 import org.springframework.samples.petclinic.tablero.TableroService;
-import org.springframework.samples.petclinic.user.AuthoritiesRepository;
 
 @DataJpaTest
 public class CeldaServiceTest {
@@ -35,17 +37,19 @@ public class CeldaServiceTest {
     CeldaEspecialRepository celdaEspecialRepository;
 
     @Autowired
-    PartidaRepository partidaRepository;
+    ObjetoRepository objetoRepository;
 
     @Autowired
-    AuthoritiesRepository authoritiesRepository;
+    JugadorRepository jugadorRepository;
 
 
     @Test
     public void saveSuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
         tableroService.save(new Partida());
 
@@ -61,8 +65,10 @@ public class CeldaServiceTest {
 
     @Test
     public void saveUnsuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
 
         Celda celda = new Celda();
         Tablero tablero = new Tablero();
@@ -74,9 +80,11 @@ public class CeldaServiceTest {
 
     @Test
     public void colocarFichaSuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
 
         Tablero tablero = tableroService.findById(1).get();
@@ -93,8 +101,10 @@ public class CeldaServiceTest {
 
     @Test
     public void colocarFichaUnsuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
                 
         Tablero tablero = new Tablero();
         Partida partida = new Partida();
