@@ -12,6 +12,8 @@ import org.springframework.samples.petclinic.carta.enums.AccionPosterior;
 import org.springframework.samples.petclinic.carta.enums.NombreCarta;
 import org.springframework.samples.petclinic.carta.enums.RangoCarta;
 import org.springframework.samples.petclinic.carta.enums.TipoCarta;
+import org.springframework.samples.petclinic.objetos.ObjetoRepository;
+import org.springframework.samples.petclinic.objetos.ObjetoService;
 
 @DataJpaTest
 public class CartaServiceTest {
@@ -21,25 +23,30 @@ public class CartaServiceTest {
 
     @Autowired
     CartaEspecialRepository cartaEspecialRepository;
+
+    @Autowired
+    ObjetoRepository objetoRepository;
     
 
     
     @Test
     public void findByIdSuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        Carta carta = cartaService.findById(23);
-        assertNotNull(carta);
-        assertEquals(NombreCarta.Alloy_Steel, carta.getNombre());
-        assertEquals(TipoCarta.Extraccion, carta.getTipo());
-        assertEquals(RangoCarta.B, carta.getRango());
-        assertEquals("Return 3 iron to the supply then take 2 steel.", carta.getDescripcion());
-        assertEquals(5, carta.getPosicion());
-        assertEquals("/resources/images/cartas/Carta 23.png", carta.getImagen());
+      ObjetoService objetoService = new ObjetoService(objetoRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+      Carta carta = cartaService.findById(23);
+      assertNotNull(carta);
+      assertEquals(NombreCarta.Alloy_Steel, carta.getNombre());
+      assertEquals(TipoCarta.Extraccion, carta.getTipo());
+      assertEquals(RangoCarta.B, carta.getRango());
+      assertEquals("Return 3 iron to the supply then take 2 steel.", carta.getDescripcion());
+      assertEquals(5, carta.getPosicion());
+      assertEquals("/resources/images/cartas/Carta 23.png", carta.getImagen());
     }
 
     @Test
     public void findByIdUnsuccessfulTest(){
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
+      ObjetoService objetoService = new ObjetoService(objetoRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
       assertThrows(Exception.class, () -> cartaService.findById(80));
       
     }
@@ -48,7 +55,8 @@ public class CartaServiceTest {
 
     @Test
     public void findCartaEspecialByIdSuccessfulTest(){
-      CartaService cartasService = new CartaService(cartaRepository, cartaEspecialRepository);
+      ObjetoService objetoService = new ObjetoService(objetoRepository);
+      CartaService cartasService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
       CartaEspecial cartaEspecial = cartasService.findCartaEspecialById(3);
       assertNotNull(cartaEspecial);
       assertEquals(AccionEspecial.Sell_an_Item, cartaEspecial.getNombre());
@@ -59,7 +67,8 @@ public class CartaServiceTest {
 
     @Test
     public void findCartaEspecialByIdUnsuccessfulTest(){
-      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
+      ObjetoService objetoService = new ObjetoService(objetoRepository);
+      CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
       assertThrows(Exception.class, () -> cartaService.findCartaEspecialById(20));
       
     }

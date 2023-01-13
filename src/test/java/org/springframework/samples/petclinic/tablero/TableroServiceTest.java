@@ -18,6 +18,10 @@ import org.springframework.samples.petclinic.celda.CeldaEspecialRepository;
 import org.springframework.samples.petclinic.celda.CeldaEspecialService;
 import org.springframework.samples.petclinic.celda.CeldaRepository;
 import org.springframework.samples.petclinic.celda.CeldaService;
+import org.springframework.samples.petclinic.jugador.JugadorRepository;
+import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.objetos.ObjetoRepository;
+import org.springframework.samples.petclinic.objetos.ObjetoService;
 import org.springframework.samples.petclinic.partida.Partida;
 
 @DataJpaTest
@@ -38,13 +42,21 @@ public class TableroServiceTest {
     @Autowired
     CartaEspecialRepository cartaEspecialRepository;
 
+    @Autowired
+    ObjetoRepository objetoRepository;
+
+    @Autowired
+    JugadorRepository jugadorRepository;
+
 
 
     @Test
     public void saveSuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
         Partida partida = new Partida();
 
@@ -59,9 +71,11 @@ public class TableroServiceTest {
 
     @Test
     public void findByIdSuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
         Tablero tablero = tableroService.findById(1).get();
 
@@ -72,9 +86,11 @@ public class TableroServiceTest {
 
     @Test
     public void findByIdUnsuccessfulTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
     
         assertThrows(Exception.class, () -> tableroService.findById(1325457).get());
@@ -84,9 +100,11 @@ public class TableroServiceTest {
 
     @Test
     public void findAllTest(){
-        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository);
-        CeldaService celdaService = new CeldaService(celdaRepository, cartaService);
-        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository);
+        JugadorService jugadorService = new JugadorService(jugadorRepository);
+        ObjetoService objetoService = new ObjetoService(objetoRepository);
+        CartaService cartaService = new CartaService(cartaRepository, cartaEspecialRepository, objetoService);
+        CeldaService celdaService = new CeldaService(celdaRepository, cartaService, jugadorService);
+        CeldaEspecialService celdaEspecialService = new CeldaEspecialService(celdaEspecialRepository, jugadorService, cartaService);
         TableroService tableroService = new TableroService(tableroRepository, celdaService, cartaService, celdaEspecialService);
         List<Tablero> tableros = tableroService.findAll();
 
