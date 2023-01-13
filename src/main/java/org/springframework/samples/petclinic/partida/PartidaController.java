@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.carta.CartaService;
 import org.springframework.samples.petclinic.celda.CeldaEspecialService;
 import org.springframework.samples.petclinic.celda.CeldaService;
 import org.springframework.samples.petclinic.jugador.Jugador;
 import org.springframework.samples.petclinic.jugador.JugadorService;
+import org.springframework.samples.petclinic.partida.enums.EspecialActivada;
 import org.springframework.samples.petclinic.partida.enums.Fase;
 import org.springframework.samples.petclinic.partida.enums.NumRondas;
 import org.springframework.samples.petclinic.tablero.Tablero;
@@ -39,6 +41,7 @@ public class PartidaController {
     TableroService tableroService;
     CeldaService celdaService;
     CeldaEspecialService celdaEspecialService;
+    CartaService cartaService;
     ChatService chatService;
 
     private final String MIS_PARTIDAS_LISTING_VIEW = "/partidas/MisPartidasListing";
@@ -56,13 +59,14 @@ public class PartidaController {
     @Autowired
     public PartidaController(PartidaService partidaService, UserService userService, JugadorService jugadorService,
             TableroService tableroService, CeldaService celdaService, CeldaEspecialService celdaEspecialService,
-            ChatService chatService) {
+            CartaService cartaService, ChatService chatService) {
         this.partidaService = partidaService;
         this.userService = userService;
         this.jugadorService = jugadorService;
         this.tableroService = tableroService;
         this.celdaService = celdaService;
         this.celdaEspecialService = celdaEspecialService;
+        this.cartaService = cartaService;
         this.chatService = chatService;
     }
 
@@ -267,6 +271,9 @@ public class PartidaController {
         model.put("fase1", Fase.EXTRACCION);
         model.put("fase2", Fase.SELECCION);
         model.put("fase3", Fase.RESOLUCION);
+        model.put("desactivada", EspecialActivada.DESACTIVADA);
+        model.put("especial7", EspecialActivada.ESPECIAL7);
+        model.put("jugador_actual", jugadorService.findJugadorInAGame(partidaService.getUserLogged().getUsername(), partida));
         return VIEWS_TABLERO;
     }
 
@@ -277,10 +284,24 @@ public class PartidaController {
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
         
-        // Colocar ficha en la celda 1.
-        celdaService.colocarFicha(partida, tablero, username, 0);
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 0);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 0, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 0, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 1.
+            celdaService.colocarFicha(partida, tablero, username, 0);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -291,11 +312,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 2.
-        celdaService.colocarFicha(partida, tablero, username, 1);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 1);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 1, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 1, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 2.
+            celdaService.colocarFicha(partida, tablero, username, 1);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -306,11 +341,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 3.
-        celdaService.colocarFicha(partida, tablero, username, 2);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 2);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 2, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) { 
+            cartaService.cartaEspecial7(tablero, partida, 2, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 3.
+            celdaService.colocarFicha(partida, tablero, username, 2);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -321,11 +370,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 4.
-        celdaService.colocarFicha(partida, tablero, username, 3);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 3);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 3, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 3, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 4.
+            celdaService.colocarFicha(partida, tablero, username, 3);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -336,11 +399,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 5.
-        celdaService.colocarFicha(partida, tablero, username, 4);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 4);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 4, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 4, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 5.
+            celdaService.colocarFicha(partida, tablero, username, 4);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -351,11 +428,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 6.
-        celdaService.colocarFicha(partida, tablero, username, 5);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 5);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 5, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 5, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 6.
+            celdaService.colocarFicha(partida, tablero, username, 5);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -366,12 +457,26 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 7.
-        celdaService.colocarFicha(partida, tablero, username, 6);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 6);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 6, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 6, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 7.
+            celdaService.colocarFicha(partida, tablero, username, 6);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
-
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
+        
         return "redirect:/partida/tablero/" + partida.getId();
     }
 
@@ -382,11 +487,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 8.
-        celdaService.colocarFicha(partida, tablero, username, 7);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 7);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) {
+            cartaService.cartaEspecial6(tablero, partida, 7, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 7, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 8.
+            celdaService.colocarFicha(partida, tablero, username, 7);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -397,11 +516,25 @@ public class PartidaController {
         Partida partida = partidaService.findPartidaById(id);
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
-        
-        // Colocar ficha en la celda 9.
-        celdaService.colocarFicha(partida, tablero, username, 8);
+
+        if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL4) {
+            cartaService.cartaEspecial4(tablero, 8);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 4);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL6) { 
+            cartaService.cartaEspecial6(tablero, partida, 8, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 6);
+        } else if (partida.getEspecialActivada() == EspecialActivada.ESPECIAL7) {
+            cartaService.cartaEspecial7(tablero, partida, 8, username);
+            celdaEspecialService.colocarCartaEspecial2(tablero, 7);
+        } else {
+            // Colocar ficha en la celda 9.
+            celdaService.colocarFicha(partida, tablero, username, 8);
+        }
         // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
         partidaService.actualizarTurno(partida);
+        if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+        // Comprobamos si podemos avanzar a la siguiente fase.
+        partidaService.faseSeleccion(partida, tablero);
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -413,10 +546,23 @@ public class PartidaController {
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
         
-        // Colocar ficha en la celda 9.
-        celdaEspecialService.colocarFicha(partida, tablero, username, 0);
-        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
-        partidaService.actualizarTurno(partida);
+        // Seleccionar carta especial.
+        if (tablero.getCeldasEspeciales().get(0).getCartas().get(0).getPosicion() == 4 
+                || tablero.getCeldasEspeciales().get(0).getCartas().get(0).getPosicion() == 6 
+                || tablero.getCeldasEspeciales().get(0).getCartas().get(0).getPosicion() == 7) {
+            celdaEspecialService.elegirCarta(partida, tablero, username, 0);
+        } else {
+            celdaEspecialService.elegirCarta(partida, tablero, username, 0);
+            celdaEspecialService.colocarCartaEspecial(tablero, 0);
+        }
+
+        if (partida.getEspecialActivada() == EspecialActivada.DESACTIVADA) {
+            // Actualizar el turno de los jugadores después de que el que tenga el turno haya seleccionado la carta.
+            partidaService.actualizarTurno(partida);
+            if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+            // Comprobamos si podemos avanzar a la siguiente fase.
+            partidaService.faseSeleccion(partida, tablero);
+        }
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -428,10 +574,23 @@ public class PartidaController {
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
         
-        // Colocar ficha en la celda 9.
-        celdaEspecialService.colocarFicha(partida, tablero, username, 1);
-        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
-        partidaService.actualizarTurno(partida);
+        // Seleccionar carta especial
+        if (tablero.getCeldasEspeciales().get(1).getCartas().get(0).getPosicion() == 4 
+                || tablero.getCeldasEspeciales().get(1).getCartas().get(0).getPosicion() == 6 
+                || tablero.getCeldasEspeciales().get(1).getCartas().get(0).getPosicion() == 7) {
+            celdaEspecialService.elegirCarta(partida, tablero, username, 1);
+        } else {
+            celdaEspecialService.elegirCarta(partida, tablero, username, 1);
+            celdaEspecialService.colocarCartaEspecial(tablero, 1);
+        }
+
+        if (partida.getEspecialActivada() == EspecialActivada.DESACTIVADA) {
+            // Actualizar el turno de los jugadores después de que el que tenga el turno haya seleccionado la carta.
+            partidaService.actualizarTurno(partida);
+            if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+            // Comprobamos si podemos avanzar a la siguiente fase.
+            partidaService.faseSeleccion(partida, tablero);
+        }
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
@@ -443,10 +602,23 @@ public class PartidaController {
         Tablero tablero = tableroService.findAll().stream().filter(x -> x.getPartida().equals(partida)).findFirst().get();
         String username = partidaService.getUserLogged().getUsername();
         
-        // Colocar ficha en la celda 9.
-        celdaEspecialService.colocarFicha(partida, tablero, username, 2);
-        // Actualizar el turno de los jugadores después de que el que tenga el turno haya colocado ficha.
-        partidaService.actualizarTurno(partida);
+        // Seleccionar carta especial.
+        if (tablero.getCeldasEspeciales().get(2).getCartas().get(0).getPosicion() == 4 
+                || tablero.getCeldasEspeciales().get(2).getCartas().get(0).getPosicion() == 6 
+                || tablero.getCeldasEspeciales().get(2).getCartas().get(0).getPosicion() == 7) {
+            celdaEspecialService.elegirCarta(partida, tablero, username, 2);
+        } else {
+            celdaEspecialService.elegirCarta(partida, tablero, username, 2);
+            celdaEspecialService.colocarCartaEspecial(tablero, 2);
+        }
+
+        if (partida.getEspecialActivada() == EspecialActivada.DESACTIVADA) {
+            // Actualizar el turno de los jugadores después de que el que tenga el turno haya seleccionado la carta.
+            partidaService.actualizarTurno(partida);
+            if (jugadorService.findJugadorInAGame(partida.getJugadorActivo(), partida).getNumEnanosMazo() == 0) partidaService.actualizarTurno(partida);
+            // Comprobamos si podemos avanzar a la siguiente fase.
+            partidaService.faseSeleccion(partida, tablero);
+        }
 
         return "redirect:/partida/tablero/" + partida.getId();
     }
