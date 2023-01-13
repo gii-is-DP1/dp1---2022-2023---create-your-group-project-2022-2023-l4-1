@@ -55,7 +55,7 @@ INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (20,
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (21, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 3, '/resources/images/cartas/Carta 21.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (22, 'Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 4, '/resources/images/cartas/Carta 22.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (23, 'Alloy_Steel', 'Extraccion', 'B', 'Return 3 iron to the supply then take 2 steel.', 5, '/resources/images/cartas/Carta 23.png');
-INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (24, 'Get_Help', 'Ayuda', 'B', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 6, '/resources/images/cartas/Carta 24.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (24, 'Get_Help', 'Ayuda', 'B', 'You may place additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 6, '/resources/images/cartas/Carta 24.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (25, 'Forge_Diadem', 'Forja', 'B', 'Return 1 iron, 1 steel and 1 gold to the supply then take 1 item.', 7, '/resources/images/cartas/Carta 25.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (26, 'Forge_Helm', 'Forja', 'B', 'Return 1 steel and 2 gold to the supply then take 1 item.', 8, '/resources/images/cartas/Carta 26.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (27, 'Dragon', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 9, '/resources/images/cartas/Carta 27.png');
@@ -64,7 +64,7 @@ INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (28,
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (29, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 2, '/resources/images/cartas/Carta 29.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (30, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 3, '/resources/images/cartas/Carta 30.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (31, 'Forge_Axe', 'Forja', 'A', 'Return 2 steel to the supply then take 1 item.', 4, '/resources/images/cartas/Carta 31.png');
-INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (32, 'Get_Help', 'Ayuda', 'A', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 5, '/resources/images/cartas/Carta 32.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (32, 'Get_Help', 'Ayuda', 'A', 'You may place additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 5, '/resources/images/cartas/Carta 32.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (33, 'Forge_Crown', 'Forja', 'A', 'Return 3 gold to the supply then take 1 item.', 6, '/resources/images/cartas/Carta 33.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (34, 'Iron_Seam', 'Extraccion', 'B', 'Take 3 iron from the supply.', 7, '/resources/images/cartas/Carta 34.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (35, 'Dragon', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 gold to the supply.', 8, '/resources/images/cartas/Carta 35.png');
@@ -72,7 +72,7 @@ INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (36,
   
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (37, 'Sidhe', 'Defensa', 'A', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 1, '/resources/images/cartas/Carta 37.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (38, 'Sidhe', 'Defensa', 'A', 'If undefended at the end of the round, each player must replace two gold they possess with two iron.', 2, '/resources/images/cartas/Carta 38.png');
-INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (39, 'Get_Help', 'Ayuda', 'B', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 3, '/resources/images/cartas/Carta 39.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (39, 'Get_Help', 'Ayuda', 'B', 'You may place additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 3, '/resources/images/cartas/Carta 39.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (40, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 4, '/resources/images/cartas/Carta 40.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (41, 'Gold_Seam', 'Extraccion', 'A', 'Take 1 gold from the supply.', 5, '/resources/images/cartas/Carta 41.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (42, 'Knockers', 'Defensa', 'A', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 6, '/resources/images/cartas/Carta 42.png');
@@ -86,7 +86,7 @@ INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (48,
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (49, 'Orc_Raiders', 'Defensa', 'A', 'If undefended at the end of the round, players cannot resolve any extraction actions.', 4, '/resources/images/cartas/Carta 49.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (50, 'Gold_Seam', 'Extraccion', 'B', 'Take 1 gold from the supply.', 5, '/resources/images/cartas/Carta 50.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (51, 'Forge_Armour', 'Forja', 'B', 'Return 2 steel and 1 gold to the supply then take 1 item.', 6, '/resources/images/cartas/Carta 51.png');
-INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (52, 'Get_Help', 'Ayuda', 'A', 'You may place 2 additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 7, '/resources/images/cartas/Carta 52.png');
+INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (52, 'Get_Help', 'Ayuda', 'A', 'You may place additional workers this round. If you are 1st player, pass the 1st player marker to your left.', 7, '/resources/images/cartas/Carta 52.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (53, 'Knockers', 'Defensa', 'B', 'If undefended at the end of the round, each player must return 1 iron to the supply.', 8, '/resources/images/cartas/Carta 53.png');
 INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (54, 'Alloy_Steel', 'Extraccion', 'A', 'Return 3 iron to the supply then take 2 steel.', 9, '/resources/images/cartas/Carta 54.png');
 
@@ -103,9 +103,9 @@ INSERT INTO cartas(id,nombre,tipo,rango,descripcion,posicion,imagen) VALUES (63,
 -- Cartas especiales.
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (1, 'Muster_an_Army', 'When resolving actions this round, treat al defend locations as if they are occupied.', 'Iron_Seam', 'Take 3 iron from the supply.', 1, '/resources/images/cartas_especiales/Trasera 1.png', '/resources/images/cartas_especiales/Especial 1.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (2, 'Hold_a_Council', 'Remove the top card from each location (leaving at least one card) and shuffle them back into The Mountain.', 'Iron_Seam', 'Take 3 iron from the supply.', 2, '/resources/images/cartas_especiales/Trasera 2.png', '/resources/images/cartas_especiales/Especial 2.png');
-INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (3, 'Sell_an_Item', 'Exchange 1 of your items for 5 resources of your choice.', 'Iron_Seam', 'Take 3 iron from the supply.', 3, '/resources/images/cartas_especiales/Trasera 3.png', '/resources/images/cartas_especiales/Especial 3.png');
+INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (3, 'Sell_an_Item', 'Exchange 1 random item that you won during teh game for 10 gold from the supply.', 'Iron_Seam', 'Take 3 iron from the supply.', 3, '/resources/images/cartas_especiales/Trasera 3.png', '/resources/images/cartas_especiales/Especial 3.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (4, 'Past_Glories', 'Name a card previously on top in any location and return it to the top of that location.', 'Iron_Seam', 'Take 3 iron from the supply.', 4, '/resources/images/cartas_especiales/Trasera 4.png', '/resources/images/cartas_especiales/Especial 4.png');
-INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (5, 'Special_Order', 'Return 5 resources of your choice, including at least 1 of each type, to the supply and take 1 item.', 'Iron_Seam', 'Take 3 iron from the supply.', 5, '/resources/images/cartas_especiales/Trasera 5.png', '/resources/images/cartas_especiales/Especial 5.png');
+INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (5, 'Special_Order', 'Take a random item that you do not have yet.', 'Iron_Seam', 'Take 3 iron from the supply.', 5, '/resources/images/cartas_especiales/Trasera 5.png', '/resources/images/cartas_especiales/Especial 5.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (6, 'Turn_Back', 'Remove the top card from 1 location and shuffle it back into the mountain. Inmediately place 1 meeple on that location.', 'Iron_Seam', 'Take 3 iron from the supply.', 6, '/resources/images/cartas_especiales/Trasera 6.png', '/resources/images/cartas_especiales/Especial 6.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (7, 'Apprentice', 'Place one meeple on a location occupied by other player.', 'Gold_Seam', 'Take 1 gold from the supply.', 7, '/resources/images/cartas_especiales/Trasera 7.png', '/resources/images/cartas_especiales/Especial 7.png');
 INSERT INTO cartas_especiales(id,nombre,descripcion,accion_posterior,descripcion_trasera,posicion,imagen,imagen_especial) VALUES (8, 'Collapse_the_Shafts', 'Remove the top card from each location and place it on the bottom of that stack.', 'Iron_Seam', 'Take 3 iron from the supply.', 8, '/resources/images/cartas_especiales/Trasera 8.png', '/resources/images/cartas_especiales/Especial 8.png');
@@ -138,8 +138,8 @@ INSERT INTO achievement(id,name,description,threshold,badge_image) VALUES (10,'E
 
 -- Partidas de ejemplo.
 
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, user0, user1, user2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 20, 3, 2, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'LIMITADAS', 'FINALIZADA');
-INSERT INTO partida(id, nombre_sala, duracion, num_ronda, tiempo_rest_ronda, user0, user1, user2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 20, 3, 2, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'ILIMITADAS', 'FINALIZADA');
+INSERT INTO partida(id, nombre_sala, num_ronda, user0, user1, user2, ganador, rondas, fase_actual) VALUES (1, 'prueba', 3, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'LIMITADAS', 'FINALIZADA');
+INSERT INTO partida(id, nombre_sala, num_ronda, user0, user1, user2, ganador, rondas, fase_actual) VALUES (2, 'prueba2', 3, 'pabmarval', 'ignwarmur', 'davcorrom', 'pabmarval', 'ILIMITADAS', 'FINALIZADA');
 
 
 -- Juadores de ejemplo.
@@ -166,23 +166,3 @@ INSERT INTO Invitation(id, receiver_username, sender_username) VALUES(1, 'ignwar
 
 
 INSERT INTO tablero(id, background, width, height, partida) VALUES (1, 'resources/images/cueva-juego.png', 800, 800, 1);
-
---INSERT INTO celda(id,tablero) VALUES (1, 1);
---INSERT INTO celda(id,tablero) VALUES (2, 1);
---INSERT INTO celda(id,tablero) VALUES (3, 1);
---INSERT INTO celda(id,tablero) VALUES (4, 1);
---INSERT INTO celda(id,tablero) VALUES (5, 1);
---INSERT INTO celda(id,tablero) VALUES (6, 1);
---INSERT INTO celda(id,tablero) VALUES (7, 1);
---INSERT INTO celda(id,tablero) VALUES (8, 1);
---INSERT INTO celda(id,tablero) VALUES (9, 1);
-
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (1, 1);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (2, 2);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (3, 3);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (4, 4);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (5, 5);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (6, 6);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (7, 7);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (8, 8);
---INSERT INTO celda_cartas(celda_id,cartas_id) VALUES (9, 9);
